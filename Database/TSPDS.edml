@@ -1,0 +1,132 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EntitiesStoreContainer">
+          <EntitySet Name="Users1s" EntityType="Model.Store.Users1" store:Type="Tables" Table="Users" />
+          <EntitySet Name="Permissions" EntityType="Model.Store.Permissions" store:Type="Tables" Table="Permissions" />
+          <AssociationSet Name="FK_Permissions_Users" Association="Model.Store.FK_Permissions_Users">
+            <End Role="Users1" EntitySet="Users1s" />
+            <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Users1">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="8000" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="8000" />
+          <Property Name="Institute" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <EntityType Name="Permissions">
+          <Key>
+            <PropertyRef Name="AccessID" />
+          </Key>
+          <Property Name="AccessID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="8000" />
+        </EntityType>
+        <Association Name="FK_Permissions_Users">
+          <End Role="Users1" Type="Model.Store.Users1" Multiplicity="1" />
+          <End Role="Permissions" Type="Model.Store.Permissions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users1">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Permissions">
+              <PropertyRef Name="AccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" ed:Guid="917689cf-706c-4b94-afe8-67ea8d43b726">
+          <EntitySet Name="Users" EntityType="Model.User" />
+          <EntitySet Name="Permissions" EntityType="Model.Permission" />
+          <AssociationSet Name="User_PermissionSet" Association="Model.User_Permission">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User" ed:Guid="a3bb2c29-bc0c-47c1-816c-16973cc2ec06">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="a345fbb4-ace6-4dbb-914d-f2069f3b08fc" />
+          <Property Name="Email" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="8e683805-efcb-46fe-92f3-f8c09cb828dd" />
+          <Property Name="Password" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="52c1ad34-456f-4420-bdd4-9e9f9b3bc453" />
+          <Property Name="Institute" Type="String" ed:ValidateRequired="false" ed:Guid="3f862955-fa31-4e89-8a75-a1c667a01af4" />
+          <NavigationProperty Name="Permission" Relationship="Model.User_Permission" FromRole="User" ToRole="Permission" ed:Guid="d4c47aa5-7ad2-4f71-b1bb-f1e886c5b6e4" />
+        </EntityType>
+        <EntityType Name="Permission" ed:Guid="c1e429e0-2b17-4cfe-9bee-7f0d1d849095">
+          <Key>
+            <PropertyRef Name="AccessID" />
+          </Key>
+          <Property Name="AccessID" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="867f7291-f9b2-4f17-a6cf-cdd2e0573ed6" />
+          <Property Name="Description" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="7b07eeb7-fbf6-4c5f-9422-358643ef055d" />
+          <NavigationProperty Name="User" Relationship="Model.User_Permission" FromRole="Permission" ToRole="User" ed:Guid="f47a89e8-7804-47d9-a5f9-bdb78a0d2f60" />
+        </EntityType>
+        <Association Name="User_Permission" ed:Guid="2860ce96-975d-4093-816e-5c4d5db0fc95">
+          <End Role="User" Type="Model.User" Multiplicity="1" />
+          <End Role="Permission" Type="Model.Permission" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Permission">
+              <PropertyRef Name="AccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="Users1s">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Institute" ColumnName="Institute" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permissions">
+            <EntityTypeMapping TypeName="Model.Permission">
+              <MappingFragment StoreEntitySet="Permissions">
+                <ScalarProperty Name="AccessID" ColumnName="AccessID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="CopyToOutputDirectory" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
