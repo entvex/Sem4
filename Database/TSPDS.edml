@@ -7,9 +7,34 @@
         <EntityContainer Name="EntitiesStoreContainer">
           <EntitySet Name="Users1s" EntityType="Model.Store.Users1" store:Type="Tables" Table="Users" />
           <EntitySet Name="Permissions" EntityType="Model.Store.Permissions" store:Type="Tables" Table="Permissions" />
+          <EntitySet Name="Revisions" EntityType="Model.Store.Revisions" store:Type="Tables" Schema="dbo" Table="Revisions" />
+          <EntitySet Name="Datasets" EntityType="Model.Store.Datasets" store:Type="Tables" Schema="dbo" Table="Datasets" />
+          <EntitySet Name="Ions" EntityType="Model.Store.Ions" store:Type="Tables" Schema="dbo" Table="Ions" />
+          <EntitySet Name="Materials" EntityType="Model.Store.Materials" store:Type="Tables" Schema="dbo" Table="Materials" />
+          <EntitySet Name="Isotopes" EntityType="Model.Store.Isotopes" store:Type="Tables" Schema="dbo" Table="Isotopes" />
           <AssociationSet Name="FK_Permissions_Users" Association="Model.Store.FK_Permissions_Users">
             <End Role="Users1" EntitySet="Users1s" />
             <End Role="Permissions" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revisions_Revisions" Association="Model.Store.FK_Revisions_Revisions">
+            <End Role="Revisions" EntitySet="Revisions" />
+            <End Role="Revisions1" EntitySet="Revisions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Datasets_Revisions" Association="Model.Store.FK_Datasets_Revisions">
+            <End Role="Revisions" EntitySet="Revisions" />
+            <End Role="Datasets" EntitySet="Datasets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Materials_Datasets" Association="Model.Store.FK_Materials_Datasets">
+            <End Role="Datasets" EntitySet="Datasets" />
+            <End Role="Materials" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Isotopes_Ions" Association="Model.Store.FK_Isotopes_Ions">
+            <End Role="Ions" EntitySet="Ions" />
+            <End Role="Isotopes" EntitySet="Isotopes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ions_Datasets" Association="Model.Store.FK_Ions_Datasets">
+            <End Role="Datasets" EntitySet="Datasets" />
+            <End Role="Ions" EntitySet="Ions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Users1">
@@ -28,6 +53,37 @@
           <Property Name="AccessID" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar" Nullable="false" MaxLength="8000" />
         </EntityType>
+        <EntityType Name="Revisions">
+          <Key>
+            <PropertyRef Name="RevID" />
+          </Key>
+          <Property Name="RevID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <EntityType Name="Datasets">
+          <Key>
+            <PropertyRef Name="DatasetID" />
+          </Key>
+          <Property Name="DatasetID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Ions">
+          <Key>
+            <PropertyRef Name="IonID" />
+          </Key>
+          <Property Name="IonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Isotopes">
+          <Key>
+            <PropertyRef Name="IsotopeID" />
+          </Key>
+          <Property Name="IsotopeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
         <Association Name="FK_Permissions_Users">
           <End Role="Users1" Type="Model.Store.Users1" Multiplicity="1" />
           <End Role="Permissions" Type="Model.Store.Permissions" Multiplicity="0..1" />
@@ -40,6 +96,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Revisions_Revisions">
+          <End Role="Revisions" Type="Model.Store.Revisions" Multiplicity="1" />
+          <End Role="Revisions1" Type="Model.Store.Revisions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Revisions">
+              <PropertyRef Name="RevID" />
+            </Principal>
+            <Dependent Role="Revisions1">
+              <PropertyRef Name="RevID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Datasets_Revisions">
+          <End Role="Revisions" Type="Model.Store.Revisions" Multiplicity="1" />
+          <End Role="Datasets" Type="Model.Store.Datasets" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Revisions">
+              <PropertyRef Name="RevID" />
+            </Principal>
+            <Dependent Role="Datasets">
+              <PropertyRef Name="DatasetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Materials_Datasets">
+          <End Role="Datasets" Type="Model.Store.Datasets" Multiplicity="1" />
+          <End Role="Materials" Type="Model.Store.Materials" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Datasets">
+              <PropertyRef Name="DatasetID" />
+            </Principal>
+            <Dependent Role="Materials">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Isotopes_Ions">
+          <End Role="Ions" Type="Model.Store.Ions" Multiplicity="1" />
+          <End Role="Isotopes" Type="Model.Store.Isotopes" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ions">
+              <PropertyRef Name="IonID" />
+            </Principal>
+            <Dependent Role="Isotopes">
+              <PropertyRef Name="IsotopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ions_Datasets">
+          <End Role="Datasets" Type="Model.Store.Datasets" Multiplicity="1" />
+          <End Role="Ions" Type="Model.Store.Ions" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Datasets">
+              <PropertyRef Name="DatasetID" />
+            </Principal>
+            <Dependent Role="Ions">
+              <PropertyRef Name="IonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -48,9 +164,34 @@
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" ed:Guid="917689cf-706c-4b94-afe8-67ea8d43b726">
           <EntitySet Name="Users" EntityType="Model.User" />
           <EntitySet Name="Permissions" EntityType="Model.Permission" />
+          <EntitySet Name="Revisions" EntityType="Model.Revision" />
+          <EntitySet Name="Datasets" EntityType="Model.Dataset" />
+          <EntitySet Name="Ions" EntityType="Model.Ion" />
+          <EntitySet Name="Materials" EntityType="Model.Material" />
+          <EntitySet Name="Isotopes" EntityType="Model.Isotope" />
           <AssociationSet Name="User_PermissionSet" Association="Model.User_Permission">
             <End Role="User" EntitySet="Users" />
             <End Role="Permission" EntitySet="Permissions" />
+          </AssociationSet>
+          <AssociationSet Name="Revision_RevisionSet" Association="Model.Revision_Revision">
+            <End Role="HeadRevision" EntitySet="Revisions" />
+            <End Role="PrevRevision" EntitySet="Revisions" />
+          </AssociationSet>
+          <AssociationSet Name="Revision_DatasetSet" Association="Model.Revision_Dataset">
+            <End Role="LastRev" EntitySet="Revisions" />
+            <End Role="CurrentDataset" EntitySet="Datasets" />
+          </AssociationSet>
+          <AssociationSet Name="Dataset_MaterialSet" Association="Model.Dataset_Material">
+            <End Role="Dataset" EntitySet="Datasets" />
+            <End Role="Material" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="Ion_IsotopeSet" Association="Model.Ion_Isotope">
+            <End Role="Ion" EntitySet="Ions" />
+            <End Role="Isotope" EntitySet="Isotopes" />
+          </AssociationSet>
+          <AssociationSet Name="Dataset_IonSet" Association="Model.Dataset_Ion">
+            <End Role="Dataset" EntitySet="Datasets" />
+            <End Role="Ion" EntitySet="Ions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User" ed:Guid="a3bb2c29-bc0c-47c1-816c-16973cc2ec06">
@@ -71,6 +212,46 @@
           <Property Name="Description" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="7b07eeb7-fbf6-4c5f-9422-358643ef055d" />
           <NavigationProperty Name="User" Relationship="Model.User_Permission" FromRole="Permission" ToRole="User" ed:Guid="f47a89e8-7804-47d9-a5f9-bdb78a0d2f60" />
         </EntityType>
+        <EntityType Name="Revision" ed:Guid="1223da00-f5a2-45aa-a97a-818a01e01b63">
+          <Key>
+            <PropertyRef Name="RevID" />
+          </Key>
+          <Property Name="RevID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d9e76703-7b4e-42a7-ba93-4069123017ef" />
+          <Property Name="Comment" Type="String" ed:ValidateRequired="false" ed:Guid="3f9160f5-b952-4f97-8bee-644eee91898a" />
+          <NavigationProperty Name="PrevRevision" Relationship="Model.Revision_Revision" FromRole="HeadRevision" ToRole="PrevRevision" ed:Guid="d61be689-10d3-4edc-a95e-608df4295697" />
+          <NavigationProperty Name="HeadRevision" Relationship="Model.Revision_Revision" FromRole="PrevRevision" ToRole="HeadRevision" ed:Guid="68bd663d-e0c9-462b-8451-68166262dd47" />
+        </EntityType>
+        <EntityType Name="Dataset" ed:Guid="0700bee6-d945-4f21-a8fc-e3918c6f2d94">
+          <Key>
+            <PropertyRef Name="DatasetID" />
+          </Key>
+          <Property Name="DatasetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="418bf753-ce83-4f13-b2e9-a367e69de1f8" />
+          <NavigationProperty Name="LastRev" Relationship="Model.Revision_Dataset" FromRole="CurrentDataset" ToRole="LastRev" ed:Guid="2d54e3d1-ac81-451a-b595-e9abd3b7c4c5" />
+          <NavigationProperty Name="Material" Relationship="Model.Dataset_Material" FromRole="Dataset" ToRole="Material" ed:Guid="0effe2f0-2c07-4562-b6a3-c009c64dc59c" />
+          <NavigationProperty Name="Ion" Relationship="Model.Dataset_Ion" FromRole="Dataset" ToRole="Ion" ed:Guid="26dcee05-efec-4cf7-9ad5-4770e8c6bacb" />
+        </EntityType>
+        <EntityType Name="Ion" ed:Guid="f11ac0ad-a78a-461f-8c91-a30aa955ebd6">
+          <Key>
+            <PropertyRef Name="IonID" />
+          </Key>
+          <Property Name="IonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d688165b-73bb-4874-900d-f0863be70388" />
+          <NavigationProperty Name="Isotope" Relationship="Model.Ion_Isotope" FromRole="Ion" ToRole="Isotope" ed:Guid="cd9b5a1a-8a49-43c8-9a58-c15d9b59eda3" />
+          <NavigationProperty Name="Dataset" Relationship="Model.Dataset_Ion" FromRole="Ion" ToRole="Dataset" ed:Guid="206a0f40-e649-4785-81ef-bca2c33210c5" />
+        </EntityType>
+        <EntityType Name="Material" ed:Guid="1ffa7aa9-67dd-4fc4-89a0-11b40a432855">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4ff58fdb-4465-4eb9-8466-5458e129c43a" />
+          <NavigationProperty Name="Dataset" Relationship="Model.Dataset_Material" FromRole="Material" ToRole="Dataset" ed:Guid="09db3b32-345d-4afa-83d5-80c6c74f207c" />
+        </EntityType>
+        <EntityType Name="Isotope" ed:Guid="758290df-bc86-4d4e-98c8-fb42a8b7475e">
+          <Key>
+            <PropertyRef Name="IsotopeID" />
+          </Key>
+          <Property Name="IsotopeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="b693048f-1a2a-4ee8-9137-12dea05178bb" />
+          <NavigationProperty Name="Ion" Relationship="Model.Ion_Isotope" FromRole="Isotope" ToRole="Ion" ed:Guid="02ce5108-7af3-4500-8d5c-1691dcbabbb9" />
+        </EntityType>
         <Association Name="User_Permission" ed:Guid="2860ce96-975d-4093-816e-5c4d5db0fc95">
           <End Role="User" Type="Model.User" Multiplicity="1" />
           <End Role="Permission" Type="Model.Permission" Multiplicity="0..1" />
@@ -80,6 +261,66 @@
             </Principal>
             <Dependent Role="Permission">
               <PropertyRef Name="AccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Revision_Revision" ed:Guid="a8c4d133-6fbe-4310-bfd3-45a2c7401fc6">
+          <End Role="HeadRevision" Type="Model.Revision" Multiplicity="1" />
+          <End Role="PrevRevision" Type="Model.Revision" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="HeadRevision">
+              <PropertyRef Name="RevID" />
+            </Principal>
+            <Dependent Role="PrevRevision">
+              <PropertyRef Name="RevID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Revision_Dataset" ed:Guid="65f8ca03-1adb-4aa9-a7ca-5cae20800f52">
+          <End Role="LastRev" Type="Model.Revision" Multiplicity="1" />
+          <End Role="CurrentDataset" Type="Model.Dataset" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="LastRev">
+              <PropertyRef Name="RevID" />
+            </Principal>
+            <Dependent Role="CurrentDataset">
+              <PropertyRef Name="DatasetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Dataset_Material" ed:Guid="9dc4f240-ae58-4745-b378-bc5ec979ce59">
+          <End Role="Dataset" Type="Model.Dataset" Multiplicity="1" />
+          <End Role="Material" Type="Model.Material" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Dataset">
+              <PropertyRef Name="DatasetID" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ion_Isotope" ed:Guid="c913f49d-0b7b-4bba-8d40-ec9f2e3e4a41">
+          <End Role="Ion" Type="Model.Ion" Multiplicity="1" />
+          <End Role="Isotope" Type="Model.Isotope" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ion">
+              <PropertyRef Name="IonID" />
+            </Principal>
+            <Dependent Role="Isotope">
+              <PropertyRef Name="IsotopeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Dataset_Ion" ed:Guid="20609464-f3bd-4b2a-8af4-d007a03805b4">
+          <End Role="Dataset" Type="Model.Dataset" Multiplicity="1" />
+          <End Role="Ion" Type="Model.Ion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Dataset">
+              <PropertyRef Name="DatasetID" />
+            </Principal>
+            <Dependent Role="Ion">
+              <PropertyRef Name="IonID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -104,6 +345,42 @@
               <MappingFragment StoreEntitySet="Permissions">
                 <ScalarProperty Name="AccessID" ColumnName="AccessID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Revisions">
+            <EntityTypeMapping TypeName="Model.Revision">
+              <MappingFragment StoreEntitySet="Revisions">
+                <ScalarProperty Name="RevID" ColumnName="RevID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Datasets">
+            <EntityTypeMapping TypeName="Model.Dataset">
+              <MappingFragment StoreEntitySet="Datasets">
+                <ScalarProperty Name="DatasetID" ColumnName="DatasetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ions">
+            <EntityTypeMapping TypeName="Model.Ion">
+              <MappingFragment StoreEntitySet="Ions">
+                <ScalarProperty Name="IonID" ColumnName="IonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="Model.Material">
+              <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Isotopes">
+            <EntityTypeMapping TypeName="Model.Isotope">
+              <MappingFragment StoreEntitySet="Isotopes">
+                <ScalarProperty Name="IsotopeID" ColumnName="IsotopeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
