@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="5.8.690.0">
   <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" DetectTPTInheritance="False" EntityFrameworkVersion="Version5" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
-    <Connection ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=TSPDS;Integrated Security=True;Persist Security Info=True" Provider="System.Data.SqlClient" />
+    <Connection ConnectionString="Data Source=&quot;D:\TSPDS\Sem4.git\VS15 projekt\SPDS\SPDS\App_Data&quot;;Initial Catalog=TSPDS;Integrated Security=True;Persist Security Info=True" Provider="System.Data.SqlClient" />
     <Generation />
     <DatabaseFirstNamingRules>
       <EntitySet PluralizationName="Pluralize" />
       <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
       <Property RemoveUnderscores="True" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
     </DatabaseFirstNamingRules>
-    <ModelFirst StorageSynchronizationEnabled="True" TargetSchema="dbo" TargetProviderName="System.Data.SqlClient">
+    <ModelFirst StorageSynchronizationEnabled="True" TargetProviderName="System.Data.SqlClient">
       <TargetServer Server="SQL Server" ServerVersion="2014" />
       <ModelFirstNamingRules>
         <Table RemoveUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Pluralize" />

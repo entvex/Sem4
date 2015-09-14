@@ -453,17 +453,13 @@
                       <Parent>23</Parent>
                     </CustomProperties>
                     <Children />
-                    <Location>
-                      <X>0 px</X>
-                      <Y>36 px</Y>
-                    </Location>
                     <Size>
-                      <Width>144 px</Width>
+                      <Width>100 px</Width>
                       <Height>18 px</Height>
                     </Size>
                     <Enabled>false</Enabled>
                     <Oid xsi:type="SchemaModelOID">
-                      <Path>36dcbeb7-6acc-4440-afb8-3ca27fba4a36</Path>
+                      <Path>41fc832f-608c-41d7-b581-d17a97d998a5</Path>
                       <TypeName>EntityDeveloper.EntityFramework.EntityRelationProperty</TypeName>
                     </Oid>
                   </Model>
@@ -1204,8 +1200,8 @@
           <ScaleMode>Free</ScaleMode>
           <Scale>1</Scale>
           <Location>
-            <X>159 px</X>
-            <Y>-148 px</Y>
+            <X>408 px</X>
+            <Y>183 px</Y>
           </Location>
         </ViewPort>
         <Oid xsi:type="SchemaModelOID">
