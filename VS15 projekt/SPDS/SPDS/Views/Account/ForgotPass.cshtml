@@ -1,0 +1,23 @@
+﻿@using System.Web.UI.WebControls
+@model SPDS.Models.User
+@{
+    ViewBag.Title = "ForgoPass";
+}
+<div class="content">
+
+    <div class="login">
+        <h1>FORGOT YOUR PASSWORD?</h1>
+        <div class="heading">
+
+            @using (Html.BeginForm())
+            {
+                @Html.TextBoxFor(u => u.UserName, new { autofocus = "", @class = "inputStyle", placeholder = "Enter Email" })
+                @Html.ValidationMessageFor(u => u.UserName)
+
+
+
+                <button type="submit" class="submitBtn">Retrieve Password</button>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@using System.Web.UI.WebControls
+@model SPDS.Models.User
+@{
+    ViewBag.Title = "createAccount";
+}
+<div class="content">
+
+    <div class="login">
+        <h1>CREATE ACCOUNT</h1>
+        <div class="heading">
+
+            @using (Html.BeginForm())
+            {
+                @Html.TextBoxFor(u => u.UserName, new { autofocus = "", @class = "inputStyle", placeholder = "First Name" })
+                @Html.ValidationMessageFor(u => u.UserName)
+
+                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Last Name" })
+                @Html.ValidationMessageFor(u => u.UserName)
+
+                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Organization" })
+                @Html.ValidationMessageFor(u => u.UserName)
+
+                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Enter Email Address" })
+                @Html.ValidationMessageFor(u => u.UserName)
+
+                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Confirm Email address" })
+                @Html.ValidationMessageFor(u => u.UserName)
+
+                @Html.PasswordFor(u => u.Password, new { @class = "inputStyle", placeholder = "Choose a Password" })
+                @Html.ValidationMessageFor(u => u.Password)
+
+                @Html.PasswordFor(u => u.Password, new { @class = "inputStyle", placeholder = "Comfirm your Password" })
+                @Html.ValidationMessageFor(u => u.Password)
+
+
+                <button type="submit" class="submitBtn">Create Account</button>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
