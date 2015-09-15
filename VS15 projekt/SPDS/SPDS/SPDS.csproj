@@ -110,24 +110,25 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\TSPDSdatabase.Context.tt">
+    <Content Include="Models\TSPDSModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TSPDSdatabase.edmx</DependentUpon>
-      <LastGenOutput>TSPDSdatabase.Context.cs</LastGenOutput>
+      <LastGenOutput>TSPDSModel.Context.cs</LastGenOutput>
+      <DependentUpon>TSPDSModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\TSPDSdatabase.tt">
+    <Content Include="Models\TSPDSModel.edmx.sql" />
+    <Content Include="Models\TSPDSModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TSPDSdatabase.edmx</DependentUpon>
-      <LastGenOutput>TSPDSdatabase.cs</LastGenOutput>
+      <LastGenOutput>TSPDSModel.cs</LastGenOutput>
+      <DependentUpon>TSPDSModel.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\TSPDSdatabase.edmx">
+    <EntityDeploy Include="Models\TSPDSModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TSPDSdatabase.Designer.cs</LastGenOutput>
+      <LastGenOutput>TSPDSModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\TSPDSdatabase.edmx.diagram">
-      <DependentUpon>TSPDSdatabase.edmx</DependentUpon>
+    <Content Include="Models\TSPDSModel.edmx.diagram">
+      <DependentUpon>TSPDSModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\rystefisk.dk.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -148,50 +149,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Datasets.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
+    <Compile Include="Models\Permission.cs">
+      <DependentUpon>TSPDSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ions.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Isotopes.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Materials.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Permissions.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Revisions.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TSPDSdatabase.Context.cs">
+    <Compile Include="Models\TSPDSModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TSPDSdatabase.Context.tt</DependentUpon>
+      <DependentUpon>TSPDSModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TSPDSdatabase.cs">
+    <Compile Include="Models\TSPDSModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
+      <DependentUpon>TSPDSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TSPDSdatabase.Designer.cs">
+    <Compile Include="Models\TSPDSModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TSPDSdatabase.edmx</DependentUpon>
+      <DependentUpon>TSPDSModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs">
-      <DependentUpon>TSPDSdatabase.tt</DependentUpon>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>TSPDSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
