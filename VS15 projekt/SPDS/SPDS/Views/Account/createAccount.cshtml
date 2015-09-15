@@ -1,5 +1,5 @@
 ﻿@using System.Web.UI.WebControls
-@model SPDS.Models.User
+@model SPDS.Models.CreateAccountViewModel
 @{
     ViewBag.Title = "createAccount";
 }
@@ -11,26 +11,29 @@
 
             @using (Html.BeginForm())
             {
-                @Html.TextBoxFor(u => u.UserName, new { autofocus = "", @class = "inputStyle", placeholder = "First Name" })
-                @Html.ValidationMessageFor(u => u.UserName)
+                @Html.TextBoxFor(model => model._FirstName , new { autofocus = "", @class = "inputStyle", placeholder = "First Name" })
+                @Html.ValidationMessageFor(model => model._FirstName)
 
-                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Last Name" })
-                @Html.ValidationMessageFor(u => u.UserName)
+                @Html.TextBoxFor(model => model._LastName, new { @class = "inputStyle", placeholder = "Last Name" })
+                @Html.ValidationMessageFor(model => model._LastName)
 
-                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Organization" })
-                @Html.ValidationMessageFor(u => u.UserName)
+                @Html.TextBoxFor(model => model._Email, new { @class = "inputStyle", placeholder = "Email" })
+                @Html.ValidationMessageFor(model => model._Email)
 
-                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Enter Email Address" })
-                @Html.ValidationMessageFor(u => u.UserName)
+                @Html.TextBoxFor(model => model._confirmEmail, new { @class = "inputStyle", placeholder = "Confirm Email" })
+                @Html.ValidationMessageFor(model => model._confirmEmail)
 
-                @Html.TextBoxFor(u => u.UserName, new { @class = "inputStyle", placeholder = "Confirm Email address" })
-                @Html.ValidationMessageFor(u => u.UserName)
+                @Html.TextBoxFor(model => model._Institution, new { @class = "inputStyle", placeholder = "Institute" })
+                @Html.ValidationMessageFor(model => model._Institution)
 
-                @Html.PasswordFor(u => u.Password, new { @class = "inputStyle", placeholder = "Choose a Password" })
-                @Html.ValidationMessageFor(u => u.Password)
+                @Html.PasswordFor(model => model._Pass, new { @class = "inputStyle", placeholder = "Enter Password" })
+                @Html.ValidationMessageFor(model => model._Pass)
 
-                @Html.PasswordFor(u => u.Password, new { @class = "inputStyle", placeholder = "Comfirm your Password" })
-                @Html.ValidationMessageFor(u => u.Password)
+                @Html.PasswordFor(model => model._confirmPass, new { @class = "inputStyle", placeholder = "Confirm Password" })
+                @Html.ValidationMessageFor(model => model._confirmPass)
+
+
+
 
 
                 <button type="submit" class="submitBtn">Create Account</button>

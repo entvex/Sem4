@@ -1,5 +1,5 @@
 ﻿@using System.Web.UI.WebControls
-@model SPDS.Models.User
+@model SPDS.Models.CreateAccountViewModel
 @{
     ViewBag.Title = "LogIn";
 }
@@ -13,11 +13,11 @@
             {
                 @Html.ValidationSummary(true, "Login failed. Check your login credentials.")
 
-                @Html.TextBoxFor(u => u.UserName, new { autofocus = "", @class = "inputStyle" , placeholder = "Enter Email" })
-                @Html.ValidationMessageFor(u => u.UserName)
+                @Html.TextBoxFor(model => model._Email, new { autofocus = "", @class = "inputStyle" , placeholder = "Enter Email" })
+                @Html.ValidationMessageFor(model  => model._Email)
    
-                @Html.PasswordFor(u => u.Password, new { @class = "inputStyle", placeholder="Enter Password" })
-                @Html.ValidationMessageFor(u => u.Password)
+                @Html.PasswordFor(model => model._Pass, new { @class = "inputStyle", placeholder="Enter Password" })
+                @Html.ValidationMessageFor(model => model._Pass)
         
                 <div class="btns">
                     <button type="submit" class="submitBtn">Login</button>

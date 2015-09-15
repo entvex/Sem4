@@ -149,6 +149,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateAccountViewModel.cs" />
     <Compile Include="Models\Permission.cs">
       <DependentUpon>TSPDSModel.tt</DependentUpon>
     </Compile>
@@ -201,6 +202,7 @@
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
