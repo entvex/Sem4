@@ -7,20 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SPDS
+namespace SPDS.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Users
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int UserID { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Institute { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    
-        public virtual Permissions Permissions { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

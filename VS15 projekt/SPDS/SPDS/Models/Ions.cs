@@ -7,18 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SPDS
+namespace SPDS.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Revisions
+    public partial class Ions
     {
-        public int RevID { get; set; }
-        public string Comment { get; set; }
+        public int IonID { get; set; }
     
         public virtual Datasets Datasets { get; set; }
-        public virtual Revisions Revisions1 { get; set; }
-        public virtual Revisions Revisions2 { get; set; }
+        public virtual Isotopes Isotopes { get; set; }
     }
 }

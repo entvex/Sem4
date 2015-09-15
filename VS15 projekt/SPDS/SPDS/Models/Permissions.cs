@@ -7,15 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SPDS
+namespace SPDS.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Isotopes
+    public partial class Permissions
     {
-        public int IsotopeID { get; set; }
+        public int AccessID { get; set; }
+        public string Description { get; set; }
     
-        public virtual Ions Ions { get; set; }
+        public virtual Users Users { get; set; }
     }
 }
