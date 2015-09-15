@@ -1,0 +1,4 @@
+Server 10.29.0.29
+Database E15I4PRJ4Gr2
+Username E15I4PRJ4Gr2
+PW E15I4PRJ4Gr2
