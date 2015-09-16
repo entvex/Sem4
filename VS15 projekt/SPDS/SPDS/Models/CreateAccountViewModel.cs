@@ -40,18 +40,16 @@ namespace SPDS.Models
         public void Create(string email, string confirmEmail,string Pass, string confirmPass,string institution, string fName, string lName)
         {
             var user = new User();
-            var perm = new Permission();
-
-            perm.PermissionId = 1;
-            user.Permission = perm;
-
-
-
             user.Email = email;
             user.Password = Pass;
             user.Institute = institution;
             user.FirstName = fName;
             user.LastName = lName;
+            var db = new TSPDSModelContainer();
+            var query = db.PermissionSet.Find(1);
+            user.Permission = query;
+            db.UserSet.Add(user);
+            db.SaveChanges();
         }
     }
 }
