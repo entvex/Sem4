@@ -14,6 +14,7 @@ textarea {
 
 html , body {
     margin: 0;
+    width: 100%
 }
 
 body {
@@ -40,22 +41,49 @@ body {
 
 .navbar {
     height: 50px;
+    width: 100%;
     padding: 0;
     margin: 0;
     position: absolute; /*drop down doesn't interfer with other elements'*/
 }
 
-    .navbar li {
+
+
+    .navbar-left ul {
+        margin: 0;
+    }
+
+    .navbar .liLeft {
         height: auto;
         width: 150px;
         float: left;
         text-align: center;
         list-style: none;
-        font: normal bold 12px Arial, verdana, helvetica;
+        font: normal bold .8em Arial, verdana, helvetica;
+        padding: 0;
+        margin: 0;
+        background: url(footer_lodyas.png);
+ 
+    }
+
+        .navbar .Right {
+        height: 50px;
+        width: 150px;
+        float: right;
+        text-align: center;
+        list-style: none;
+        font: normal bold .8em Arial, verdana, helvetica;
         padding: 0;
         margin: 0;
         background: url(footer_lodyas.png);
     }
+
+    .navbar li:first-child {
+        width: 280px;
+        
+   
+    }
+
 
     .navbar a {
         padding: 18px 0;
@@ -75,7 +103,7 @@ body {
         padding: 0;
     }
 
-    .navbar li ul li {
+    .navbar li ul .dropdown {
         background: url(footer_lodyas.png);
         height: 0;
         opacity: 0;

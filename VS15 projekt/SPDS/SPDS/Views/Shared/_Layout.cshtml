@@ -18,12 +18,13 @@
             <ul class="navbar">
                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 <li>@Html.ActionLink("ABOUT", "About", "About")</li>
+                <li>@Html.ActionLink("Submit Data", "About", "About")</li>
+                <li>@Html.ActionLink("Review Data", "About", "About")</li>
                 <li>
                     <a href="#">DATA</a>
                     <ul>
                         <li>@Html.ActionLink("VIEW DATA", "About", "About")</li>
                         <li>@Html.ActionLink("SUBMIT DATA", "About", "About")</li>
-                        <li>@Html.ActionLink("REVIEW DATA", "About", "About")</li>
                     </ul>
                 </li>
                 <li><strong>@Html.Encode(User.Identity.Name)</strong></li>
@@ -34,28 +35,35 @@
 
     else
     {
-            <div class="NavWrap">
+        <div class="NavWrap">
+         
                 <ul class="navbar">
-                 
-                        
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("ABOUT", "About", "About")</li>
-                            <li>
-                                <a href="#">DATA</a>
-                                <ul>
-                                    <li>@Html.ActionLink("VIEW DATA", "View_Data", "Data")</li>
-                                    <li>@Html.ActionLink("SUBMIT DATA", "Submit_Data", "Data")</li>
-                                    <li>@Html.ActionLink("REVIEW DATA", "Review_Data", "Data")</li>
-                                </ul>
-                            </li>
-                          
 
-             
-                        <li>@Html.ActionLink("Log In", "LogIn", "Account")</li>
-                        <li>@Html.ActionLink("Register","createAccount","Account")</li>
-                    
+
+                    <li class="liLeft">@Html.ActionLink("THE STOPPING POWER DATA SYSTEM", "Index", "Home")</li>
+                    <li class="liLeft">@Html.ActionLink("About", "About", "About")</li>
+                    <li class="liLeft">@Html.ActionLink("Submit Data", "Submit_Data", "Data")</li>
+                    <li class="liLeft">@Html.ActionLink("Review Data", "Review_Data", "Data")</li>
+                  <!--  <li class="Right">
+                            @Html.ActionLink("Log In", "LogIn", "Account")
+                            <ul>
+                                <li class="dropdown">@Html.ActionLink("Register", "createAccount", "Account")</li>
+ 
+                            </ul>
+                        </li>
+                -->
+               <li class="Right">@Html.ActionLink("Log In", "LogIn", "Account")</li>
+                
+
+                     
+
                 </ul>
-            </div>
+
+
+
+               
+            
+        </div>
     }
 
 

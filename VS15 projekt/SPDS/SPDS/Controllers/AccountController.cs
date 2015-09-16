@@ -11,11 +11,6 @@ namespace SPDS.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
 
         public ActionResult ForgotPass()
         {
@@ -46,23 +41,29 @@ namespace SPDS.Controllers
             return View(caVM);
         }
 
-        [HttpPost]
-        public ActionResult Login(Models.User user)
+        [HttpGet]
+        public ActionResult Login()
         {
-          /*  if (ModelState.IsValid)
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(Models.LoginViewModel LVM)
+        {
+            if (ModelState.IsValid)
             {
-                if (user.IsValid(user.UserName, user.Password))
+                if (LVM.Login(LVM._Email, LVM._Pass))
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
-          &          return RedirectToAction("Index", "Home");
+                    FormsAuthentication.SetAuthCookie(LVM._Email, false);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Login Data is incorrect!");
                 }
 
-            }*/
-            return View(user);
+            }
+            return View(LVM);
         }
     }
 }
