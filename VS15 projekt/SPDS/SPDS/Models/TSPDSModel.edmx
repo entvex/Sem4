@@ -55,6 +55,23 @@
             <End Role="Permission" EntitySet="PermissionSet" />
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
+          <EntitySet Name="RevisionSet" EntityType="TSPDSModel.Revision" />
+          <EntitySet Name="DatasetSet" EntityType="TSPDSModel.Dataset" />
+          <EntitySet Name="IonSet" EntityType="TSPDSModel.Ion" />
+          <EntitySet Name="MaterialSet" EntityType="TSPDSModel.Material" />
+          <EntitySet Name="IsotopeSet" EntityType="TSPDSModel.Isotope" />
+          <AssociationSet Name="RevisionRevision" Association="TSPDSModel.RevisionRevision">
+            <End Role="Revision" EntitySet="RevisionSet" />
+            <End Role="Revision1" EntitySet="RevisionSet" />
+          </AssociationSet>
+          <AssociationSet Name="RevisionDataset" Association="TSPDSModel.RevisionDataset">
+            <End Role="Revision" EntitySet="RevisionSet" />
+            <End Role="Dataset" EntitySet="DatasetSet" />
+          </AssociationSet>
+          <AssociationSet Name="DatasetMaterial" Association="TSPDSModel.DatasetMaterial">
+            <End Role="Dataset" EntitySet="DatasetSet" />
+            <End Role="Material" EntitySet="MaterialSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -87,6 +104,54 @@
               <PropertyRef Name="PermissionPermissionId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Revision">
+          <Key>
+            <PropertyRef Name="RevId" />
+          </Key>
+          <Property Name="RevId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comment" Type="String" Nullable="false" />
+          <NavigationProperty Name="PrevRevision" Relationship="TSPDSModel.RevisionRevision" FromRole="Revision" ToRole="Revision1" />
+          <NavigationProperty Name="HeadRevision" Relationship="TSPDSModel.RevisionRevision" FromRole="Revision1" ToRole="Revision" />
+          <NavigationProperty Name="Dataset" Relationship="TSPDSModel.RevisionDataset" FromRole="Revision" ToRole="Dataset" />
+        </EntityType>
+        <EntityType Name="Dataset">
+          <Key>
+            <PropertyRef Name="DatasetId" />
+          </Key>
+          <Property Name="DatasetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Material" Relationship="TSPDSModel.DatasetMaterial" FromRole="Dataset" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Ion">
+          <Key>
+            <PropertyRef Name="IonId" />
+          </Key>
+          <Property Name="IonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="MaterialId" />
+          </Key>
+          <Property Name="MaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Isotope">
+          <Key>
+            <PropertyRef Name="IsotopeId" />
+          </Key>
+          <Property Name="IsotopeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="RevisionRevision">
+          <End Type="TSPDSModel.Revision" Role="Revision" Multiplicity="0..1" />
+          <End Type="TSPDSModel.Revision" Role="Revision1" Multiplicity="1" />
+        </Association>
+        <Association Name="RevisionDataset">
+          <End Type="TSPDSModel.Revision" Role="Revision" Multiplicity="1" />
+          <End Type="TSPDSModel.Dataset" Role="Dataset" Multiplicity="1" />
+        </Association>
+        <Association Name="DatasetMaterial">
+          <End Type="TSPDSModel.Dataset" Role="Dataset" Multiplicity="0..1" />
+          <End Type="TSPDSModel.Material" Role="Material" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
