@@ -47,6 +47,7 @@ namespace SPDS.Models
             user.LastName = lName;
             var db = new TSPDSModelContainer();
             var query = db.PermissionSet.Find(1);
+            user.Permission = query;
             db.UserSet.Add(user);
             db.SaveChanges();
         }
