@@ -1,0 +1,33 @@
+﻿
+
+.content .DataTable {
+    width: 60%;
+    margin: 30px auto;
+}
+
+.content .DataTable {
+    border-collapse: collapse;
+}
+
+.content .DataTable th, td {
+    padding: 10px;
+}
+
+.content .DataTable #tHead {
+    border-bottom: 2px solid black;
+}
+
+.content .DataTable #tHead td {
+    font-weight: bold;
+}
+
+.content .mainFill {
+    text-align: left;
+    max-width: 60%;
+    margin: 30px auto;
+    line-height: 130%;
+    font-family: Verdana;
+}
+
+
+ 
