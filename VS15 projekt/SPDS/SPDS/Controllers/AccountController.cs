@@ -65,5 +65,11 @@ namespace SPDS.Controllers
             }
             return View(LVM);
         }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index","Home");
+        }
     }
 }
