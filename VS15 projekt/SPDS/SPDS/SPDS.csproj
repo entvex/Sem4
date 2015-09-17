@@ -150,10 +150,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateAccountViewModel.cs" />
+    <Compile Include="Models\Dataset.cs" />
+    <Compile Include="Models\Ion.cs" />
+    <Compile Include="Models\Isotope.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Material.cs" />
     <Compile Include="Models\Permission.cs">
       <DependentUpon>TSPDSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Revision.cs" />
     <Compile Include="Models\TSPDSModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

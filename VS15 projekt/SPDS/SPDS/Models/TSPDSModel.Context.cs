@@ -27,5 +27,10 @@ namespace SPDS.Models
     
         public virtual DbSet<User> UserSet { get; set; }
         public virtual DbSet<Permission> PermissionSet { get; set; }
+        public virtual DbSet<Revision> RevisionSet { get; set; }
+        public virtual DbSet<Dataset> DatasetSet { get; set; }
+        public virtual DbSet<Ion> IonSet { get; set; }
+        public virtual DbSet<Material> MaterialSet { get; set; }
+        public virtual DbSet<Isotope> IsotopeSet { get; set; }
     }
 }
