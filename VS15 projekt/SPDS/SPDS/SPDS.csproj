@@ -121,6 +121,7 @@
       <LastGenOutput>TSPDSModel.cs</LastGenOutput>
       <DependentUpon>TSPDSModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\.gitignore" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\TSPDSModel.edmx">
@@ -131,9 +132,16 @@
       <DependentUpon>TSPDSModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\rystefisk.dk.pubxml" />
+    <Content Include="Scripts\.travis.yml" />
+    <Content Include="Scripts\bower.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\chartingclass.js" />
+    <Content Include="Scripts\gulpfile.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -196,6 +204,7 @@
     <Content Include="Views\Data\View_Data.cshtml" />
     <Content Include="Views\Data\Review_Data.cshtml" />
     <Content Include="Views\Data\Submit_Data.cshtml" />
+    <Content Include="Scripts\package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
