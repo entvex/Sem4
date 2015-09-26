@@ -12,13 +12,12 @@ namespace SPDS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Revision
+    public partial class IsotopeSet
     {
-        public int RevId { get; set; }
-        public string Comment { get; set; }
+        public int IsotopeId { get; set; }
+        public decimal Charge { get; set; }
+        public Nullable<int> IonIsotope_Isotope_IonId { get; set; }
     
-        public virtual Revision PrevRevision { get; set; }
-        public virtual Revision HeadRevision { get; set; }
-        public virtual Dataset Dataset { get; set; }
+        public virtual IonSet IonSet { get; set; }
     }
 }

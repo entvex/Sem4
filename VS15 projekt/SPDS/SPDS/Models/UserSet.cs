@@ -12,8 +12,14 @@ namespace SPDS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class UserSet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserSet()
+        {
+            this.DatasetSet = new HashSet<DatasetSet>();
+        }
+    
         public int UserId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -22,6 +28,8 @@ namespace SPDS.Models
         public string LastName { get; set; }
         public int PermissionPermissionId { get; set; }
     
-        public virtual Permission Permission { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DatasetSet> DatasetSet { get; set; }
+        public virtual PermissionSet PermissionSet { get; set; }
     }
 }

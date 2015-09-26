@@ -13,10 +13,10 @@ namespace SPDS.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TSPDSModelContainer : DbContext
+    public partial class TSPDSEntity : DbContext
     {
-        public TSPDSModelContainer()
-            : base("name=TSPDSModelContainer")
+        public TSPDSEntity()
+            : base("name=TSPDSConnectionstring")
         {
         }
     
@@ -25,12 +25,17 @@ namespace SPDS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<User> UserSet { get; set; }
-        public virtual DbSet<Permission> PermissionSet { get; set; }
-        public virtual DbSet<Revision> RevisionSet { get; set; }
-        public virtual DbSet<Dataset> DatasetSet { get; set; }
-        public virtual DbSet<Ion> IonSet { get; set; }
-        public virtual DbSet<Material> MaterialSet { get; set; }
-        public virtual DbSet<Isotope> IsotopeSet { get; set; }
+        public virtual DbSet<ArticleReferencesSet> ArticleReferencesSet { get; set; }
+        public virtual DbSet<DataformatSet> DataformatSet { get; set; }
+        public virtual DbSet<DataPointSet> DataPointSet { get; set; }
+        public virtual DbSet<DatasetSet> DatasetSet { get; set; }
+        public virtual DbSet<IonSet> IonSet { get; set; }
+        public virtual DbSet<IsotopeSet> IsotopeSet { get; set; }
+        public virtual DbSet<MaterialSet> MaterialSet { get; set; }
+        public virtual DbSet<MethodSet> MethodSet { get; set; }
+        public virtual DbSet<PermissionSet> PermissionSet { get; set; }
+        public virtual DbSet<RevisionSet> RevisionSet { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<UserSet> UserSet { get; set; }
     }
 }

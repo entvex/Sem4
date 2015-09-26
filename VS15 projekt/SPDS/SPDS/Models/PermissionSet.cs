@@ -12,9 +12,18 @@ namespace SPDS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Permission
+    public partial class PermissionSet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PermissionSet()
+        {
+            this.UserSet = new HashSet<UserSet>();
+        }
+    
         public int PermissionId { get; set; }
         public string Description { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserSet> UserSet { get; set; }
     }
 }

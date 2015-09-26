@@ -12,8 +12,12 @@ namespace SPDS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ion
+    public partial class MethodSet
     {
-        public int IonId { get; set; }
+        public int MethodId { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> DatasetMethod_Method_DatasetId { get; set; }
+    
+        public virtual DatasetSet DatasetSet { get; set; }
     }
 }

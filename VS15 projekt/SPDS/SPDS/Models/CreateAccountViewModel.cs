@@ -39,15 +39,15 @@ namespace SPDS.Models
 
         public void Create(string email, string confirmEmail,string Pass, string confirmPass,string institution, string fName, string lName)
         {
-            var user = new User();
+            var user = new UserSet();
             user.Email = email;
             user.Password = Pass;
             user.Institute = institution;
             user.FirstName = fName;
             user.LastName = lName;
-            var db = new TSPDSModelContainer();
+            var db = new TSPDSEntity();
             var query = db.PermissionSet.Find(1);
-            user.Permission = query;
+            user.PermissionSet = query;
             db.UserSet.Add(user);
             db.SaveChanges();
         }

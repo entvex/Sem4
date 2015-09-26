@@ -12,9 +12,17 @@ namespace SPDS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Material
+    public partial class DataPointSet
     {
-        public int MaterialId { get; set; }
-        public string Name { get; set; }
+        public int DatapointId { get; set; }
+        public decimal ProjectileCharge { get; set; }
+        public int EqEnergy { get; set; }
+        public int StoppingPower { get; set; }
+        public string DataformatForEq { get; set; }
+        public decimal ConvertetData { get; set; }
+        public Nullable<int> DataformatId { get; set; }
+    
+        public virtual DataformatSet DataformatSet { get; set; }
+        public virtual DatasetSet DatasetSet { get; set; }
     }
 }

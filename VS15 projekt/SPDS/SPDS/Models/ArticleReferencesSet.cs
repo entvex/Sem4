@@ -12,8 +12,12 @@ namespace SPDS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Isotope
+    public partial class ArticleReferencesSet
     {
-        public int IsotopeId { get; set; }
+        public int ArticleReferencesId { get; set; }
+        public string Description { get; set; }
+        public int DatasetArticleReferences_ArticleReferences_DatasetId { get; set; }
+    
+        public virtual DatasetSet DatasetSet { get; set; }
     }
 }

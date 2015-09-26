@@ -4,18 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a484a38b096445b2967ed673296a18bd" Name="Diagram1" >
-        <EntityTypeShape EntityType="TSPDSModel.User" Width="2" PointX="5.625" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TSPDSModel.Permission" Width="1.5" PointX="8.625" PointY="0.875" />
-        <AssociationConnector Association="TSPDSModel.PermissionUser" />
-        <EntityTypeShape EntityType="TSPDSModel.Revision" Width="1.5" PointX="8.5" PointY="4.625" />
-        <EntityTypeShape EntityType="TSPDSModel.Dataset" Width="1.5" PointX="11.375" PointY="4.75" />
-        <EntityTypeShape EntityType="TSPDSModel.Ion" Width="1.5" PointX="14.875" PointY="3.875" />
-        <EntityTypeShape EntityType="TSPDSModel.Material" Width="1.5" PointX="15" PointY="5.75" />
-        <EntityTypeShape EntityType="TSPDSModel.Isotope" Width="1.5" PointX="17.125" PointY="4" />
-        <AssociationConnector Association="TSPDSModel.RevisionRevision" />
-        <AssociationConnector Association="TSPDSModel.RevisionDataset" />
-        <AssociationConnector Association="TSPDSModel.DatasetMaterial" />
+      <Diagram DiagramId="4b27438143b44fe2bf880b00c9f3ef90" Name="Diagram1">
+        <EntityTypeShape EntityType="TSPDS.ArticleReferencesSet" Width="1.5" PointX="11.375" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.DataformatSet" Width="1.5" PointX="12.125" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.DataPointSet" Width="1.5" PointX="14.375" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.DatasetSet" Width="1.5" PointX="9.125" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.IonSet" Width="1.5" PointX="6.875" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.IsotopeSet" Width="1.5" PointX="7.125" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.MaterialSet" Width="1.5" PointX="6.875" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.MethodSet" Width="1.5" PointX="4.875" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.PermissionSet" Width="1.5" PointX="2.625" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.RevisionSet" Width="1.5" PointX="9.625" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSPDS.UserSet" Width="1.5" PointX="2.625" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="TSPDS.FK_DatasetArticleReferences" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_DataPointDataformat" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_DatasetDataPoint" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_DatasetIon" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_DatasetMaterial" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_DatasetMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_RevisionDataset" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_UserDataset" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_IonIsotope" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_PermissionUser" ManuallyRouted="false" />
+        <AssociationConnector Association="TSPDS.FK_RevisionRevision" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
