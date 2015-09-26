@@ -20,7 +20,7 @@ namespace SPDS.Models
         {
             try
             {
-                using (var db = new TSPDSEntity())
+                using (var db = new TSPDSEntities())
                 {
                     var query = db.UserSet.Where(u => u.Email == _email && u.Password == _pass);
 

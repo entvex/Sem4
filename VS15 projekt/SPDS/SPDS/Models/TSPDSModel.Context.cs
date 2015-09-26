@@ -13,10 +13,10 @@ namespace SPDS.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TSPDSEntity : DbContext
+    public partial class TSPDSEntities : DbContext
     {
-        public TSPDSEntity()
-            : base("name=TSPDSConnectionstring")
+        public TSPDSEntities()
+            : base("name=Entities")
         {
         }
     

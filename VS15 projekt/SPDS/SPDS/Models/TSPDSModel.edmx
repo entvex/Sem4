@@ -29,9 +29,10 @@
           <Property Name="ProjectileCharge" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="EqEnergy" Type="int" Nullable="false" />
           <Property Name="StoppingPower" Type="int" Nullable="false" />
-          <Property Name="DataformatForEq" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ConvertetData" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="DataformatId" Type="int" />
+          <Property Name="DatasetId_FK" Type="int" Nullable="false" />
+          <Property Name="DataformatForOriginal_FormatId" Type="int" Nullable="false" />
+          <Property Name="DataformatForConverted_FormatId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DatasetSet">
           <Key>
@@ -112,15 +113,15 @@
           <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PermissionPermissionId" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_DataPointDataformat">
-          <End Role="DataformatSet" Type="Self.DataformatSet" Multiplicity="0..1" />
+        <Association Name="FK_ConvertedFormat">
+          <End Role="DataformatSet" Type="Self.DataformatSet" Multiplicity="1" />
           <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataformatSet">
               <PropertyRef Name="FormatId" />
             </Principal>
             <Dependent Role="DataPointSet">
-              <PropertyRef Name="DataformatId" />
+              <PropertyRef Name="DataformatForConverted_FormatId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -136,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DatasetDataPoint">
+        <Association Name="FK_DatasetId_FK">
           <End Role="DatasetSet" Type="Self.DatasetSet" Multiplicity="1" />
           <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,7 +145,7 @@
               <PropertyRef Name="DatasetId" />
             </Principal>
             <Dependent Role="DataPointSet">
-              <PropertyRef Name="EqEnergy" />
+              <PropertyRef Name="DatasetId_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -193,6 +194,18 @@
             </Principal>
             <Dependent Role="IsotopeSet">
               <PropertyRef Name="IonIsotope_Isotope_IonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OriginalFormat">
+          <End Role="DataformatSet" Type="Self.DataformatSet" Multiplicity="1" />
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataformatSet">
+              <PropertyRef Name="FormatId" />
+            </Principal>
+            <Dependent Role="DataPointSet">
+              <PropertyRef Name="DataformatForOriginal_FormatId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,7 +270,7 @@
           <EntitySet Name="RevisionSet" EntityType="Self.RevisionSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSet" EntityType="Self.UserSet" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_DataPointDataformat" Association="Self.FK_DataPointDataformat">
+          <AssociationSet Name="FK_ConvertedFormat" Association="Self.FK_ConvertedFormat">
             <End Role="DataformatSet" EntitySet="DataformatSet" />
             <End Role="DataPointSet" EntitySet="DataPointSet" />
           </AssociationSet>
@@ -265,7 +278,7 @@
             <End Role="DatasetSet" EntitySet="DatasetSet" />
             <End Role="ArticleReferencesSet" EntitySet="ArticleReferencesSet" />
           </AssociationSet>
-          <AssociationSet Name="FK_DatasetDataPoint" Association="Self.FK_DatasetDataPoint">
+          <AssociationSet Name="FK_DatasetId_FK" Association="Self.FK_DatasetId_FK">
             <End Role="DatasetSet" EntitySet="DatasetSet" />
             <End Role="DataPointSet" EntitySet="DataPointSet" />
           </AssociationSet>
@@ -284,6 +297,10 @@
           <AssociationSet Name="FK_IonIsotope" Association="Self.FK_IonIsotope">
             <End Role="IonSet" EntitySet="IonSet" />
             <End Role="IsotopeSet" EntitySet="IsotopeSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OriginalFormat" Association="Self.FK_OriginalFormat">
+            <End Role="DataformatSet" EntitySet="DataformatSet" />
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
           </AssociationSet>
           <AssociationSet Name="FK_PermissionUser" Association="Self.FK_PermissionUser">
             <End Role="PermissionSet" EntitySet="PermissionSet" />
@@ -323,7 +340,8 @@
           <Property Name="FormatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DataNotiation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="DataPointSet" Relationship="Self.FK_DataPointDataformat" FromRole="DataformatSet" ToRole="DataPointSet" />
+          <NavigationProperty Name="DataPointSet" Relationship="Self.FK_ConvertedFormat" FromRole="DataformatSet" ToRole="DataPointSet" />
+          <NavigationProperty Name="DataPointSet1" Relationship="Self.FK_OriginalFormat" FromRole="DataformatSet" ToRole="DataPointSet" />
         </EntityType>
         <EntityType Name="DataPointSet">
           <Key>
@@ -333,11 +351,13 @@
           <Property Name="ProjectileCharge" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="EqEnergy" Type="Int32" Nullable="false" />
           <Property Name="StoppingPower" Type="Int32" Nullable="false" />
-          <Property Name="DataformatForEq" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ConvertetData" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="DataformatId" Type="Int32" />
-          <NavigationProperty Name="DataformatSet" Relationship="Self.FK_DataPointDataformat" FromRole="DataPointSet" ToRole="DataformatSet" />
-          <NavigationProperty Name="DatasetSet" Relationship="Self.FK_DatasetDataPoint" FromRole="DataPointSet" ToRole="DatasetSet" />
+          <Property Name="DatasetId_FK" Type="Int32" Nullable="false" />
+          <Property Name="DataformatForOriginal_FormatId" Type="Int32" Nullable="false" />
+          <Property Name="DataformatForConverted_FormatId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataformatSet" Relationship="Self.FK_ConvertedFormat" FromRole="DataPointSet" ToRole="DataformatSet" />
+          <NavigationProperty Name="DataformatSet1" Relationship="Self.FK_OriginalFormat" FromRole="DataPointSet" ToRole="DataformatSet" />
+          <NavigationProperty Name="DatasetSet" Relationship="Self.FK_DatasetId_FK" FromRole="DataPointSet" ToRole="DatasetSet" />
         </EntityType>
         <EntityType Name="DatasetSet">
           <Key>
@@ -348,7 +368,7 @@
           <Property Name="Material_MaterialId" Type="Int32" Nullable="false" />
           <Property Name="Ion_IonId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ArticleReferencesSet" Relationship="Self.FK_DatasetArticleReferences" FromRole="DatasetSet" ToRole="ArticleReferencesSet" />
-          <NavigationProperty Name="DataPointSet" Relationship="Self.FK_DatasetDataPoint" FromRole="DatasetSet" ToRole="DataPointSet" />
+          <NavigationProperty Name="DataPointSet" Relationship="Self.FK_DatasetId_FK" FromRole="DatasetSet" ToRole="DataPointSet" />
           <NavigationProperty Name="IonSet" Relationship="Self.FK_DatasetIon" FromRole="DatasetSet" ToRole="IonSet" />
           <NavigationProperty Name="MaterialSet" Relationship="Self.FK_DatasetMaterial" FromRole="DatasetSet" ToRole="MaterialSet" />
           <NavigationProperty Name="MethodSet" Relationship="Self.FK_DatasetMethod" FromRole="DatasetSet" ToRole="MethodSet" />
@@ -448,19 +468,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DataPointDataformat">
-          <End Role="DataformatSet" Type="Self.DataformatSet" Multiplicity="0..1" />
+        <Association Name="FK_ConvertedFormat">
+          <End Role="DataformatSet" Type="Self.DataformatSet" Multiplicity="1" />
           <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DataformatSet">
               <PropertyRef Name="FormatId" />
             </Principal>
             <Dependent Role="DataPointSet">
-              <PropertyRef Name="DataformatId" />
+              <PropertyRef Name="DataformatForConverted_FormatId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DatasetDataPoint">
+        <Association Name="FK_OriginalFormat">
+          <End Role="DataformatSet" Type="Self.DataformatSet" Multiplicity="1" />
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataformatSet">
+              <PropertyRef Name="FormatId" />
+            </Principal>
+            <Dependent Role="DataPointSet">
+              <PropertyRef Name="DataformatForOriginal_FormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DatasetId_FK">
           <End Role="DatasetSet" Type="Self.DatasetSet" Multiplicity="1" />
           <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
           <ReferentialConstraint>
@@ -468,7 +500,7 @@
               <PropertyRef Name="DatasetId" />
             </Principal>
             <Dependent Role="DataPointSet">
-              <PropertyRef Name="EqEnergy" />
+              <PropertyRef Name="DatasetId_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -568,7 +600,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TSPDSConnectionstring" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ArticleReferencesSet" EntityType="Self.ArticleReferencesSet" />
           <EntitySet Name="DataformatSet" EntityType="Self.DataformatSet" />
           <EntitySet Name="DataPointSet" EntityType="Self.DataPointSet" />
@@ -585,11 +617,15 @@
             <End Role="DatasetSet" EntitySet="DatasetSet" />
             <End Role="ArticleReferencesSet" EntitySet="ArticleReferencesSet" />
           </AssociationSet>
-          <AssociationSet Name="FK_DataPointDataformat" Association="Self.FK_DataPointDataformat">
+          <AssociationSet Name="FK_ConvertedFormat" Association="Self.FK_ConvertedFormat">
             <End Role="DataformatSet" EntitySet="DataformatSet" />
             <End Role="DataPointSet" EntitySet="DataPointSet" />
           </AssociationSet>
-          <AssociationSet Name="FK_DatasetDataPoint" Association="Self.FK_DatasetDataPoint">
+          <AssociationSet Name="FK_OriginalFormat" Association="Self.FK_OriginalFormat">
+            <End Role="DataformatSet" EntitySet="DataformatSet" />
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DatasetId_FK" Association="Self.FK_DatasetId_FK">
             <End Role="DatasetSet" EntitySet="DatasetSet" />
             <End Role="DataPointSet" EntitySet="DataPointSet" />
           </AssociationSet>
@@ -631,7 +667,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TSPDSStoreContainer" CdmEntityContainer="TSPDSConnectionstring">
+        <EntityContainerMapping StorageEntityContainer="TSPDSStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="ArticleReferencesSet">
             <EntityTypeMapping TypeName="TSPDS.ArticleReferencesSet">
               <MappingFragment StoreEntitySet="ArticleReferencesSet">
@@ -657,9 +693,10 @@
                 <ScalarProperty Name="ProjectileCharge" ColumnName="ProjectileCharge" />
                 <ScalarProperty Name="EqEnergy" ColumnName="EqEnergy" />
                 <ScalarProperty Name="StoppingPower" ColumnName="StoppingPower" />
-                <ScalarProperty Name="DataformatForEq" ColumnName="DataformatForEq" />
                 <ScalarProperty Name="ConvertetData" ColumnName="ConvertetData" />
-                <ScalarProperty Name="DataformatId" ColumnName="DataformatId" />
+                <ScalarProperty Name="DatasetId_FK" ColumnName="DatasetId_FK" />
+                <ScalarProperty Name="DataformatForOriginal_FormatId" ColumnName="DataformatForOriginal_FormatId" />
+                <ScalarProperty Name="DataformatForConverted_FormatId" ColumnName="DataformatForConverted_FormatId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

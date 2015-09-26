@@ -18,11 +18,13 @@ namespace SPDS.Models
         public decimal ProjectileCharge { get; set; }
         public int EqEnergy { get; set; }
         public int StoppingPower { get; set; }
-        public string DataformatForEq { get; set; }
         public decimal ConvertetData { get; set; }
-        public Nullable<int> DataformatId { get; set; }
+        public int DatasetId_FK { get; set; }
+        public int DataformatForOriginal_FormatId { get; set; }
+        public int DataformatForConverted_FormatId { get; set; }
     
         public virtual DataformatSet DataformatSet { get; set; }
+        public virtual DataformatSet DataformatSet1 { get; set; }
         public virtual DatasetSet DatasetSet { get; set; }
     }
 }

@@ -45,7 +45,7 @@ namespace SPDS.Models
             user.Institute = institution;
             user.FirstName = fName;
             user.LastName = lName;
-            var db = new TSPDSEntity();
+            var db = new TSPDSEntities();
             var query = db.PermissionSet.Find(1);
             user.PermissionSet = query;
             db.UserSet.Add(user);

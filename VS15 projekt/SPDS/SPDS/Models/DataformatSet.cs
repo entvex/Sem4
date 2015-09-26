@@ -18,6 +18,7 @@ namespace SPDS.Models
         public DataformatSet()
         {
             this.DataPointSet = new HashSet<DataPointSet>();
+            this.DataPointSet1 = new HashSet<DataPointSet>();
         }
     
         public int FormatId { get; set; }
@@ -26,5 +27,7 @@ namespace SPDS.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DataPointSet> DataPointSet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DataPointSet> DataPointSet1 { get; set; }
     }
 }
