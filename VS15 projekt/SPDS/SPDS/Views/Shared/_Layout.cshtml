@@ -4,78 +4,79 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Stopping Power Data System</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/CONTENT.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/LOGIN.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/Chart.js"></script>
     <script src="~/Scripts/chartingclass.js"></script>
+    <script src="~/Scripts/table.js"></script>
 
 </head>
 <body>
 
     @if (Request.IsAuthenticated)
-        {<div class="NavWrap">
+    {<div class="NavWrap">
 
-             <ul class="navbar">
-
-
-                 <li class="liLeft">@Html.ActionLink("THE STOPPING POWER DATA SYSTEM", "Index", "Home")</li>
-                 <li class="liLeft">@Html.ActionLink("About", "About", "About")</li>
-                 <li class="liLeft">@Html.ActionLink("Submit Data", "Submit_Data", "Data")</li>
-                 <li class="liLeft">@Html.ActionLink("Review Data", "Review_Data", "Data")</li>
-
-                 <li class="Right">
-                     <a href="">@Html.Encode(User.Identity.Name)</a>
-                     <ul>
-                         <li class="dropdown">@Html.ActionLink("Log Out","LogOut","Account")</li>
-
-                     </ul>
-
-                 </li>
+        <ul class="navbar">
 
 
+            <li class="liLeft">@Html.ActionLink("THE STOPPING POWER DATA SYSTEM", "Index", "Home")</li>
+            <li class="liLeft">@Html.ActionLink("About", "About", "About")</li>
+            <li class="liLeft">@Html.ActionLink("Submit Data", "Submit_Data", "Data")</li>
+            <li class="liLeft">@Html.ActionLink("Review Data", "Review_Data", "Data")</li>
 
+            <li class="Right">
+                <a href="">@Html.Encode(User.Identity.Name)</a>
+                <ul>
+                    <li class="dropdown">@Html.ActionLink("Log Out", "LogOut", "Account")</li>
 
-             </ul>
+                </ul>
+
+            </li>
 
 
 
 
+        </ul>
 
-        </div>}
-    
+
+
+
+
+    </div>}
+
 
     else
     {
         <div class="NavWrap">
-         
-                <ul class="navbar">
+
+            <ul class="navbar">
 
 
-                    <li class="liLeft">@Html.ActionLink("THE STOPPING POWER DATA SYSTEM", "Index", "Home")</li>
-                    <li class="liLeft">@Html.ActionLink("About", "About", "About")</li>
-                    <li class="liLeft">@Html.ActionLink("Submit Data", "Submit_Data", "Data")</li>
-                    <li class="liLeft">@Html.ActionLink("Review Data", "Review_Data", "Data")</li>
-                  <!--  <li class="Right">
+                <li class="liLeft">@Html.ActionLink("THE STOPPING POWER DATA SYSTEM", "Index", "Home")</li>
+                <li class="liLeft">@Html.ActionLink("About", "About", "About")</li>
+                <li class="liLeft">@Html.ActionLink("Submit Data", "Submit_Data", "Data")</li>
+                <li class="liLeft">@Html.ActionLink("Review Data", "Review_Data", "Data")</li>
+                <!--  <li class="Right">
                             @Html.ActionLink("Log In", "LogIn", "Account")
                             <ul>
                                 <li class="dropdown">@Html.ActionLink("Register", "createAccount", "Account")</li>
- 
+
                             </ul>
                         </li>
                 -->
-               <li class="Right">@Html.ActionLink("Log In", "LogIn", "Account")</li>
-                
-
-                     
-
-                </ul>
+                <li class="Right">@Html.ActionLink("Log In", "LogIn", "Account")</li>
 
 
 
-               
-            
+
+            </ul>
+
+
+
+
+
         </div>
     }
 
@@ -84,18 +85,18 @@
 
 
 
-        @RenderBody()
+    @RenderBody()
 
-        <footer>
-            <div class="footWrap">
-                <div class="footTxt">THE STOPPING POWER DATA SYSTEM - Developed by IHA</div>
-            </div>
-        </footer>
-
-
+    <footer>
+        <div class="footWrap">
+            <div class="footTxt">THE STOPPING POWER DATA SYSTEM - Developed by IHA</div>
+        </div>
+    </footer>
 
 
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
-    </body>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
 </html>

@@ -6,19 +6,23 @@
     <h1>VIEW DATA</h1>
 
     <div class="mainFill">Here you are able to view the collected data present in the database</div>
-    
-        <div class ="graph">
-            <canvas id="canvas" height="450" width="600"></canvas>
-        </div>
 
-    
+    <div class="table">
+        <script>
+            var data = [["power", "length", "Energy"], [1, 2, 3], [7, 8, 9], [10, 11, 12], [100, 43, "-"]];
+            var table = new TableClass();
+            table.createTable(data);
+        </script>
+    </div>
 
-    <script>
-        var Xpoints = [1, 2, 3, 4, 5, 6, 7];
-        var Ypoints = [3, 2, 11, 5, 7, 4, 8];
-        var Y2points = [6,1,4,7,5,1,9]
-        var graphdisplay = new chartline();
-        graphdisplay.drawDoubleLineGraph(Xpoints, Ypoints, Y2points, "canvas");
-
-    </script>
+    <div class="graph">
+        <canvas id="canvas" height="450" width="600"></canvas>
+        <script>
+            var Xpoints = [1, 2, 3, 4, 5, 6, 7];
+            var Ypoints = [3, 2, 11, 5, 7, 4, 8];
+            var Y2points = [6, 1, 4, 7, 5, 1, 9]
+            var graphdisplay = new chartline();
+            graphdisplay.drawDoubleLineGraph(Xpoints, Ypoints, Y2points, "canvas");
+        </script>
+    </div>
 </div>
