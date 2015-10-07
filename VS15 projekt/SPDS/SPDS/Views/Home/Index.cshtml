@@ -5,24 +5,40 @@
 <div class="content">
     <h1>VIEW DATA</h1>
 
+    <style>
+        table {
+            border-spacing: 0;
+            margin-left: 5%;      
+        }
+        table, td, th{ 
+            border: 1px solid black;
+            font-family:"Verdana";
+        }
+        th {
+            color: white;
+            background-color: black;
+            font-style: oblique;
+        }
+    </style>
+
     <div class="mainFill">Here you are able to view the collected data present in the database</div>
 
-    <div class="table">
-        <script>
-            var data = [["power", "length", "Energy"], [1, 2, 3], [7, 8, 9], [10, 11, 12], [100, 43, "-"]];
-            var table = new TableClass();
-            table.createTable(data);
-        </script>
-    </div>
+    
 
     <div class="graph">
         <canvas id="canvas" height="450" width="600"></canvas>
         <script>
             var Xpoints = [1, 2, 3, 4, 5, 6, 7];
-            var Ypoints = [3, 2, 11, 5, 7, 4, 8];
-            var Y2points = [6, 1, 4, 7, 5, 1, 9]
+            var Ypoints = [2, 3, 5, 8, 4, 4, 8];
             var graphdisplay = new chartline();
-            graphdisplay.drawDoubleLineGraph(Xpoints, Ypoints, Y2points, "canvas");
+            graphdisplay.drawLineGraph(Xpoints, Ypoints, "canvas")
         </script>
+        <div class="table">
+            <script>
+                var data = [["power", "length", "Energy"], [1, 2, 3], [2, 3, 5], [3, 5, 8], [4, 8, 12], [5, 4, 9], [6, 4, 10], [7, 8, 15]];
+            var table = new TableClass();
+            table.createTable(data);
+            </script>
+        </div>
     </div>
 </div>
