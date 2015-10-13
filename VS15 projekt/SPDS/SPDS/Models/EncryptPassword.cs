@@ -9,10 +9,6 @@ namespace encryptPassword
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            EncryptPassword("RasmusErEnNoob");
-        }
 
         public static string EncryptPassword(string pass)
         {
