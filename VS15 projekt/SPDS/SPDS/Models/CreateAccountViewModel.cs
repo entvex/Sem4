@@ -39,7 +39,7 @@ namespace SPDS.Models
 
         public void Create(string email, string confirmEmail,string Pass, string confirmPass,string institution, string fName, string lName)
         {
-            var user = new UserSet();
+            /*var user = new UserSet();
             user.Email = email;
             user.Password = Pass;
             user.Institute = institution;
@@ -50,6 +50,7 @@ namespace SPDS.Models
             user.PermissionSet = query;
             db.UserSet.Add(user);
             db.SaveChanges();
+             * */
         }
     }
 }

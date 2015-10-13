@@ -109,27 +109,10 @@
     <Content Include="Content\NAV.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Models\TSPDSModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TSPDSModel.edmx</DependentUpon>
-      <LastGenOutput>TSPDSModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\TSPDSModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TSPDSModel.edmx</DependentUpon>
-      <LastGenOutput>TSPDSModel.cs</LastGenOutput>
-    </Content>
+    <Content Include="Models\Global.asax" />
     <Content Include="Scripts\.gitignore" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\TSPDSModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TSPDSModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TSPDSModel.edmx.diagram">
-      <DependentUpon>TSPDSModel.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\rystefisk.dk.pubxml" />
     <Content Include="Scripts\.travis.yml" />
     <Content Include="Scripts\bower.json" />
@@ -143,78 +126,45 @@
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\table.js" />
-    <Content Include="Web.config">
+    <Content Include="Models\Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\About\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Models\ArticleReferences.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Global.asax.cs">
+    <Compile Include="Models\Dataformat.cs" />
+    <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\Dataset.cs" />
+    <Compile Include="Models\Exceptions\NotValidDataInsertDatasetException.cs" />
+    <Compile Include="Models\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ArticleReferencesSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\IDalGetData.cs" />
+    <Compile Include="Models\IDalInsertData.cs" />
+    <Compile Include="Models\IDalUserManagement.cs" />
+    <Compile Include="Models\Method.cs" />
     <Compile Include="Models\CreateAccountViewModel.cs" />
-    <Compile Include="Models\DataformatSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataPointSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DatasetSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IonSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\IsotopeSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\MaterialSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MethodSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PermissionSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RevisionSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TSPDSModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TSPDSModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TSPDSModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TSPDSModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TSPDSModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserSet.cs">
-      <DependentUpon>TSPDSModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\MSSQLModel.cs" />
+    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Revision.cs" />
+    <Compile Include="Models\StateOfAggregation.cs" />
+    <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\TargetMaterial.cs" />
+    <Compile Include="Models\TSPDSContext.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <Content Include="Models\packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -230,10 +180,10 @@
     <Content Include="Views\Data\Review_Data.cshtml" />
     <Content Include="Views\Data\Submit_Data.cshtml" />
     <Content Include="Scripts\package.json" />
-    <None Include="Web.Debug.config">
+    <None Include="Models\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
+    <None Include="Models\Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>

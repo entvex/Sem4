@@ -20,11 +20,11 @@ namespace SPDS.Models
         {
             try
             {
-                using (var db = new TSPDSEntities())
+                using (var db = new TSPDSContext())
                 {
-                    var query = db.UserSet.Where(u => u.Email == _email && u.Password == _pass);
+                    var query = db.User.Where(u => u.Email == _email && u.Password == _pass);
 
-                    var user = query.Single<UserSet>();
+                    var user = query.Single<User>();
 
                     return true;
                 }
