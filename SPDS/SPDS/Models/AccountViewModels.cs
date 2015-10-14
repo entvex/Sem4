@@ -1,96 +1,88 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.ComponentModel.DataAnnotations;
 
 namespace SPDS.Models
 {
-    public class ExternalLoginConfirmationViewModel
+    public class CreateAccountViewModel
     {
         [Required]
         [Display(Name = "Email")]
-        public string Email { get; set; }
-    }
+        public string _Email { get; set; }
 
-    public class ExternalLoginListViewModel
-    {
-        public string ReturnUrl { get; set; }
-    }
-
-    public class SendCodeViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
-        public string ReturnUrl { get; set; }
-        public bool RememberMe { get; set; }
-    }
-
-    public class VerifyCodeViewModel
-    {
-        [Required]
-        public string Provider { get; set; }
-
-        [Required]
-        [Display(Name = "Code")]
-        public string Code { get; set; }
-        public string ReturnUrl { get; set; }
-
-        [Display(Name = "Remember this browser?")]
-        public bool RememberBrowser { get; set; }
-
-        public bool RememberMe { get; set; }
-    }
-
-    public class ForgotViewModel
-    {
         [Required]
         [Display(Name = "Email")]
-        public string Email { get; set; }
-    }
-
-    public class RegisterViewModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string _confirmEmail { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
-    }
-
-    public class ResetPasswordViewModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string _Pass { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string Password { get; set; }
+        public string _confirmPass { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "Password")]
+        public string _Institution { get; set; }
 
-        public string Code { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+        public string _FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string _LastName { get; set; }
+
+
+        public void Create(string email, string confirmEmail, string Pass, string confirmPass, string institution, string fName, string lName)
+        {
+            /*var user = new UserSet();
+            user.Email = email;
+            user.Password = Pass;
+            user.Institute = institution;
+            user.FirstName = fName;
+            user.LastName = lName;
+            var db = new TSPDSEntities();
+            var query = db.PermissionSet.Find(1);
+            user.PermissionSet = query;
+            db.UserSet.Add(user);
+            db.SaveChanges();
+             * */
+        }
     }
 
-    public class ForgotPasswordViewModel
+    public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string _Email { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
+        public string _Pass { get; set; }
+
+        public bool Login(string _email, string _pass)
+        {
+          /*  try
+            {
+                using (var db = new TSPDSContext())
+                {
+                    var query = db.User.Where(u => u.Email == _email && u.Password == _pass);
+
+                    var user = query.Single<User>();
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }*/
+
+            return false;
+        }
     }
 }
