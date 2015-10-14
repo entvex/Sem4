@@ -19,6 +19,7 @@ namespace SPDS.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Review_Data()
         {
             return View();

@@ -98,6 +98,39 @@
     <Content Include="Content\NAV.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\.gitignore" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\chartingclass.js" />
+    <Content Include="Scripts\graphscript\.gitignore" />
+    <Content Include="Scripts\graphscript\Chart.js" />
+    <Content Include="Scripts\graphscript\Chart.min.js" />
+    <Content Include="Scripts\graphscript\chartingclass.js" />
+    <Content Include="Scripts\graphscript\gulpfile.js" />
+    <Content Include="Scripts\graphscript\jquery-1.11.3.js" />
+    <Content Include="Scripts\graphscript\src\Chart.Bar.js" />
+    <Content Include="Scripts\graphscript\src\Chart.Core.js" />
+    <Content Include="Scripts\graphscript\src\Chart.Doughnut.js" />
+    <Content Include="Scripts\graphscript\src\Chart.Line.js" />
+    <Content Include="Scripts\graphscript\src\Chart.PolarArea.js" />
+    <Content Include="Scripts\graphscript\src\Chart.Radar.js" />
+    <Content Include="Scripts\gulpfile.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.11.3.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\table.js" />
+    <None Include="Scripts\_references.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +160,13 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\.travis.yml" />
+    <Content Include="Scripts\bower.json" />
+    <Content Include="Scripts\graphscript\.travis.yml" />
+    <Content Include="Scripts\graphscript\bower.json" />
+    <Content Include="Scripts\graphscript\package.json" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
