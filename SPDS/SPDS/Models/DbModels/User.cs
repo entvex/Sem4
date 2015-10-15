@@ -1,4 +1,4 @@
-namespace SPDS
+namespace SPDS.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
@@ -9,12 +9,13 @@ namespace SPDS
     [Table("User")]
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
             Revision = new HashSet<Revision>();
         }
 
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         public string Email { get; set; }
 
@@ -30,6 +31,7 @@ namespace SPDS
 
         public virtual Permission Permission { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Revision> Revision { get; set; }
     }
 }

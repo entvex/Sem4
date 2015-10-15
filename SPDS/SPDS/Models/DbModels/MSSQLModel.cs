@@ -3,70 +3,92 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MSSQLModel.Exceptions;
-using SPDS;
 
 namespace MSSQLModel
 {
-    public class MSSQLModelDAL : IDalUserManagement, IDalGetData, IDalInsertData
+
+
+    public class MSSQLModelDAL : IDALUserManagement, IDALInsertion, IDALRetrieving
     {
         public MSSQLModelDAL()
-        {}
-
-
-        public void InsertDataPoint(DataPoint dataP, Dataformat originalFormat,Dataformat convertedFormat)
         {
-            if (dataP.EqEnergy == 0)
-                throw new DALInfoNotSpecifiedException("Eq energy was not specified");
-            if (dataP.StoppingPower == 0)
-                throw new DALInfoNotSpecifiedException("Stopping power was not specified");
+        }
 
+
+        private void InsertDataPoint(List<DataPoint> dataPoints, Dataset dataset, Dataformat originalFormat,
+            Dataformat convertedFormat)
+        {
             using (var db = new TSPDSContext())
             {
-                var query = from b in db.Dataformat where b == originalFormat select b;
+                var query = from b in db.Dataformat
+                    where b.Id == originalFormat.Id
+                    where b.Id == convertedFormat.Id
+                    select b;
+
                 if (query.Any())
                 {
-                    query = from b in db.Dataformat where b == convertedFormat select b;
-                    if (query.Any())
+                    foreach (var dataPoint in dataPoints)
                     {
-                        dataP.ConvertedDataformat = convertedFormat;
-                        dataP.OriginalDataformat = originalFormat;
-                        db.Entry(dataP).State = EntityState.Modified;
-                        db.DataPoint.Add(dataP);
-                        db.SaveChanges();
+                        dataPoint.DataformatForConverted_Id = convertedFormat.Id;
+                        dataPoint.DataformatForOriginal_Id = originalFormat.Id;
+                        dataPoint.ConvertedDataformat = convertedFormat;
+                        dataPoint.OriginalDataformat = originalFormat;
+                        dataPoint.Dataset = dataset;
+                        dataPoint.DatasetDatasetId = dataset.Id;
+                        db.Entry(dataPoint).State = EntityState.Modified;
+                        db.DataPoint.Add(dataPoint);
                     }
+                    db.SaveChanges();
                 }
-
             }
         }
-        public void InsertRevision(Dataset dataset,Revision rev,User user,Revision prevRevision = null)
+
+        public void InsertRevision(Dataset dataset, Revision rev, User user, Revision prevRevision = null)
         {
             using (var db = new TSPDSContext())
             {
-                if (user.UserId == 0)
+                
+                if (user.Id == 0)
                     throw new DALInfoNotSpecifiedException("User id was not specified");
-                if (dataset.DatasetId == 0)
+                if (dataset.Id == 0)
                     throw new DALInfoNotSpecifiedException("Dataset id was not specified");
-                if (rev.RevId != 0)
-                    throw new DALInfoNotSpecifiedException("Revision id was specified when it shouldn't");
+                if (rev.Id != 0)
+                    rev.Id = 0;
                 ValidateUser(user);
                 if (prevRevision != null)
-                    prevRevision.HeadRevision.Add(rev);
+                    prevRevision.HeadRevision = rev;
+                else
+                {
+                    var query = from b in db.Revision where b.Dataset.Id == dataset.Id select b;
+                    if (query.Any())
+                        throw new DALAlreadyExistsException(
+                            "Dataset already exists, be sure to include a previous revision if you want to add a new revision to this dataset");
+                }
                 rev.User = user;
                 rev.Dataset = dataset;
-                rev.UserUserId = user.UserId;
-                rev.Dataset_DatasetId = dataset.DatasetId;
+                rev.UserUserId = user.Id;
+                rev.Dataset_Id = dataset.Id;
+                
+                if (prevRevision != null)
+                {
+                    rev.HeadRevision_Id = prevRevision.Id;
+                }
                 db.Entry(rev).State = EntityState.Modified;
-;               db.Revision.Add(rev);
+                db.Revision.Add(rev);
                 db.SaveChanges();
             }
-            
         }
-        public void InsertDataset(ICollection<DataPoint> dataPoints,TargetMaterial impactMaterial, Projectile projectile ,ArticleReferences AR = null,Method method = null)
+
+        public void InsertDataset(List<DataPoint> dataPoints, TargetMaterial impactMaterial,
+            Projectile projectile, Dataformat orginalDataformat, Dataformat converteDataformat, ArticleReferences AR = null, Method method = null,
+            StateOfAggregation stateOfAggregation = null)
         {
             if (impactMaterial.Id == 0)
                 throw new DALInfoNotSpecifiedException("impactmaterial id was not specified");
@@ -74,36 +96,35 @@ namespace MSSQLModel
                 throw new DALInfoNotSpecifiedException("Projectile id was not specified");
             if (AR != null)
             {
-                if (AR.ArticleReferencesId == 0)
+                if (AR.Id == 0)
                     throw new DALInfoNotSpecifiedException("ArtivleReference id was not specified");
             }
             if (method != null)
             {
-                if (method.MethodId == 0)
+                if (method.Id == 0)
                     throw new DALInfoNotSpecifiedException("Method id was not specified");
             }
-            foreach(var item in dataPoints)
+            if (stateOfAggregation != null)
             {
-                if (item.DatapointId == 0)
-                    throw new DALInfoNotSpecifiedException("Datapoint id was not specified");
-                if(item.OriginalDataformat == null)
+                if (stateOfAggregation.Id == 0)
                 {
-                    throw new DALInfoNotSpecifiedException(
-                        "One or more DataPoints had unspecificed original dataformat");
+                    throw new DALInfoNotSpecifiedException("State Of Aggregation Id was not specified");
                 }
-                if(item.ConvertetData == null)
+            }
+            foreach (var item in dataPoints)
+            {
+                if (item.ConvertetData == null)
                 {
                     throw new DALInfoNotSpecifiedException(
                         "One or more DataPoints had unspecificed converted data");
                 }
-                if(item.ConvertedDataformat == null)
-                {
-                    throw new DALInfoNotSpecifiedException(
-                        "One or more DataPoints had unspecificed converted dataformat");
-                }
-                if(item.EqEnergy == null)
+                if (item.EqEnergy == null)
                 {
                     throw new DALInfoNotSpecifiedException("One or more DataPoints had unspecificed eqEnergy");
+                }
+                if (item.StoppingPower == null)
+                {
+                    throw new DALInfoNotSpecifiedException("One or more DataPoints had unspecificed StoppingPower");
                 }
             }
             var tempCollection = new List<ArticleReferences>();
@@ -112,10 +133,14 @@ namespace MSSQLModel
             {
                 Projectile_Id = projectile.Id,
                 TargetMaterial_Id = impactMaterial.Id,
-                ArticleReferences  = tempCollection,
+                ArticleReferences = AR,
+                ArticleReferences_Id = AR.Id,
                 Projectile = projectile,
+                Method = method,
+                Method_Id = method.Id,
+                StateOfAggregation = stateOfAggregation,
+                StateOfAggregation_Id = stateOfAggregation.Id,
                 TargetMaterial = impactMaterial,
-                DataPoint = dataPoints,
             };
             using (var db = new TSPDSContext())
             {
@@ -124,7 +149,18 @@ namespace MSSQLModel
                 db.SaveChanges();
             }
 
+            //using (var db = new TSPDSContext())
+            //{
+            //    AR.DatasetArticleReferences_ArticleReferences_Id = dataset.Id;
+            //    //tempCollection.Add(AR);
+            //    //dataset.ArticleReferences = tempCollection;
+            //    //b.Entry(dataset).State = EntityState.Modified;
+            //    db.Dataset.AddOrUpdate(dataset);
+            //}
+
+            InsertDataPoint(dataPoints, dataset, orginalDataformat, converteDataformat);
         }
+
         public void InsertTargetMaterial(TargetMaterial material)
         {
             if (material.Name == null)
@@ -142,6 +178,7 @@ namespace MSSQLModel
                 db.SaveChanges();
             }
         }
+
         public void InsertProjectile(Projectile projectile)
         {
             if (projectile.Name == null)
@@ -159,6 +196,7 @@ namespace MSSQLModel
                 db.SaveChanges();
             }
         }
+
         public void InsertDataFormat(Dataformat dataformat)
         {
             if (dataformat.Description == null)
@@ -167,7 +205,9 @@ namespace MSSQLModel
                 throw new DALInfoNotSpecifiedException("DataFormat notation was not specified");
             using (var db = new TSPDSContext())
             {
-                var query = from m in db.Dataformat where m.DataNotiation.ToLower() == dataformat.DataNotiation.ToLower() select m;
+                var query = from m in db.Dataformat
+                    where m.DataNotiation.ToLower() == dataformat.DataNotiation.ToLower()
+                    select m;
                 if (query.Any())
                 {
                     throw new DALAlreadyExistsException("Dataformat already excist");
@@ -176,6 +216,7 @@ namespace MSSQLModel
                 db.SaveChanges();
             }
         }
+
         public void InsertStateOfAggregation(StateOfAggregation AG)
         {
             if (AG.Form == null)
@@ -191,36 +232,93 @@ namespace MSSQLModel
                 db.SaveChanges();
             }
         }
+
         public void InsertMethod(Method method)
         {
-            if (method.Description == null)
-                throw new DALInfoNotSpecifiedException("Method Description was not specified");
+            if (method.Name == null)
+                throw new DALInfoNotSpecifiedException("Method name was not specified");
+
             using (var db = new TSPDSContext())
             {
-                var query = from s in db.Method where s.Description.ToLower() == method.Description.ToLower() select s;
+                var query = from s in db.Method where s.Name.ToLower() == method.Name.ToLower() select s;
                 if (query.Any())
                     throw new DALAlreadyExistsException("Mehod already exists");
                 db.Method.Add(method);
                 db.SaveChanges();
             }
         }
-        public void InsertUser(User user,Permission perm)
+
+        public void InsertUser(User user, Permission perm)
         {
             ValidateUser(user);
-            if (perm == null)
-                throw new DALInfoNotSpecifiedException("User permission was not specified");
-            if (perm.PermissionId == 0)
-                throw new DALInfoNotSpecifiedException("Permission id was not speciified");
+            ValidatePermission(perm);
             using (var db = new TSPDSContext())
             {
                 var query = from s in db.User where s.Email.ToLower() == user.Email.ToLower() select s;
                 if (query.Any())
                     throw new DALAlreadyExistsException("User already exists");
                 user.Permission = perm;
-                user.PermissionPermissionId = perm.PermissionId;
+                user.PermissionPermissionId = perm.Id;
                 db.Entry(user).State = EntityState.Modified;
                 db.User.Add(user);
                 db.SaveChanges();
+            }
+        }
+
+        public void InsertArticleReference(ArticleReferences articleReference)
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.ArticleReferences where b.DOINumber == articleReference.DOINumber select b;
+                if (query.Any())
+                {
+                    throw new DALAlreadyExistsException("The DOI nummber already exists");
+                }
+                db.ArticleReferences.Add(articleReference);
+                db.SaveChanges();
+            }
+        }
+
+
+        public void UpdateUserPermission(User user, Permission perm)
+        {
+            ValidateUser(user);
+            ValidatePermission(perm);
+            if (perm == null)
+                throw new DALInfoNotSpecifiedException("User permission was not specified");
+            if (perm.Id == 0)
+                throw new DALInfoNotSpecifiedException("Permission id was not speciified");
+            if (user.Id == 0)
+                throw new DALInfoNotSpecifiedException("User id was not speciified");
+
+            var temp = GetUserByEmail(user.Email);
+
+            if (temp.Email != user.Email)
+            {
+                throw new DALInfoNotSpecifiedException("The user was not found in the databse");
+            }
+
+            using (var db = new TSPDSContext())
+            {
+                user.Permission = perm;
+                user.PermissionPermissionId = perm.Id;
+                db.Entry(user).State = EntityState.Modified;
+                db.User.AddOrUpdate(user);
+                db.SaveChanges();
+            }
+        }
+
+        public ArticleReferences GetArticleReferenceByDOI(string DOI)
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.ArticleReferences where b.DOINumber == DOI select b;
+
+                if (query.Any())
+                {
+                    return query.Single();
+                }
+                return new ArticleReferences();
             }
         }
 
@@ -228,7 +326,7 @@ namespace MSSQLModel
         {
             using (var db = new TSPDSContext())
             {
-                var query = from b in db.Permission where b.PermissionId == id select b;
+                var query = from b in db.Permission where b.Id == id select b;
                 if (query.Any())
                 {
                     Permission perm = query.ToList()[0];
@@ -239,11 +337,28 @@ namespace MSSQLModel
             }
         }
 
+        public List<Revision> GetAllRevisonBydataset(Dataset dataset)
+        {
+            if (dataset.Id == 0)
+                throw new DALInfoNotSpecifiedException("The dataset id was not specified");
+
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.Revision where b.Dataset.Id == dataset.Id select b;
+
+                if (query.Any())
+                {
+                    return query.ToList();
+                }
+                return new List<Revision>();
+            }
+        }
+
         public Dataset GetDatasetByRevision(int revId)
         {
             using (var db = new TSPDSContext())
             {
-                var dataset = from b in db.Revision where b.RevId == revId select b.Dataset;
+                var dataset = from b in db.Revision where b.Id == revId select b.Dataset;
                 if (dataset.Any())
                 {
                     Dataset returnedDataset = dataset.ToList()[0];
@@ -252,6 +367,19 @@ namespace MSSQLModel
                 return new Dataset();
             }
         }
+
+        public Revision GetNewestRevisionByDataset(Dataset dataset)
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.Revision where b.Dataset_Id == dataset.Id select b;
+                if (query.Any())
+                    return query.ToList().Last();
+                return new Revision();
+            }
+        }
+
+
         public List<Dataset> GetAllDatasetsByFirstName(string firstName)
         {
             if (firstName == null)
@@ -259,15 +387,15 @@ namespace MSSQLModel
             var datasetList = new List<Dataset>();
             using (var db = new TSPDSContext())
             {
-                var users = from b in db.User where b.FirstName.ToLower() == firstName.ToLower() select b;
-                foreach (var user in users)
+                var revisions = from b in db.User where b.FirstName.ToLower() == firstName.ToLower() select b.Revision;
+                foreach (var revision in revisions.ToList())
                 {
-                    var revisions = from b in db.Revision where b.User == user select b.HeadRevision;
-                    foreach (var revision in revisions)
+                    foreach (var dataset in revision)
                     {
-                        datasetList.Add(revision.ToList()[0].Dataset);
+                        datasetList.Add(dataset.Dataset);
                     }
                 }
+
                 return datasetList;
             }
         }
@@ -279,18 +407,19 @@ namespace MSSQLModel
             var datasetList = new List<Dataset>();
             using (var db = new TSPDSContext())
             {
-                var users = from b in db.User where b.LastName.ToLower() == lastName.ToLower() select b;
-                foreach (var user in users)
+                var revisions = from b in db.User where b.LastName.ToLower() == lastName.ToLower() select b.Revision;
+
+                foreach (var revision in revisions.ToList())
                 {
-                    var revisions = from b in db.Revision where b.User == user select b.HeadRevision;
-                    foreach (var revision in revisions)
+                    foreach (var dataset in revision)
                     {
-                        datasetList.Add(revision.ToList()[0].Dataset);
+                        datasetList.Add(dataset.Dataset);
                     }
                 }
-                return datasetList;
             }
+            return datasetList;
         }
+
         public List<Dataset> GetAllDatasetsByFirstLastName(string firstName, string lastName)
         {
             if (firstName == null)
@@ -298,19 +427,23 @@ namespace MSSQLModel
             var datasetList = new List<Dataset>();
             using (var db = new TSPDSContext())
             {
-                var users = from b in db.User where b.FirstName.ToLower() == firstName.ToLower()
-                                && b.LastName.ToLower() == lastName.ToLower() select b;
-                foreach (var user in users)
+                var revisions = from b in db.User
+                    where b.FirstName.ToLower() == firstName.ToLower()
+                    where b.LastName.ToLower() == lastName.ToLower()
+                    select b.Revision;
+
+                foreach (var revision in revisions.ToList())
                 {
-                    var revisions = from b in db.Revision where b.User == user select b.HeadRevision;
-                    foreach (var revision in revisions)
+                    foreach (var dataset in revision)
                     {
-                        datasetList.Add(revision.ToList()[0].Dataset);
+                        datasetList.Add(dataset.Dataset);
                     }
                 }
+
                 return datasetList;
             }
         }
+
         public List<Dataset> GetAllDatasetsByInstitute(string institute)
         {
             if (institute == null)
@@ -318,13 +451,12 @@ namespace MSSQLModel
             var datasetList = new List<Dataset>();
             using (var db = new TSPDSContext())
             {
-                var users = from b in db.User where b.Institute.ToLower() == institute.ToLower() select b;
-                foreach (var user in users)
+                var revisions = from b in db.User where b.Institute.ToLower() == institute.ToLower() select b.Revision;
+                foreach (var revision in revisions.ToList())
                 {
-                    var revisions = from b in db.Revision where b.User == user select b.HeadRevision;
-                    foreach (var revision in revisions)
+                    foreach (var dataset in revision)
                     {
-                        datasetList.Add(revision.ToList()[0].Dataset);
+                        datasetList.Add(dataset.Dataset);
                     }
                 }
                 return datasetList;
@@ -348,10 +480,18 @@ namespace MSSQLModel
         {
             using (var db = new TSPDSContext())
             {
-                var datasets = from b in db.Method where b.MethodId == method.MethodId select b.Dataset;
+                var datasets = from b in db.Method where b.Id == method.Id select b.Dataset;
                 if (datasets.Any())
                 {
-                    return datasets.ToList();
+                    List<Dataset> listOfDatasets = new List<Dataset>();
+                    foreach (var dataset in datasets)
+                    {
+                        if (dataset.Any())
+                        {
+                            listOfDatasets.Add(dataset.ToList()[0]);
+                        }
+                    }
+                    return listOfDatasets;
                 }
                 return new List<Dataset>();
             }
@@ -362,46 +502,83 @@ namespace MSSQLModel
             var datasetList = new List<Dataset>();
             using (var db = new TSPDSContext())
             {
-                var datasets = from b in db.TargetMaterial where b.Name.ToLower() == material.Name.ToLower() select b;
+                var datasets = from b in db.Dataset
+                    where b.TargetMaterial.Name.ToLower() == material.Name.ToLower()
+                    select b;
                 if (datasets.Any())
                 {
                     foreach (var dataset in datasets)
                     {
-                       datasetList.Add(dataset.Dataset.ToList()[0]);
+                        datasetList.Add(dataset);
                     }
                     return datasetList;
                 }
                 return new List<Dataset>();
             }
         }
+
         public List<Dataset> GetAllDatasetsByProjectile(Projectile projectile)
         {
             var datasetList = new List<Dataset>();
             using (var db = new TSPDSContext())
             {
-                var datasets = from b in db.Projectile where b.Name.ToLower() == projectile.Name.ToLower() select b;
+                var datasets = from b in db.Dataset
+                    where b.Projectile.Name.ToLower() == projectile.Name.ToLower()
+                    select b;
                 if (datasets.Any())
                 {
                     foreach (var dataset in datasets)
                     {
-                        datasetList.Add(dataset.Dataset.ToList()[0]);
+                        datasetList.Add(dataset);
                     }
                     return datasetList;
                 }
                 return new List<Dataset>();
             }
         }
-        public List<Revision> GetAllRevisionSets(Dataset dataset)
+
+        public List<Dataset> GetAllDatasetsByArticleReference(ArticleReferences articleReference)
+        {
+            var datasetList = new List<Dataset>();
+            using (var db = new TSPDSContext())
+            {
+                var datasets = from b in db.Dataset
+                               where b.ArticleReferences.Id == articleReference.Id
+                               select b;
+                if (datasets.Any())
+                {
+                    return datasets.ToList();
+                }
+                return new List<Dataset>();
+            }
+        }
+        public List<Dataset> GetAllDatasetsBystateOfAggregation(StateOfAggregation stateOfAggregation)
+        {
+            var datasetList = new List<Dataset>();
+            using (var db = new TSPDSContext())
+            {
+                var datasets = from b in db.Dataset
+                               where b.StateOfAggregation_Id == stateOfAggregation.Id
+                               select b;
+                if (datasets.Any())
+                {
+                    return datasets.ToList();
+                }
+                return new List<Dataset>();
+            }
+        }
+
+        public Projectile GetProjectileByName(string name)
         {
             using (var db = new TSPDSContext())
             {
-                var revs = from b in db.Revision select b;
-                if (revs.Any())
+                var query = from b in db.Projectile where b.Name.ToLower() == name.ToLower() select b;
+                if (query.Any())
                 {
-                    return revs.ToList();
+                    return query.Single();
                 }
+                return new Projectile();
             }
-            return new List<Revision>();
         }
 
         public TargetMaterial GetTargetMaterialByName(string name)
@@ -411,24 +588,23 @@ namespace MSSQLModel
                 var query = from b in db.TargetMaterial where b.Name.ToLower() == name.ToLower() select b;
                 if (query.Any())
                 {
-                    return query.ToList()[0];
+                    return query.Single();
                 }
                 return new TargetMaterial();
             }
         }
 
-        public List<TargetMaterial> GetAllTargetMaterialSets()
+        public List<TargetMaterial> GetAllTargetMaterials()
         {
             using (var db = new TSPDSContext())
             {
-                var targetMaterials = from b in db.TargetMaterial select b;
-                if (targetMaterials.Any())
+                var query = from b in db.TargetMaterial select b;
+                if (query.Any())
                 {
-                    return targetMaterials.ToList();
+                    return query.ToList();
                 }
                 return new List<TargetMaterial>();
             }
-
         }
 
         /// <summary>
@@ -438,16 +614,18 @@ namespace MSSQLModel
         /// <returns></returns>
         public List<DataPoint> GetDataPointsByDataSet(Dataset dataset)
         {
+            var datapointsList = new List<DataPoint>();
             using (var db = new TSPDSContext())
             {
-                var dataPoints = from b in db.DataPoint where b.Dataset == dataset select b;
+                var dataPoints = from b in db.Dataset where b.Id == dataset.Id select b.DataPoint;
                 if (dataPoints.Any())
                 {
-                    return dataPoints.ToList();
+                    return dataPoints.ToList()[0].ToList();
                 }
-               return new List<DataPoint>();
+                return new List<DataPoint>();
             }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -465,6 +643,61 @@ namespace MSSQLModel
             }
         }
 
+        public List<StateOfAggregation> GetAllStateOfAggregation()
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.StateOfAggregation select b;
+
+                if (query.Any())
+                {
+                    return query.ToList();
+                }
+                return new List<StateOfAggregation>();
+            }
+        }
+
+        public StateOfAggregation GetStateOfAggregationByForm(string form)
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.StateOfAggregation where b.Form.ToLower() == form.ToLower() select b;
+                if (query.Any())
+                {
+                    return query.Single();
+                }
+                return new StateOfAggregation();
+            }
+        }
+
+        public Method GetMethodByName(string name)
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.Method select b;
+                if (query.Any())
+                {
+                    return query.Single();
+                }
+                return new Method();
+            }
+        }
+
+        public List<ArticleReferences> GetAllArticleReferenceses()
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.ArticleReferences select b;
+
+                if (query.Any())
+                {
+                    return query.ToList();
+                }
+                return new List<ArticleReferences>();
+            }
+        }
+
+
         public List<Dataformat> GetAllDataFormats()
         {
             using (var db = new TSPDSContext())
@@ -476,10 +709,9 @@ namespace MSSQLModel
                 }
                 return new List<Dataformat>();
             }
-            
         }
 
-        public List<Permission> GetAllPermissionSets()
+        public List<Permission> GetAllPermissions()
         {
             using (var db = new TSPDSContext())
             {
@@ -492,6 +724,19 @@ namespace MSSQLModel
             }
         }
 
+        public Dataformat GetDataformatByNotation(string notation)
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.Dataformat where b.DataNotiation.ToLower() == notation.ToLower() select b;
+                if (query.Any())
+                {
+                    return query.Single();
+                }
+                return new Dataformat();
+            }
+        }
+
         public User GetUserByEmail(string email)
         {
             using (var db = new TSPDSContext())
@@ -500,6 +745,29 @@ namespace MSSQLModel
                 if (query.Any())
                     return query.ToList()[0];
                 return new User();
+            }
+        }
+
+        public List<Projectile> GetallProjectiles()
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.Projectile select b;
+                if (query.Any())
+                {
+                    return query.ToList();
+                }
+                return new List<Projectile>();
+            }
+        }
+
+        private void ValidatePermission(Permission perm)
+        {
+            using (var db = new TSPDSContext())
+            {
+                var query = from b in db.Permission where b.Id == perm.Id select b;
+                if (!query.Any())
+                    throw new DALOutOfRangeException("Permission id is out of range");
             }
         }
         private void ValidateUser(User user)
@@ -514,5 +782,4 @@ namespace MSSQLModel
                 throw new DALInfoNotSpecifiedException("User Lastname was not specified");
         }
     }
-
 }

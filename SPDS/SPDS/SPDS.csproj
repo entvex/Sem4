@@ -56,6 +56,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -155,13 +157,11 @@
     <Compile Include="Models\DbModels\Dataformat.cs" />
     <Compile Include="Models\DbModels\DataPoint.cs" />
     <Compile Include="Models\DbModels\Dataset.cs" />
-    <Compile Include="Models\DbModels\EncryptPassword.cs" />
-    <Compile Include="Models\DbModels\IDalGetData.cs" />
-    <Compile Include="Models\DbModels\IDalInsertData.cs" />
-    <Compile Include="Models\DbModels\IDalUserManagement.cs" />
+    <Compile Include="Models\DbModels\IDALInsertion.cs" />
+    <Compile Include="Models\DbModels\IDALRetrieving.cs" />
+    <Compile Include="Models\DbModels\IDALUserManagement.cs" />
     <Compile Include="Models\DbModels\Method.cs" />
     <Compile Include="Models\DbModels\MSSQLModel.cs" />
-    <Compile Include="Models\DbModels\NotValidDataInsertDatasetException.cs" />
     <Compile Include="Models\DbModels\Permission.cs" />
     <Compile Include="Models\DbModels\Projectile.cs" />
     <Compile Include="Models\DbModels\Revision.cs" />

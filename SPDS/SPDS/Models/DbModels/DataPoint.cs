@@ -1,4 +1,6 @@
-namespace SPDS
+using SPDS.Models.DbModels;
+
+namespace MSSQLModel
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +11,7 @@ namespace SPDS
     [Table("DataPoint")]
     public partial class DataPoint
     {
-        public int DatapointId { get; set; }
+        public int Id { get; set; }
 
         public double? ProjectileCharge { get; set; }
 
@@ -19,15 +21,13 @@ namespace SPDS
 
         public double? ConvertetData { get; set; }
 
-        public int DatasetId_FK { get; set; }
+        public double? Error { get; set; }
 
         public int DatasetDatasetId { get; set; }
 
-        public double? Error { get; set; }
+        public int DataformatForOriginal_Id { get; set; }
 
-        public int DataformatForOriginal_FormatId { get; set; }
-
-        public int DataformatForConverted_FormatId { get; set; }
+        public int DataformatForConverted_Id { get; set; }
 
         public virtual Dataformat ConvertedDataformat { get; set; }
 

@@ -1,4 +1,4 @@
-namespace SPDS
+namespace SPDS.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
@@ -9,6 +9,7 @@ namespace SPDS
     [Table("Projectile")]
     public partial class Projectile
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Projectile()
         {
             Dataset = new HashSet<Dataset>();
@@ -25,6 +26,7 @@ namespace SPDS
 
         public string PDGNumber { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dataset> Dataset { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-using SPDS;
+using SPDS.Models.DbModels;
 
 namespace MSSQLModel
 {
-    public interface IDalUserManagement
+    public interface IDALUserManagement
     {
-        void InsertUser(User user,Permission perm);
+        void InsertUser(User user, Permission perm);
         Permission GetPermById(int id);
         User GetUserByEmail(string email);
     }

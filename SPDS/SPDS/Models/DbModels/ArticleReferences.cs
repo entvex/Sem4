@@ -1,4 +1,4 @@
-namespace SPDS
+namespace SPDS.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
@@ -8,12 +8,21 @@ namespace SPDS
 
     public partial class ArticleReferences
     {
-        public int ArticleReferencesId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ArticleReferences()
+        {
+            Dataset = new HashSet<Dataset>();
+        }
+
+        public int Id { get; set; }
 
         public string Description { get; set; }
 
-        public int DatasetArticleReferences_ArticleReferences_DatasetId { get; set; }
+        public string DOINumber { get; set; }
 
-        public virtual Dataset Dataset { get; set; }
+        public int? DatasetId { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dataset> Dataset { get; set; }
     }
 }

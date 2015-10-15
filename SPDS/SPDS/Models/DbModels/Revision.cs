@@ -1,4 +1,4 @@
-namespace SPDS
+namespace SPDS.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
@@ -9,13 +9,13 @@ namespace SPDS
     [Table("Revision")]
     public partial class Revision
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Revision()
         {
-            HeadRevision = new HashSet<Revision>();
+            PrevRevision = new HashSet<Revision>();
         }
 
-        [Key]
-        public int RevId { get; set; }
+        public int Id { get; set; }
 
         public string Comment { get; set; }
 
@@ -23,15 +23,18 @@ namespace SPDS
 
         public DateTime? Date { get; set; }
 
-        public int PrevRevision_RevId { get; set; }
+        public bool? Approved { get; set; }
 
-        public int Dataset_DatasetId { get; set; }
+        public int Dataset_Id { get; set; }
+
+        public int? HeadRevision_Id { get; set; }
 
         public virtual Dataset Dataset { get; set; }
 
-        public virtual ICollection<Revision> HeadRevision { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Revision> PrevRevision { get; set; }
 
-        public virtual Revision PrevRevision { get; set; }
+        public virtual Revision HeadRevision { get; set; }
 
         public virtual User User { get; set; }
     }

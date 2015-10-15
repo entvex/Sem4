@@ -1,4 +1,4 @@
-namespace SPDS
+namespace SPDS.Models.DbModels
 {
     using System;
     using System.Collections.Generic;

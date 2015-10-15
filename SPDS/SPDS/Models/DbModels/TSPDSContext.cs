@@ -1,4 +1,6 @@
-namespace SPDS
+using SPDS.Models.DbModels;
+
+namespace MSSQLModel
 {
     using System;
     using System.Data.Entity;
@@ -27,48 +29,44 @@ namespace SPDS
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ArticleReferences>()
+                .HasMany(e => e.Dataset)
+                .WithOptional(e => e.ArticleReferences)
+                .HasForeignKey(e => e.ArticleReferences_Id);
+
             modelBuilder.Entity<Dataformat>()
                 .HasMany(e => e.DataPoint)
-                .WithRequired(e => e.OriginalDataformat)
-                .HasForeignKey(e => e.DataformatForConverted_FormatId)
+                .WithRequired(e => e.ConvertedDataformat)
+                .HasForeignKey(e => e.DataformatForConverted_Id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Dataformat>()
                 .HasMany(e => e.DataPoint1)
-                .WithRequired(e => e.ConvertedDataformat)
-                .HasForeignKey(e => e.DataformatForOriginal_FormatId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Dataset>()
-                .HasMany(e => e.ArticleReferences)
-                .WithRequired(e => e.Dataset)
-                .HasForeignKey(e => e.DatasetArticleReferences_ArticleReferences_DatasetId)
+                .WithRequired(e => e.OriginalDataformat)
+                .HasForeignKey(e => e.DataformatForOriginal_Id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Dataset>()
                 .HasMany(e => e.DataPoint)
                 .WithRequired(e => e.Dataset)
+                .HasForeignKey(e => e.DatasetDatasetId)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Dataset>()
-                .HasMany(e => e.Method)
-                .WithOptional(e => e.Dataset)
-                .HasForeignKey(e => e.DatasetMethod_Method_DatasetId);
-
-            modelBuilder.Entity<Dataset>()
-                .HasMany(e => e.StateOfAggregation)
-                .WithOptional(e => e.Dataset)
-                .HasForeignKey(e => e.DatasetStateOfAggregation_StateOfAggregation_DatasetId);
 
             modelBuilder.Entity<Dataset>()
                 .HasMany(e => e.Revision)
                 .WithRequired(e => e.Dataset)
-                .HasForeignKey(e => e.Dataset_DatasetId)
+                .HasForeignKey(e => e.Dataset_Id)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Method>()
+                .HasMany(e => e.Dataset)
+                .WithOptional(e => e.Method)
+                .HasForeignKey(e => e.Method_Id);
 
             modelBuilder.Entity<Permission>()
                 .HasMany(e => e.User)
                 .WithRequired(e => e.Permission)
+                .HasForeignKey(e => e.PermissionPermissionId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Projectile>()
@@ -78,15 +76,25 @@ namespace SPDS
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Revision>()
-                .HasMany(e => e.HeadRevision)
-                .WithRequired(e => e.PrevRevision)
-                .HasForeignKey(e => e.PrevRevision_RevId);
+                .HasMany(e => e.PrevRevision)
+                .WithOptional(e => e.HeadRevision)
+                .HasForeignKey(e => e.HeadRevision_Id);
+
+            modelBuilder.Entity<StateOfAggregation>()
+                .HasMany(e => e.Dataset)
+                .WithOptional(e => e.StateOfAggregation)
+                .HasForeignKey(e => e.StateOfAggregation_Id);
 
             modelBuilder.Entity<TargetMaterial>()
                 .HasMany(e => e.Dataset)
                 .WithRequired(e => e.TargetMaterial)
                 .HasForeignKey(e => e.TargetMaterial_Id)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Revision)
+                .WithOptional(e => e.User)
+                .HasForeignKey(e => e.UserUserId);
         }
     }
 }
