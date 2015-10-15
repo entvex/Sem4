@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MSSQLModel.Exceptions;
+using SPDS.Models.DbModels;
 
 namespace MSSQLModel
 {
