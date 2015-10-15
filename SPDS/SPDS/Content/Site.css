@@ -1,51 +1,26 @@
-﻿
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+﻿@media screen and (min-width: 950px) {
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
-html , body {
-    margin: 0;
-    width: 100%
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/*Navbar styles*/
+    /*Navbar styles*/
 
 
-.NavWrap {
-    width: 100%; /* Spans the width of the page */
-	height: 50px; 
-	margin: 0; /* Ensures there is no space between sides of the screen and the menu */
-	position: relative;
-    background: url(footer_lodyas.png);
-    	
-    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
-	-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
-	box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
-    
-}
+    .NavWrap {
+        width: 100%; /* Spans the width of the page */
+        height: 50px;
+        margin: 0; /* Ensures there is no space between sides of the screen and the menu */
+        position: relative;
+        background: url(footer_lodyas.png);
+        -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+        -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+        box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+    }
 
-.navbar {
-    height: 50px;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    position: absolute; /*drop down doesn't interfer with other elements'*/
-}
+    .navbar {
+        height: 50px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        position: absolute; /*drop down doesn't interfer with other elements'*/
+    }
 
 
 
@@ -54,7 +29,7 @@ body {
     }
 
     .navbar .liLeft {
-        height: auto;
+        height: 50px;
         width: 150px;
         float: left;
         text-align: center;
@@ -63,10 +38,9 @@ body {
         padding: 0;
         margin: 0;
         background: url(footer_lodyas.png);
- 
     }
 
-        .navbar .Right {
+    .navbar .Right {
         height: 50px;
         width: 150px;
         float: right;
@@ -78,10 +52,13 @@ body {
         background: url(footer_lodyas.png);
     }
 
+        .navbar .Right ul {
+            list-style-type: none;
+        }
+
+
     .navbar li:first-child {
         width: 280px;
-        
-   
     }
 
 
@@ -92,7 +69,7 @@ body {
         display: block;
     }
 
-    .navbar li:hover a:hover{
+    .navbar li:hover a:hover {
         background-color: #a9a9a9;
         background-color: rgba(255,255,255,.5);
     }
@@ -103,37 +80,166 @@ body {
         padding: 0;
     }
 
-    .navbar li ul .dropdown {
-        background: url(footer_lodyas.png);
-        height: 0;
-        opacity: 0;
-       
-       /* -webkit-box-shadow: 4px 0 6px -6px rgba(0,0,0,.4);
+
+
+        .navbar li ul .dropdown {
+            background: url(footer_lodyas.png);
+            height: 0;
+            opacity: 0;
+            width: 150px;
+            /* -webkit-box-shadow: 4px 0 6px -6px rgba(0,0,0,.4);
 	    -moz-box-shadow: 4px 0 6px -6px rgba(0,0,0,.4);
 	    box-shadow: 4px 0 6px -6px rgba(0,0,0,.4);*/
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
 
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        -ms-transition:all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        transition: all 0.3s ease;
 
-
-    }
 
     .navbar li:hover ul li {
         height: 50px;
         opacity: 1;
-        
     }
 
     .navbar li ul li a {
         /*border-bottom: 1px solid #FFFFFF;*/
     }
 
-    .navbar li ul li a:hover {
+        .navbar li ul li a:hover {
+            background-color: #a9a9a9;
+            background-color: rgba(255, 255, 255, .5);
+        }
+}
+
+
+/*Narrow nav styles*/
+
+@media screen and (max-width: 949px) {
+
+ .NavWrap {
+        width: 100%; /* Spans the width of the page */
+        height: 50px;
+        margin: 0; /* Ensures there is no space between sides of the screen and the menu */
+        position: relative;
+        background: url(footer_lodyas.png);
+        -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+        -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+        box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+    }
+
+    .navbar {
+        height: 50px;
+        width: 280px;
+        padding: 0;
+        margin: 0;
+        position: absolute; /*drop down doesn't interfer with other elements'*/
+    }
+
+
+
+    .navbar-left ul {
+        margin: 0;
+    }
+
+    .navbar .liLeft, .Right, .dropdown {
+        height: 50px;
+        width: 280px;
+        text-align: center;
+        list-style: none;
+        font: normal bold .8em Arial, verdana, helvetica;
+        padding: 0;
+        margin: 0;
+        background: url(footer_lodyas.png);
+        display: none;
+    }
+
+
+
+    .navbar li:nth-child(n+2) {
+        border-top: 1px solid rgba(140,140,140,.8);
+        -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+        -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+        box-shadow: 0 8px 6px -6px rgba(0,0,0,.4);
+    }
+
+    .navbar li ul {
+        
+    }
+    
+    
+    .navbar .Right ul {
+        list-style-type: none;
+    }
+
+
+    .navbar li:first-child {
+        opacity: 1;
+        height: 50px;
+        display: block;
+    }
+
+
+    .navbar a {
+        padding: 18px 0;
+        text-decoration: none;
+        color: #FFFFFF;
+        display: block;
+    }
+
+    .navbar li:hover a:hover {
         background-color: #a9a9a9;
-        background-color: rgba(255, 255, 255, .5);
+        background-color: rgba(255,255,255,.5);
+    }
+
+
+    .navbar:hover li {
+        display: block;
+    }
+
+
+
+    .navbar li ul li a {
+        /*border-bottom: 1px solid #FFFFFF;*/
+    }
+
+        .navbar li ul li a:hover {
+            background-color: #a9a9a9;
+            background-color: rgba(255, 255, 255, .5);
+        }
+
+}
+
+
+
+
+
+/*Global styles*/
+
+    /* Set padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Set width on the form input elements since they're 100% wide by default */
+    input,
+    select,
+    textarea {
+        max-width: 280px;
+    }
+
+    html, body {
+        margin: 0;
+        width: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
 
 
@@ -207,6 +313,11 @@ footer .footWrap .footTxt {
     float: right;
     margin: 20px 50px 20px 20px;
 }
+
+
+
+
+
 
 
 
