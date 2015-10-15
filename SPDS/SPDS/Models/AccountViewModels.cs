@@ -36,10 +36,22 @@ namespace SPDS.Models
         [Display(Name = "Last Name")]
         public string _LastName { get; set; }
 
-
+        /// <summary>
+        /// Method creates user and inserts it into database
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="confirmEmail">user email confirmed</param>
+        /// <param name="Pass">user password</param>
+        /// <param name="confirmPass">user password confirmed</param>
+        /// <param name="institution">user institute</param>
+        /// <param name="fName">user first name</param>
+        /// <param name="lName">user last name</param>
         public void Create(string email, string confirmEmail, string Pass, string confirmPass, string institution, string fName, string lName)
         {
-            /*var user = new UserSet();
+
+            //USE IDALUSERMANAGEMENT TO CREATE USER - ASK RASMUS / DAVID
+
+           /* User user = new User();
             user.Email = email;
             user.Password = Pass;
             user.Institute = institution;
@@ -49,8 +61,10 @@ namespace SPDS.Models
             var query = db.PermissionSet.Find(1);
             user.PermissionSet = query;
             db.UserSet.Add(user);
-            db.SaveChanges();
-             * */
+            db.SaveChanges();*/
+
+
+
         }
     }
 
@@ -64,9 +78,18 @@ namespace SPDS.Models
         [Display(Name = "Password")]
         public string _Pass { get; set; }
 
+        /// <summary>
+        /// Method Logs user into application if validated succesfully
+        /// </summary>
+        /// <param name="_email">User submitted email</param>
+        /// <param name="_pass">User submitted password</param>
+        /// <returns></returns>
         public bool Login(string _email, string _pass)
         {
-          /*  try
+          /* USE IDALUSERMANAGEMENT TO LOG USER IN - ASK RASMUS / DAVID  
+          
+            
+            try
             {
                 using (var db = new TSPDSContext())
                 {

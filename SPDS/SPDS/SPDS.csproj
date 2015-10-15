@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -143,6 +151,25 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DbModels\ArticleReferences.cs" />
+    <Compile Include="Models\DbModels\Dataformat.cs" />
+    <Compile Include="Models\DbModels\DataPoint.cs" />
+    <Compile Include="Models\DbModels\Dataset.cs" />
+    <Compile Include="Models\DbModels\EncryptPassword.cs" />
+    <Compile Include="Models\DbModels\IDalGetData.cs" />
+    <Compile Include="Models\DbModels\IDalInsertData.cs" />
+    <Compile Include="Models\DbModels\IDalUserManagement.cs" />
+    <Compile Include="Models\DbModels\Method.cs" />
+    <Compile Include="Models\DbModels\MSSQLModel.cs" />
+    <Compile Include="Models\DbModels\NotValidDataInsertDatasetException.cs" />
+    <Compile Include="Models\DbModels\Permission.cs" />
+    <Compile Include="Models\DbModels\Projectile.cs" />
+    <Compile Include="Models\DbModels\Revision.cs" />
+    <Compile Include="Models\DbModels\StateOfAggregation.cs" />
+    <Compile Include="Models\DbModels\sysdiagrams.cs" />
+    <Compile Include="Models\DbModels\TargetMaterial.cs" />
+    <Compile Include="Models\DbModels\TSPDSContext.cs" />
+    <Compile Include="Models\DbModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
