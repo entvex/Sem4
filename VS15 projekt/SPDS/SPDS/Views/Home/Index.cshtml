@@ -1,5 +1,18 @@
-﻿@{
+﻿@model IEnumerable<SPDS.Models.theDatabase>
+@{
     ViewBag.Title = "View_Data";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    //The following are the search options
+    <b>Search Option:</b>
+    @Html.RadioButton("option", "Name") <text>Name</text>
+    @Html.RadioButton("option", "Ion") <text> Ion </text>
+    @Html.RadioButton("option", "Projectile")<text>Projectile</text>
+    @Html.RadioButton("option", "Mass")<text>Mass</text>
+    @Html.TextBox("search") <input type="submit"
+                                   name="submit" value="Search" />
 }
 
 <div class="content">
@@ -41,4 +54,44 @@
             </script>
         </div>
     </div>
+
+@* Here is the implemented table for the data - NOT FINISHED*@
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Projectile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mass)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Ion)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Projectile)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(modelItem => item.Mass)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
 </div>
