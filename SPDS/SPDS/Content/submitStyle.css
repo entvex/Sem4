@@ -116,14 +116,16 @@ max-width: 100%;
     background: #109177;
 }
   input:required:invalid, input:focus:invalid {
-    background-image: url(invalid.png);
+    background-image: url(~/Content/invalid.png);
     background-position: right top;
     background-repeat: no-repeat;
+      visibility: visible;
   }
   input:required:valid {
-    background-image: url(valid.png);
+    background-image: url(~/Content/valid.png);
     background-position: right top;
     background-repeat: no-repeat;
+      visibility: visible;
   
   }
 

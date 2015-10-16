@@ -1,4 +1,4 @@
-﻿@media screen and (min-width: 950px) {
+﻿@media screen and (min-width: 1100px) {
 
     /*Navbar styles*/
 
@@ -117,7 +117,7 @@
 
 /*Narrow nav styles*/
 
-@media screen and (max-width: 949px) {
+@media screen and (max-width: 1099px) {
 
  .NavWrap {
         width: 100%; /* Spans the width of the page */

@@ -112,11 +112,13 @@
     <Content Include="Content\CONTENT.css" />
     <Content Include="Content\footer_lodyas.png" />
     <Content Include="Content\gplaypattern.png" />
+    <Content Include="Content\invalid.png" />
     <Content Include="Content\LOGIN.css" />
     <Content Include="Content\NAV.css" />
     <Content Include="Content\reviewstyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\submitStyle.css" />
+    <Content Include="Content\valid.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\.gitignore" />

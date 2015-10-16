@@ -25,6 +25,8 @@ namespace SPDS.Controllers
             return View();
         }
 
+        [Authorize(Roles = "3,1")]
+
         public ActionResult Submit_Data()
         {
             return View();
