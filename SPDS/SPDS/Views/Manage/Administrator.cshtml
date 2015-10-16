@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Administrator";
+}
+
+<div class="content">
+    <h1>ADMINISTRATION</h1>
+    <h3 align="center">Here you are able to administrate users in the system</h3>
+    <style>
+        table {
+            border-spacing: 0;
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            font-family: "Verdana";
+        }
+
+        th {
+            color: white;
+            background-color: black;
+            font-style: oblique;
+        }
+    </style>
+
+    <div class="table">
+        <script>
+
+            function DeleteRowFunction(btndel) {
+
+                var result = window.confirm("Are you sure?");
+
+                if (typeof (btndel) == "object" && result == true) {
+                    $(btndel).closest("tr").remove();
+                } else {
+                    return false;
+                }
+            }
+
+            var data = [["Nils Bassler", "Department of Physics and Astronomy, Aarhus", "bassler@phys.au.dk", "Reviewer"],
+                        ["Helmut Paul", "Institute of Experimental Physics, Linz", "paul@iaea.org", "Reviewer"],
+                        ["Poul Ejner", "School of Engineering, Aarhus", "per@ase.au.dk", "Submitter"],
+                        ["David Jensen", "School of Engineering, Aarhus", "entvex@gmail.com", "Submitter"]];
+
+            var len = data[0].length;
+            var hei = data.length;
+
+            document.write("<table border='1'>");
+
+            document.write("<tr>" +
+                "<td>" + "User" + "</td>" +
+                 "<td>" + "Organization" + "</td>" +
+                "<td>" + "E-mail" + "</td>" +
+                "<td>" + "User role in system" + "</td>" +
+                "<td>" + "Actions" + "</td>" +
+                "</tr>");
+
+            for (i = 0; i < hei ; i++) {
+                document.write("<tr>");
+                for (j = 0; j < len; j++) {
+                    document.write("<td>" + data[i][j] + "</td>");
+                }
+                document.write("<td><input type=\"button\" value=\"Delete User\" onclick=\"DeleteRowFunction(this);\"></td>");
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        </script>
+    </div>
+</div>
