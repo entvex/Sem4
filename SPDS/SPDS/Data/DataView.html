@@ -1,0 +1,43 @@
+
+<link rel="stylesheet" type="text/css" href="Table/tablestyle.css">
+<script src="Table/table.js"></script>
+<script type="text/javascript" src="reviewJS.js"></script>
+<script src="Chart/Chart.js"></script>
+<script src="Chart/chartingclass.js"></script>
+<body onload="self.focus()" onblur="self.close()">
+
+<reviewdata>
+<script>
+
+DataView();
+
+
+    
+    
+
+</script>
+</reviewdata>
+
+		<div style="width:400px">
+			<div>
+				<canvas id="canvas" height="300px" width="400px"></canvas>
+			</div>
+		</div>
+    
+    <script>
+    var randomlen = Randomdatamax5();    
+    var Xpoints = [randomlen,randomlen+1,randomlen+2,randomlen+3,randomlen+4,randomlen+5,randomlen+6];
+var Ypoints = [Randomdata(),Randomdata(),Randomdata(),Randomdata(),Randomdata(),Randomdata(),Randomdata()];
+var gr1 = new chartline();
+    gr1.drawLineGraph(Xpoints,Ypoints,"canvas");
+    </script>
+    
+     <div class="div-table">
+    <script>
+        
+        var data = [["power","lenght","Energy"],[Ypoints[0],randomlen,Ypoints[0]+randomlen],[Ypoints[1],randomlen+1,Ypoints[1]+randomlen],[Ypoints[2],randomlen+2,Ypoints[2]+randomlen],[Ypoints[3],randomlen+3,Ypoints[3]+randomlen],[Ypoints[4],randomlen+4,Ypoints[4]+randomlen],[Ypoints[5],randomlen+5,Ypoints[5]+randomlen],[Ypoints[6],randomlen+6,Ypoints[6]+randomlen]];
+        var table = new TableClass();
+        table.createTable(data);
+           
+
+         </script> </div>

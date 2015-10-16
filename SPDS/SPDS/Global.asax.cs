@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using MSSQLModel;
+using SPDS.Models.DbModels;
 
 namespace SPDS
 {
@@ -39,15 +40,14 @@ namespace SPDS
                         //remove hardcoded value before production
 
 
-                        roles = "user";
 
 
                         //extract role from DBcontext - NOT TESTED
 
-                        /* IDalUserManagement dALuserManager = new MSSQLModelDAL();
+                        IDALUserManagement dALuserManager = new MSSQLModelDAL();
 
                          User user = dALuserManager.GetUserByEmail(username);
-                         roles = user.PermissionPermissionId.ToString();*/
+                         roles = user.PermissionPermissionId.ToString();
 
 
                         //Set principal 

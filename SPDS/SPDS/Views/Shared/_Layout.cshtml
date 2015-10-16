@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - Stopping Power Data System</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/CONTENT.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/LOGIN.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/LOGIN.css" rel="stylesheet" type="text/css"/>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/Chart.js"></script>
     <script src="~/Scripts/chartingclass.js"></script>
@@ -18,7 +18,7 @@
     @if (Request.IsAuthenticated)
     {
 
-        if (User.IsInRole("admin"))
+        if (User.IsInRole("3"))
         {
             <div class="NavWrap">
                 <ul class="navbar">
@@ -37,7 +37,7 @@
             </div>
         }
 
-        if (User.IsInRole("user"))
+        if (User.IsInRole("1"))
         {
             <div class="NavWrap">
                 <ul class="navbar">

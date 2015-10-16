@@ -278,6 +278,11 @@
       text-shadow: 1px 1px 3px #cdcdcd;
 }
 
+.reviewTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /*Footer styles*/
 
 footer {

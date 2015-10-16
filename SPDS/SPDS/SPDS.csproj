@@ -106,7 +106,9 @@
     <Content Include="Content\gplaypattern.png" />
     <Content Include="Content\LOGIN.css" />
     <Content Include="Content\NAV.css" />
+    <Content Include="Content\reviewstyle.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\.gitignore" />
     <Content Include="Scripts\bootstrap.js" />
@@ -139,8 +141,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\reviewJS.js" />
     <Content Include="Scripts\table.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Views\Data\DataView.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +161,7 @@
     <Compile Include="Models\DbModels\Dataformat.cs" />
     <Compile Include="Models\DbModels\DataPoint.cs" />
     <Compile Include="Models\DbModels\Dataset.cs" />
+    <Compile Include="Models\DbModels\Exceptions\NotValidDataInsertDatasetException.cs" />
     <Compile Include="Models\DbModels\IDALInsertion.cs" />
     <Compile Include="Models\DbModels\IDALRetrieving.cs" />
     <Compile Include="Models\DbModels\IDALUserManagement.cs" />

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using MSSQLModel;
+using SPDS.Models.DbModels;
 
 namespace SPDS.Models
 {
@@ -50,18 +52,21 @@ namespace SPDS.Models
         {
 
             //USE IDALUSERMANAGEMENT TO CREATE USER - ASK RASMUS / DAVID
+            IDALUserManagement dalUserManage = new MSSQLModelDAL();
 
-           /* User user = new User();
+
+            User user = new User();
             user.Email = email;
             user.Password = Pass;
             user.Institute = institution;
             user.FirstName = fName;
             user.LastName = lName;
-            var db = new TSPDSEntities();
-            var query = db.PermissionSet.Find(1);
-            user.PermissionSet = query;
-            db.UserSet.Add(user);
-            db.SaveChanges();*/
+            Permission perm = dalUserManage.GetPermById(1);
+            dalUserManage.InsertUser(user,perm);
+
+
+
+
 
 
 
@@ -86,26 +91,19 @@ namespace SPDS.Models
         /// <returns></returns>
         public bool Login(string _email, string _pass)
         {
-          /* USE IDALUSERMANAGEMENT TO LOG USER IN - ASK RASMUS / DAVID  
-          
-            
-            try
+            IDALUserManagement dalUserManage = new MSSQLModelDAL();
+
+            User user = dalUserManage.GetUserByEmail(_email);
+
+            if (user.Password == _pass)
             {
-                using (var db = new TSPDSContext())
-                {
-                    var query = db.User.Where(u => u.Email == _email && u.Password == _pass);
-
-                    var user = query.Single<User>();
-
-                    return true;
-                }
+                return true;
             }
-            catch
+
+            else
             {
                 return false;
-            }*/
-
-            return true;
+            }
         }
     }
 }
