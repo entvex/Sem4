@@ -116,6 +116,7 @@
     <Content Include="Content\NAV.css" />
     <Content Include="Content\reviewstyle.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\submitStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\.gitignore" />
@@ -150,6 +151,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\reviewJS.js" />
+    <Content Include="Scripts\submitValdata.js" />
     <Content Include="Scripts\table.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Views\Data\DataView.html" />

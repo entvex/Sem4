@@ -25,10 +25,10 @@ namespace SPDS.Controllers
             return View();
         }
 
-        [Authorize(Roles = "1")]
         public ActionResult Submit_Data()
         {
             return View();
         }
+
     }
 }
