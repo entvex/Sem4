@@ -52,7 +52,7 @@ namespace SPDS.Models
         {
 
             //USE IDALUSERMANAGEMENT TO CREATE USER - ASK RASMUS / DAVID
-            IDALUserManagement dalUserManage = new MSSQLModelDAL();
+            //IDALUserManagement dalUserManage = new MSSQLModelDAL();
 
 
             User user = new User();
@@ -61,8 +61,8 @@ namespace SPDS.Models
             user.Institute = institution;
             user.FirstName = fName;
             user.LastName = lName;
-            Permission perm = dalUserManage.GetPermById(1);
-            dalUserManage.InsertUser(user,perm);
+            //Permission perm = dalUserManage.GetPermById(1);
+            //dalUserManage.InsertUser(user,perm);
 
 
 
@@ -91,19 +91,19 @@ namespace SPDS.Models
         /// <returns></returns>
         public bool Login(string _email, string _pass)
         {
-            IDALUserManagement dalUserManage = new MSSQLModelDAL();
+            //IDALUserManagement dalUserManage = new MSSQLModelDAL();
 
-            User user = dalUserManage.GetUserByEmail(_email);
+            //User user = dalUserManage.GetUserByEmail(_email);
 
-            if (user.Password == _pass)
-            {
+            //if (user.Password == _pass)
+            //{
                 return true;
-            }
+            //}
 
-            else
-            {
-                return false;
-            }
+            //else
+            //{
+            //    return false;
+            //}
         }
     }
 }

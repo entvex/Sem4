@@ -1,5 +1,3 @@
-using MSSQLModel;
-
 namespace SPDS.Models.DbModels
 {
     using System;

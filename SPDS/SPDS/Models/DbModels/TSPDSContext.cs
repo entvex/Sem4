@@ -1,6 +1,4 @@
-using SPDS.Models.DbModels;
-
-namespace MSSQLModel
+namespace SPDS.Models.DbModels
 {
     using System;
     using System.Data.Entity;
@@ -10,7 +8,7 @@ namespace MSSQLModel
     public partial class TSPDSContext : DbContext
     {
         public TSPDSContext()
-            : base("name=TSPDSContext")
+            : base("name=TSPDSContext1")
         {
         }
 
@@ -36,13 +34,13 @@ namespace MSSQLModel
 
             modelBuilder.Entity<Dataformat>()
                 .HasMany(e => e.DataPoint)
-                .WithRequired(e => e.ConvertedDataformat)
+                .WithRequired(e => e.OriginalDataformat)
                 .HasForeignKey(e => e.DataformatForConverted_Id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Dataformat>()
                 .HasMany(e => e.DataPoint1)
-                .WithRequired(e => e.OriginalDataformat)
+                .WithRequired(e => e.ConvertedDataformat)
                 .HasForeignKey(e => e.DataformatForOriginal_Id)
                 .WillCascadeOnDelete(false);
 
@@ -76,7 +74,7 @@ namespace MSSQLModel
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Revision>()
-                .HasMany(e => e.PrevRevision)
+                .HasMany(e => e.prevRevision)
                 .WithOptional(e => e.HeadRevision)
                 .HasForeignKey(e => e.HeadRevision_Id);
 

@@ -12,7 +12,7 @@ namespace SPDS.Models.DbModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Revision()
         {
-            PrevRevision = new HashSet<Revision>();
+            prevRevision = new HashSet<Revision>();
         }
 
         public int Id { get; set; }
@@ -32,7 +32,7 @@ namespace SPDS.Models.DbModels
         public virtual Dataset Dataset { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Revision> PrevRevision { get; set; }
+        public virtual ICollection<Revision> prevRevision { get; set; }
 
         public virtual Revision HeadRevision { get; set; }
 

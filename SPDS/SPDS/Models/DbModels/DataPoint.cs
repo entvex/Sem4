@@ -1,6 +1,4 @@
-using SPDS.Models.DbModels;
-
-namespace MSSQLModel
+namespace SPDS.Models.DbModels
 {
     using System;
     using System.Collections.Generic;
@@ -29,9 +27,9 @@ namespace MSSQLModel
 
         public int DataformatForConverted_Id { get; set; }
 
-        public virtual Dataformat ConvertedDataformat { get; set; }
-
         public virtual Dataformat OriginalDataformat { get; set; }
+
+        public virtual Dataformat ConvertedDataformat { get; set; }
 
         public virtual Dataset Dataset { get; set; }
     }

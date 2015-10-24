@@ -10,25 +10,25 @@ namespace SPDS.Controllers
     public class HomeController : Controller
     {
 
-        IDALRetrieving db = new MSSQLModelDAL();
+        //IDALRetrieving db = new MSSQLModelDAL();
         
-        // GET: Home
-        public ActionResult Index(string option, string search)
-        {
-            if (option == "Name")
-            {
-                 return View(db.GetAllDatasetsByFirstName(search));
-            }
-            else if (option == "Ion")
-            {
-                var ion = db.GetProjectileByName(search);
-                return View(db.GetAllDatasetsByProjectile(ion));
-            }
-            else
-            {
-                var target = db.GetTargetMaterialByName(search);
-                return View(db.GetAllDatasetsByTargetMaterial(target));
-            }
-        }
+        //// GET: Home
+        //public ActionResult Index(string option, string search)
+        //{
+        //    if (option == "Name")
+        //    {
+        //         return View(db.GetAllDatasetsByFirstName(search));
+        //    }
+        //    else if (option == "Ion")
+        //    {
+        //        var ion = db.GetProjectileByName(search);
+        //        return View(db.GetAllDatasetsByProjectile(ion));
+        //    }
+        //    else
+        //    {
+        //        var target = db.GetTargetMaterialByName(search);
+        //        return View(db.GetAllDatasetsByTargetMaterial(target));
+        //    }
+        //}
     }
 }

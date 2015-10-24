@@ -44,10 +44,10 @@ namespace SPDS
 
                         //extract role from DBcontext - NOT TESTED
 
-                        IDALUserManagement dALuserManager = new MSSQLModelDAL();
+                        //IDALUserManagement dALuserManager = new MSSQLModelDAL();
 
-                         User user = dALuserManager.GetUserByEmail(username);
-                         roles = user.PermissionPermissionId.ToString();
+                        // User user = dALuserManager.GetUserByEmail(username);
+                         //roles = user.PermissionPermissionId.ToString();
 
 
                         //Set principal 

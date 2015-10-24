@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\SPDS.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -174,12 +175,13 @@
     <Compile Include="Models\DbModels\Dataformat.cs" />
     <Compile Include="Models\DbModels\DataPoint.cs" />
     <Compile Include="Models\DbModels\Dataset.cs" />
+    <Compile Include="Models\DbModels\EncryptPassword.cs" />
     <Compile Include="Models\DbModels\Exceptions\NotValidDataInsertDatasetException.cs" />
-    <Compile Include="Models\DbModels\IDALInsertion.cs" />
-    <Compile Include="Models\DbModels\IDALRetrieving.cs" />
-    <Compile Include="Models\DbModels\IDALUserManagement.cs" />
+    <Compile Include="Models\DbModels\IDalInsert.cs" />
+    <Compile Include="Models\DbModels\IDalRetrieve.cs" />
+    <Compile Include="Models\DbModels\IDalUserManagement.cs" />
     <Compile Include="Models\DbModels\Method.cs" />
-    <Compile Include="Models\DbModels\MSSQLModel.cs" />
+    <Compile Include="Models\DbModels\Parameters.cs" />
     <Compile Include="Models\DbModels\Permission.cs" />
     <Compile Include="Models\DbModels\Projectile.cs" />
     <Compile Include="Models\DbModels\Revision.cs" />

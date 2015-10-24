@@ -29,6 +29,10 @@ namespace SPDS.Models.DbModels
 
         public int PermissionPermissionId { get; set; }
 
+        public string PhoneNumber { get; set; }
+
+        public byte[] Picture { get; set; }
+
         public virtual Permission Permission { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

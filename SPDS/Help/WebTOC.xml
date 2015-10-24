@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="58c1cd16-fc1c-449b-a3b9-aa0ff95c2aa8" Title="MSSQLModel" Url="html/000c778e-88c2-706c-fb7d-779db1bb5389.htm">
+    <HelpTOCNode Title="AccessLevel Enumeration" Url="html/f034d120-df15-56a9-d1f0-3bd2b5e462fb.htm" />
+    <HelpTOCNode Id="958917e2-6065-42f0-a0e9-435c7821bdec" Title="IDalInsert Interface" Url="html/14aadf1d-e48f-8bf3-d24a-f8dd675ac7a8.htm">
+      <HelpTOCNode Id="0ac4e9f0-2e59-4d34-99d2-c65d29dff27a" Title="IDalInsert Methods" Url="html/cfed5d6b-2eee-e0ef-e73d-496a3c0e7458.htm">
+        <HelpTOCNode Title="InsertArticleReference Method " Url="html/d7aeaee6-5dda-22d5-27fe-362275a4152f.htm" />
+        <HelpTOCNode Title="InsertDataFormat Method " Url="html/6a3099a1-2230-d0c3-1b41-9dd72b17ec8e.htm" />
+        <HelpTOCNode Title="InsertDataset Method " Url="html/316c9a08-2d6b-5467-0821-7eb7f0c46ab9.htm" />
+        <HelpTOCNode Title="InsertMethod Method " Url="html/97331087-6fc2-417c-5845-a5b2c3463dd3.htm" />
+        <HelpTOCNode Title="InsertProjectile Method " Url="html/b2614cea-a100-9db8-1e8a-aa6cd6b7ec88.htm" />
+        <HelpTOCNode Title="InsertStateOfAggregation Method " Url="html/4c9d4101-1d79-5766-be9b-1d63483a0130.htm" />
+        <HelpTOCNode Title="InsertTargetMaterial Method " Url="html/a3428554-0347-b35d-b1f9-9fa867f43a8d.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7389eb1d-5270-40dd-b7e9-c4894114d9af" Title="IDalRetrieve Interface" Url="html/72a702a1-939c-a96a-73b4-240a815971e5.htm">
+      <HelpTOCNode Id="d640cd89-f24e-4080-b893-fda01ec60b42" Title="IDalRetrieve Methods" Url="html/ed32d03e-4a45-873e-1afe-bb68c4a391cd.htm">
+        <HelpTOCNode Title="GetAllArticleReferenceses Method " Url="html/5b01a45f-35c7-93fb-c4ce-423cff75ec2d.htm" />
+        <HelpTOCNode Title="GetAllDataFormats Method " Url="html/02bcdc0c-cad6-f967-c05b-5bf89f292a7d.htm" />
+        <HelpTOCNode Title="GetAllMethods Method " Url="html/4d357e7f-e6b9-bc45-6299-c1212ff255a2.htm" />
+        <HelpTOCNode Title="GetallProjectiles Method " Url="html/6d5e9039-fb3e-dfaa-7ffb-946fffb71647.htm" />
+        <HelpTOCNode Title="GetAllRevisonBydataset Method " Url="html/837e4379-8b42-c071-c3d9-ce845fcb958c.htm" />
+        <HelpTOCNode Title="GetAllStateOfAggregation Method " Url="html/66ad3374-a9d7-0b28-3472-ce1e98fcea42.htm" />
+        <HelpTOCNode Title="GetAllTargetMaterials Method " Url="html/20882b8a-1fea-8d47-7cb3-426a0d38c678.htm" />
+        <HelpTOCNode Title="GetArticleReferences Method " Url="html/1aa05da0-d7e0-9e48-68f4-f888eef891d6.htm" />
+        <HelpTOCNode Title="GetDataformatByNotation Method " Url="html/048b3bd8-90db-505c-93ca-e9e8ad9453c5.htm" />
+        <HelpTOCNode Title="GetDataPointsByDataSet Method " Url="html/c7e739a1-0f92-0303-bd19-b4b37b496c13.htm" />
+        <HelpTOCNode Title="GetDatasets Method " Url="html/cb878ff2-eae3-ac42-065f-f12eb7fd7db7.htm" />
+        <HelpTOCNode Title="GetMethodByName Method " Url="html/e870426f-54dd-6b17-ad52-bf2ff31a0acf.htm" />
+        <HelpTOCNode Title="GetNewestRevisionByDataset Method " Url="html/4d85e699-42ec-0f50-9e39-af7baa1b5e21.htm" />
+        <HelpTOCNode Title="GetProjectileByName Method " Url="html/5991cd5c-9f49-03d2-36e4-39c013332626.htm" />
+        <HelpTOCNode Title="GetStateOfAggregationByForm Method " Url="html/b0eaa3f6-bae3-8f9a-32e7-2c27f5f26774.htm" />
+        <HelpTOCNode Title="GetTargetMaterialByName Method " Url="html/28508566-2dc7-20cd-bb47-18db82184065.htm" />
+        <HelpTOCNode Title="GetUsers Method " Url="html/a5036939-01f0-bfd1-dde0-82b40ecb80d6.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6e22bff6-a869-4752-80a2-6a51310446eb" Title="IDalUserManagement Interface" Url="html/e6dc355d-5a24-890d-4221-763a0db537ff.htm">
+      <HelpTOCNode Id="ca0a73a2-60e7-4ba1-ba9e-ca9af7e009c6" Title="IDalUserManagement Methods" Url="html/d3469a94-88f8-d136-b7c8-67a4deedeb32.htm">
+        <HelpTOCNode Title="DeleteUser Method " Url="html/8c214d70-71f2-8755-7531-96373ffb166c.htm" />
+        <HelpTOCNode Title="GetAllPermissions Method " Url="html/13a51776-56eb-83f3-200e-19d1e974d17b.htm" />
+        <HelpTOCNode Title="GetPermByAccessLevel Method " Url="html/a364f63e-7ba6-296e-43cc-7d005bc5bcab.htm" />
+        <HelpTOCNode Title="GetUsers Method " Url="html/91b78a00-32f0-b0dc-9f0b-0f55b8c46c8b.htm" />
+        <HelpTOCNode Title="InsertUser Method " Url="html/11c567f5-6370-f75e-5a5e-ab17f5acb768.htm" />
+        <HelpTOCNode Title="UpdateUserPermission Method " Url="html/f81cc69b-3a8f-7226-a066-b1d27437833a.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3062a6d8-002d-4ba7-9836-435387c8eae5" Title="ParametersForArticelreferences Class" Url="html/0ec994f5-c746-7129-4c16-0f5b96b5a782.htm">
+      <HelpTOCNode Title="ParametersForArticelreferences Constructor " Url="html/406318cd-4bf9-ed8a-1298-3dada5694d6b.htm" />
+      <HelpTOCNode Id="e0c35031-3782-4c17-8df2-2e731e5fa12b" Title="ParametersForArticelreferences Properties" Url="html/473f5a75-d809-ba43-a0ef-aea6c62733a8.htm">
+        <HelpTOCNode Title="ArticleReferencesId Property " Url="html/811a6d92-4400-2edd-18d0-30a6fbcf57ad.htm" />
+        <HelpTOCNode Title="DOINumber Property " Url="html/9e85429e-7adc-c3d1-6d28-df07eb30ccd0.htm" />
+        <HelpTOCNode Title="FirstName Property " Url="html/70e530a0-19ba-1062-ccba-c0f1d53c591d.htm" />
+        <HelpTOCNode Title="LastName Property " Url="html/c66fcbf0-82da-a160-a2c8-89264cf7b89a.htm" />
+        <HelpTOCNode Title="Year Property " Url="html/1723c543-43d5-ed9f-15dc-e78b019dc0b6.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ParametersForArticelreferences Methods" Url="html/6e47252c-993a-eaad-2561-26923143f05f.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="9a459ee4-a412-4f06-9193-a6d366cd775c" Title="ParametersForDataset Class" Url="html/3cd8feb9-a0c5-07b9-d745-95f992a125e9.htm">
+      <HelpTOCNode Title="ParametersForDataset Constructor " Url="html/9553d953-eb23-3c6a-e712-75923c800387.htm" />
+      <HelpTOCNode Id="9a7ca8fa-7c0b-48d2-8de7-8501add694b6" Title="ParametersForDataset Properties" Url="html/f2d585d8-8214-51c9-8f9c-87b55a4f1eb3.htm">
+        <HelpTOCNode Title="Approved Property " Url="html/0e7cd288-1c66-8dcd-39ea-637ea74baaab.htm" />
+        <HelpTOCNode Title="ArticleReferencesId Property " Url="html/6dab3b16-81ae-319c-28b9-2b6a993e8034.htm" />
+        <HelpTOCNode Title="FirstName Property " Url="html/c64b7db2-078c-4f6d-c17e-29af6131f90f.htm" />
+        <HelpTOCNode Title="Institute Property " Url="html/00c8828f-b314-c667-8a3c-8fcf9dddfb62.htm" />
+        <HelpTOCNode Title="LastName Property " Url="html/7a10b3d0-0f7b-d3fb-8b67-7db0264df5e0.htm" />
+        <HelpTOCNode Title="MethodId Property " Url="html/9ddf12ea-2e2e-17f2-1d4e-33a837bcdb9d.htm" />
+        <HelpTOCNode Title="ProjectileMass Property " Url="html/fe180f92-f98e-253c-0a1b-dee87309cac0.htm" />
+        <HelpTOCNode Title="ProjectileName Property " Url="html/36aa1a84-2d50-6147-5dca-7619d1eccca6.htm" />
+        <HelpTOCNode Title="ProjectilePDGNumber Property " Url="html/83fc13f1-89fa-916d-c152-f9b9aa03d00f.htm" />
+        <HelpTOCNode Title="ProjectilezCharge Property " Url="html/a1dba3cb-1ad2-362e-6028-b79256bbce16.htm" />
+        <HelpTOCNode Title="RevId Property " Url="html/27d55974-14a4-3d81-eb99-e071bb807d9d.htm" />
+        <HelpTOCNode Title="StateOfAggregationId Property " Url="html/0c7c3ddd-9f00-a776-2cf4-fc41a5d797ea.htm" />
+        <HelpTOCNode Title="TargetMaterialChemicalFormula Property " Url="html/becf9dc8-c075-b7f6-bc0d-6145eeb464bd.htm" />
+        <HelpTOCNode Title="TargetMaterialICRUId Property " Url="html/eeb41d45-0e52-d3cd-8539-0237d352b1b4.htm" />
+        <HelpTOCNode Title="TargetMaterialMass Property " Url="html/e4b6a4b8-8e67-e56e-2a11-a10ce6bd3927.htm" />
+        <HelpTOCNode Title="TargetMaterialMolarMass Property " Url="html/df50b1d7-ec23-a7fe-eaa9-3636e9593c95.htm" />
+        <HelpTOCNode Title="TargetMaterialName Property " Url="html/b8a138b5-be8e-375c-6607-0e1289c1196b.htm" />
+        <HelpTOCNode Title="TargetMaterialZCharge Property " Url="html/afbc7741-690c-c4e5-fcd4-83b6fc6da240.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ParametersForDataset Methods" Url="html/2e0635d0-43b0-45d1-65fd-67156cba0d97.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="50048ad5-0850-4b09-bcaa-83c296b47c6b" Title="ParametersForUsers Class" Url="html/027996a6-e0b5-3855-7a77-985672717681.htm">
+      <HelpTOCNode Title="ParametersForUsers Constructor " Url="html/c4f8b4c2-ce08-6a81-f302-9a1261e969aa.htm" />
+      <HelpTOCNode Id="8916d3da-f761-4bf5-a2a8-66dd79523822" Title="ParametersForUsers Properties" Url="html/e40a49b4-9c0f-f2aa-cb0d-71c5ebd8fc80.htm">
+        <HelpTOCNode Title="Email Property " Url="html/ece84b70-2a50-8fbb-7e09-e79979bcc9e4.htm" />
+        <HelpTOCNode Title="FirstName Property " Url="html/0c797c6d-9192-eb97-2b83-a1cf0124b102.htm" />
+        <HelpTOCNode Title="Institute Property " Url="html/6219b2a1-9914-9f17-665a-4a19d51c62d6.htm" />
+        <HelpTOCNode Title="LastName Property " Url="html/0d2cce82-a16b-a830-28c2-faff8422036f.htm" />
+        <HelpTOCNode Title="PhoneNumber Property " Url="html/a87be5d6-e27f-e193-0ee1-84b1f85b0f9e.htm" />
+        <HelpTOCNode Title="WaitingOnPromotion Property " Url="html/35eb10e9-9fd3-7761-9d68-bfd7dd1c0a5b.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ParametersForUsers Methods" Url="html/bc3cacb7-06cd-ec45-c372-290a77f3bb1a.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="483bee4a-989f-4f89-926c-1ee8662f78d4" Title="MSSQLModel.Exceptions" Url="html/fa9fea35-3b23-ce2d-5992-161d9cede511.htm">
+    <HelpTOCNode Id="a6c2c0f7-37bb-407f-8cb7-f983e2d51a8b" Title="DALAlreadyExistsException Class" Url="html/687c0dc8-fd64-1885-6bd9-1654b07f9fba.htm">
+      <HelpTOCNode Title="DALAlreadyExistsException Constructor " Url="html/70651b38-529c-e568-e622-ed17d29cccac.htm" />
+      <HelpTOCNode Id="88a5722d-12e5-4904-9cd9-8abe34ce152e" Title="DALAlreadyExistsException Properties" Url="html/e0959e1d-e856-f853-03ac-3c9300f9ea5b.htm">
+        <HelpTOCNode Title="Err Property " Url="html/fe074a53-e40a-6c23-1255-e51677fb24e1.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="DALAlreadyExistsException Methods" Url="html/bf00295e-40f9-a1b8-d537-b2a29cf58411.htm" />
+      <HelpTOCNode Title="DALAlreadyExistsException Events" Url="html/0d2379f5-e512-0a10-c599-2ba7f046922e.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="0d1136ff-fcbd-49eb-bd1b-a419cb86b3ba" Title="DALInfoNotSpecifiedException Class" Url="html/07d7aa7a-8380-a444-41cb-84874cf4ec00.htm">
+      <HelpTOCNode Title="DALInfoNotSpecifiedException Constructor " Url="html/05b59067-153c-29d4-05b9-c99806414fe9.htm" />
+      <HelpTOCNode Id="4ac09ef6-04f1-4f44-8b55-0481d2944135" Title="DALInfoNotSpecifiedException Properties" Url="html/7e7d55bd-eb9d-4ceb-f077-07a862f021c8.htm">
+        <HelpTOCNode Title="Err Property " Url="html/3d380deb-4595-cfc3-3400-670c2cb2a8c6.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="DALInfoNotSpecifiedException Methods" Url="html/43bc32ab-b377-d0e0-b234-e33d0aac2b73.htm" />
+      <HelpTOCNode Title="DALInfoNotSpecifiedException Events" Url="html/31bec8ea-69cc-d43e-7c31-2faccfa261a3.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="a6c6f3cb-749d-497e-a32f-f54003b3ed44" Title="DALOutOfRangeException Class" Url="html/4ebbeb9b-8b28-6a42-25b2-d6715049bb7d.htm">
+      <HelpTOCNode Title="DALOutOfRangeException Constructor " Url="html/57c388d0-4e78-127b-4fb8-442fabe780d1.htm" />
+      <HelpTOCNode Id="af7450f2-5be9-427c-b4ed-d6c6b04ebbde" Title="DALOutOfRangeException Properties" Url="html/2148c409-dc16-6d22-1752-7debbb5f97da.htm">
+        <HelpTOCNode Title="Err Property " Url="html/16aa1dea-1091-d56c-a6f6-7dbac66d9e00.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="DALOutOfRangeException Methods" Url="html/2da56bb2-4064-bc35-629f-630cffe90ce9.htm" />
+      <HelpTOCNode Title="DALOutOfRangeException Events" Url="html/90974990-3991-9072-95cd-f2dcb57fc154.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="10aa4a41-52e4-4e84-b4af-e26b551d7ad6" Title="SPDS" Url="html/9821de4f-00d9-67bd-7d98-6009ede6c7a0.htm">
+    <HelpTOCNode Id="2e676d9f-2695-4602-b2c9-db97b552710e" Title="MvcApplication Class" Url="html/1e0274a2-e88c-cdf4-32a0-2ad96a22f623.htm">
+      <HelpTOCNode Title="MvcApplication Constructor " Url="html/28b19c2b-f860-51e3-3e43-e52f7ba4832d.htm" />
+      <HelpTOCNode Title="MvcApplication Properties" Url="html/184e53ff-1346-8382-788f-47ebd7a1a91a.htm" />
+      <HelpTOCNode Id="56a6f577-0b73-4d3c-850e-f82e2d50cda8" Title="MvcApplication Methods" Url="html/d7bc971b-25cc-db9a-b10a-de556a50c284.htm">
+        <HelpTOCNode Title="Application_PostAuthenticateRequest Method " Url="html/2d413fea-387e-748a-2bdc-009e47fb98ea.htm" />
+        <HelpTOCNode Title="Application_Start Method " Url="html/2dd2fe31-7c88-05f8-ced8-5e260ec421df.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="MvcApplication Events" Url="html/8a198ec1-e566-832d-d5b8-e5c0a59e00ec.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="1a5104a5-d02b-4943-ac03-e59f2d233afc" Title="RouteConfig Class" Url="html/650c8142-6aec-defc-d084-966d2744d6fe.htm">
+      <HelpTOCNode Title="RouteConfig Constructor " Url="html/e5a12c5f-f67e-fe9a-6fb0-7e67129c90f7.htm" />
+      <HelpTOCNode Id="a5648ff0-1fb2-4655-8beb-61a66384d854" Title="RouteConfig Methods" Url="html/636c8491-96b0-c49c-55d7-6f6fb0bca9bf.htm">
+        <HelpTOCNode Title="RegisterRoutes Method " Url="html/4afb5e19-f1fb-063f-9b97-44b4a37548e4.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="2b8228a9-7245-4c51-a6e7-f05c2ac9680f" Title="SPDS.Controllers" Url="html/d6cdf861-9bee-7415-d57b-07b827e35974.htm">
+    <HelpTOCNode Id="f41e0469-787c-4e77-9741-d59b413553c0" Title="AboutController Class" Url="html/a3ff2476-7643-560d-8746-d5adb8616005.htm">
+      <HelpTOCNode Title="AboutController Constructor " Url="html/63f81037-7604-f6cb-425d-3f0e71c04644.htm" />
+      <HelpTOCNode Title="AboutController Properties" Url="html/a1fae53a-63b9-8ecf-4ea2-09cfbc3a5134.htm" />
+      <HelpTOCNode Id="4e227f4b-c9c3-4d75-83e2-b10c6fc645fc" Title="AboutController Methods" Url="html/e2cf01f7-48a1-b906-7211-327d51042158.htm">
+        <HelpTOCNode Title="About Method " Url="html/ee94b969-866f-7bc0-5fb9-06cfa075570f.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="73e52e06-1429-46e6-9bcd-dceacb730a17" Title="AccountController Class" Url="html/c369e9fe-2c98-f759-b089-cc7980b1ab4e.htm">
+      <HelpTOCNode Title="AccountController Constructor " Url="html/6873ddf1-0e58-1f34-fc6c-7f238620337a.htm" />
+      <HelpTOCNode Title="AccountController Properties" Url="html/8bda0263-9a72-34e5-7066-b34d28536886.htm" />
+      <HelpTOCNode Id="c641c39d-3b1e-48a5-b3ba-9758ff98541f" Title="AccountController Methods" Url="html/b510f83e-d68e-0ff1-1167-920dec599a26.htm">
+        <HelpTOCNode Id="9f844db8-8290-4578-be7b-149c3f85fd29" Title="CreateAccount Method " Url="html/1defb4a2-bbbc-eda4-9e7c-188ba7ae3de5.htm">
+          <HelpTOCNode Title="CreateAccount Method " Url="html/e8057929-95fc-73de-35da-f2c2cd52622f.htm" />
+          <HelpTOCNode Title="CreateAccount Method (CreateAccountViewModel)" Url="html/f2979106-325c-6108-e661-a2c561c8e5e8.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="ForgotPass Method " Url="html/81016a91-5a56-d3cf-0bbf-d11da0c41769.htm" />
+        <HelpTOCNode Id="93bae9e4-44bc-41d0-8c3f-499769e9dc50" Title="Login Method " Url="html/65315a08-833a-1bdb-3c89-10fe5bae92d7.htm">
+          <HelpTOCNode Title="Login Method " Url="html/037861f9-5e71-d294-1939-9fcd4c1ab93b.htm" />
+          <HelpTOCNode Title="Login Method (LoginViewModel)" Url="html/3ed2af0e-2f3c-96f7-2b5e-d99061b41f91.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="LogOut Method " Url="html/f7ed9d41-7f08-b676-8321-5d0badef126f.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="8a5b4387-fa06-416b-8dd4-7922522abdd7" Title="DataController Class" Url="html/dd95b0f1-4fa6-b1b4-64b0-95752a555bbd.htm">
+      <HelpTOCNode Title="DataController Constructor " Url="html/609ae2da-421f-4572-efad-ddb9bb2be6b3.htm" />
+      <HelpTOCNode Title="DataController Properties" Url="html/0c3a3eec-272a-0cad-0d43-6481f02d4a3c.htm" />
+      <HelpTOCNode Id="aeac309b-a0ff-4d7e-9ba0-6ac8aa3463bd" Title="DataController Methods" Url="html/f0dce7f2-cadf-7e51-acc5-a9edbf2f7894.htm">
+        <HelpTOCNode Title="Data Method " Url="html/3f70bf72-f682-03ce-99d5-163ec6431075.htm" />
+        <HelpTOCNode Title="Review_Data Method " Url="html/5e35f09f-3e1e-7f23-54fa-7f437f171835.htm" />
+        <HelpTOCNode Title="Submit_Data Method " Url="html/74d39b60-a756-741a-af6d-aea9e0713787.htm" />
+        <HelpTOCNode Title="View_Data Method " Url="html/2bdf5bec-15cd-d50c-b73e-6b48f2d0e7c2.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3bc2245b-798d-4ac4-baf1-cdc0c7e05d99" Title="HomeController Class" Url="html/d4bf010c-d9c4-1fed-0a7a-6dfca7a40a82.htm">
+      <HelpTOCNode Title="HomeController Constructor " Url="html/0014b6fb-e99b-b4f4-bdb4-9d88d4af84cd.htm" />
+      <HelpTOCNode Title="HomeController Properties" Url="html/1314c448-0567-1936-8b71-7128a7c0a32c.htm" />
+      <HelpTOCNode Title="HomeController Methods" Url="html/d91e4e89-bfb9-02a8-6fba-adbdc7f32838.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="7af9d50b-9df4-432f-b240-a74104858fc3" Title="ManageController Class" Url="html/df8f444a-cf8f-c656-15b8-d664bf2045e7.htm">
+      <HelpTOCNode Title="ManageController Constructor " Url="html/40088c7b-e1e9-24b8-04bd-1297eda61b83.htm" />
+      <HelpTOCNode Title="ManageController Properties" Url="html/b6b19496-f809-339b-f26a-0654d34dc629.htm" />
+      <HelpTOCNode Id="5a4429e6-7006-41f4-a28c-5b3982aeab66" Title="ManageController Methods" Url="html/32198d9e-2cf7-5124-9a26-47bcae17ba8e.htm">
+        <HelpTOCNode Title="Administrator Method " Url="html/acdaa454-764e-6c1b-7750-65db7fb9c661.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="077b6e5f-319d-44b6-a05b-af10b4f36a4a" Title="SPDS.Models" Url="html/812cf56c-6139-9936-53b8-e55bb0496b8e.htm">
+    <HelpTOCNode Id="071fb98b-6ed7-4d36-b591-b6044326f52e" Title="CreateAccountViewModel Class" Url="html/460dbd62-cc0d-94ff-9f97-6324a3340f3f.htm">
+      <HelpTOCNode Title="CreateAccountViewModel Constructor " Url="html/e509127f-e7b1-9cd5-3923-e1fb33717b2e.htm" />
+      <HelpTOCNode Id="4abeea07-7afc-4e2d-9602-08787c762c6b" Title="CreateAccountViewModel Properties" Url="html/fad3954c-1afb-aaf5-23af-1b097880c174.htm">
+        <HelpTOCNode Title="_confirmEmail Property " Url="html/e7670bac-9dd7-3512-4d03-9f0fc7d697d4.htm" />
+        <HelpTOCNode Title="_confirmPass Property " Url="html/fd147f43-db7c-88e5-8faf-e74ab7907a75.htm" />
+        <HelpTOCNode Title="_Email Property " Url="html/fe31bb30-e6dc-9e88-d5e0-d45e0a884f96.htm" />
+        <HelpTOCNode Title="_FirstName Property " Url="html/679c7c7a-3f07-e610-2dd1-b55ebfca940b.htm" />
+        <HelpTOCNode Title="_Institution Property " Url="html/b28d2ba9-b804-9dc5-dfb5-b6a5338d8d66.htm" />
+        <HelpTOCNode Title="_LastName Property " Url="html/7e25122d-5fd2-11e1-2071-e9efc5f44e78.htm" />
+        <HelpTOCNode Title="_Pass Property " Url="html/6081cbb3-02ec-a42b-a7c0-f097f8f81775.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="551107f8-c18c-444c-96a6-e5adda8d4e96" Title="CreateAccountViewModel Methods" Url="html/210a3b98-71f3-6bcb-9ae9-ce184fe20620.htm">
+        <HelpTOCNode Title="Create Method " Url="html/e4676a72-c61f-c9f1-afde-385c6f1069e7.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a0750c2e-0cb2-402b-a183-97aac5bc593b" Title="LoginViewModel Class" Url="html/135fd0b5-9d2d-beff-e29d-37b98122ee88.htm">
+      <HelpTOCNode Title="LoginViewModel Constructor " Url="html/051f4f99-ef8e-071a-c1a7-559a9e966578.htm" />
+      <HelpTOCNode Id="aed52871-a89f-408e-8e0a-bb5aa2bf3014" Title="LoginViewModel Properties" Url="html/9a9878dd-fc49-5ee4-9a4b-3021bbac65c7.htm">
+        <HelpTOCNode Title="_Email Property " Url="html/e8ee6b58-d3ce-6bfe-29aa-4937cb93a0be.htm" />
+        <HelpTOCNode Title="_Pass Property " Url="html/8cb6d02e-786d-5fe6-82d3-c6196a6e72a9.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d6468f17-b98a-4940-898a-2cf1403dc958" Title="LoginViewModel Methods" Url="html/c51d47fd-14ab-9089-a914-ec75865bfa8f.htm">
+        <HelpTOCNode Title="Login Method " Url="html/b8696ddc-8725-9277-75ad-eb9846955e15.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="bdaad620-e75a-4af4-969d-8a984a87bdaa" Title="SPDS.Models.DbModels" Url="html/2cdad2c1-8322-62e4-b2db-3f08834d2960.htm">
+    <HelpTOCNode Id="31875968-4808-400f-96b5-cbcdf3651a13" Title="ArticleReferences Class" Url="html/fbec7dc3-5fbf-e554-c7e8-67735e907356.htm">
+      <HelpTOCNode Title="ArticleReferences Constructor " Url="html/4476faac-85df-6bd8-ed81-efbafb5c9e57.htm" />
+      <HelpTOCNode Id="05aacb5e-bf0b-4073-85a4-9a817eca1cf8" Title="ArticleReferences Properties" Url="html/c0d142f4-8b3d-3c4b-7b3c-f1866023bc82.htm">
+        <HelpTOCNode Title="Dataset Property " Url="html/0fba6a06-9c4c-6ebb-b819-b910eb4dca1c.htm" />
+        <HelpTOCNode Title="DatasetId Property " Url="html/bb308327-defd-1202-3f8f-130488673679.htm" />
+        <HelpTOCNode Title="DOINumber Property " Url="html/6ba5c33f-cb5c-adf8-6461-a53dde4fdbb2.htm" />
+        <HelpTOCNode Title="Firstname Property " Url="html/0fd0e4fe-4733-773b-cad4-5d8429bdbab0.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/0ac63f3a-5b2b-3a79-a4f2-307b8b46ea84.htm" />
+        <HelpTOCNode Title="Lastname Property " Url="html/265d11ff-2cfa-b6a0-bbb5-d2d11a5f2715.htm" />
+        <HelpTOCNode Title="Year Property " Url="html/67cafd02-0e8b-630b-4e3d-2b4484357fef.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ArticleReferences Methods" Url="html/6e08678a-8233-7c63-6a0a-91823d59063e.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="52dffeb5-e12c-4e5e-9c8f-08b4e03b0e2d" Title="Dataformat Class" Url="html/a53f1ac0-26e4-a8c8-db45-cd1a574bc2b6.htm">
+      <HelpTOCNode Title="Dataformat Constructor " Url="html/ed0977c5-8ec9-2552-a0ba-a319d953961f.htm" />
+      <HelpTOCNode Id="3936741c-b59b-494e-89c8-c38c4b0692c6" Title="Dataformat Properties" Url="html/1884e24d-ddf8-39bc-f915-5115eff4c796.htm">
+        <HelpTOCNode Title="DataNotiation Property " Url="html/c746f976-4fad-21ca-bfaf-c8d6a39539ec.htm" />
+        <HelpTOCNode Title="DataPoint Property " Url="html/95ddbe37-7d89-91a7-cf47-d22d5cbf419d.htm" />
+        <HelpTOCNode Title="DataPoint1 Property " Url="html/3075fb4a-04a1-3997-8683-92ed4907bd50.htm" />
+        <HelpTOCNode Title="Description Property " Url="html/0a884d3e-48c6-840f-ec6c-7782a9d3142d.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/5c6bb291-48c0-f1fa-7ac9-d71409638397.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Dataformat Methods" Url="html/3af2b4ee-b358-1e50-4afe-a1326de1059b.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="515a02a1-4036-459d-84c9-8b6b0c7170fa" Title="DataPoint Class" Url="html/92f80947-96ca-6ac7-738f-6550482fb1b1.htm">
+      <HelpTOCNode Title="DataPoint Constructor " Url="html/25326f41-9d57-deb7-f589-98e999d49d5f.htm" />
+      <HelpTOCNode Id="0a6c371f-41d8-476e-bdd9-b9e6a102a828" Title="DataPoint Properties" Url="html/ea1a9153-860d-36a3-c4c9-3b97f76ddf70.htm">
+        <HelpTOCNode Title="ConvertedDataformat Property " Url="html/7609cb4e-c170-6286-8869-2bd727d7fe4f.htm" />
+        <HelpTOCNode Title="ConvertetData Property " Url="html/774a27e9-3656-b786-0299-583fbfd5cd64.htm" />
+        <HelpTOCNode Title="DataformatForConverted_Id Property " Url="html/37e233b2-e617-0d88-c0a1-5db7967c06de.htm" />
+        <HelpTOCNode Title="DataformatForOriginal_Id Property " Url="html/6cd09984-d574-f0a6-baf8-2f10d1f1011e.htm" />
+        <HelpTOCNode Title="Dataset Property " Url="html/fc1e0274-436b-4656-ef80-ff97bb841dfc.htm" />
+        <HelpTOCNode Title="DatasetDatasetId Property " Url="html/cdcc9221-2b9f-73c0-70f8-85f1dd094bd7.htm" />
+        <HelpTOCNode Title="EqEnergy Property " Url="html/b45b331d-f1a5-f729-3924-0f0de4dc6312.htm" />
+        <HelpTOCNode Title="Error Property " Url="html/860971c1-e77c-49d6-fa30-9e784822cdd4.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/e109ff02-5ba9-b17c-2db4-d359533cb78d.htm" />
+        <HelpTOCNode Title="OriginalDataformat Property " Url="html/53405716-c680-dadc-86ab-a82d682eeae8.htm" />
+        <HelpTOCNode Title="ProjectileCharge Property " Url="html/73d0d332-bbb1-70c0-9606-fcc585f604ad.htm" />
+        <HelpTOCNode Title="StoppingPower Property " Url="html/ae66945f-50c9-bab7-b7f0-16f56bb056b2.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="DataPoint Methods" Url="html/b8d0d9a3-5004-93a7-140f-9d29ecf1ef59.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="5d535ca9-b3aa-4672-b59f-35a36ced47cd" Title="Dataset Class" Url="html/b05e1250-515a-54d0-1659-8b5c018158e6.htm">
+      <HelpTOCNode Title="Dataset Constructor " Url="html/04f5a423-b817-7ed8-2605-f28c24084e47.htm" />
+      <HelpTOCNode Id="fda0048b-dfc6-4498-8b86-e6bcce6a996e" Title="Dataset Properties" Url="html/3ba8231f-8497-0a8c-112d-6c63938f7ba5.htm">
+        <HelpTOCNode Title="ArticleReferences Property " Url="html/8dc53294-a9f8-2cf7-4286-66e5e1cfc5d0.htm" />
+        <HelpTOCNode Title="ArticleReferences_Id Property " Url="html/629c0807-2a21-9bb8-e74a-1611014f489a.htm" />
+        <HelpTOCNode Title="DataPoint Property " Url="html/c5232036-8671-362e-086a-92be4ef4a29b.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/fb2a8693-ae43-fc13-d36f-e9a7c00b4bf9.htm" />
+        <HelpTOCNode Title="Method Property " Url="html/89f87c9c-5472-efdf-eb8b-452d49d3adfe.htm" />
+        <HelpTOCNode Title="Method_Id Property " Url="html/92f884e3-7629-6157-a925-2b13cf88e1b6.htm" />
+        <HelpTOCNode Title="Projectile Property " Url="html/4d26a814-22e4-3dd1-3245-0d4a69521312.htm" />
+        <HelpTOCNode Title="Projectile_Id Property " Url="html/20e9b9fe-2e6f-9e3e-1459-77c4db375a6c.htm" />
+        <HelpTOCNode Title="Revision Property " Url="html/9533f57f-4b50-ea62-6af8-6946335e112f.htm" />
+        <HelpTOCNode Title="StateOfAggregation Property " Url="html/5d895f79-0a49-0ced-3ffb-6f0b7f54962f.htm" />
+        <HelpTOCNode Title="StateOfAggregation_Id Property " Url="html/98381700-430a-3dd7-2131-61178b7fe5dc.htm" />
+        <HelpTOCNode Title="TargetMaterial Property " Url="html/815f6fbd-ba1d-8528-646a-6ec9e34b250b.htm" />
+        <HelpTOCNode Title="TargetMaterial_Id Property " Url="html/8ca9f05c-516a-6fb9-567f-3eb2a39f73ce.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Dataset Methods" Url="html/1322bd7f-b9ae-71c8-a579-ab2c55565f4e.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="fd2819de-0f8d-4891-8e6c-e5c56000de6b" Title="Method Class" Url="html/a095b0eb-b8cf-2f76-5886-00ff3e46c2a7.htm">
+      <HelpTOCNode Title="Method Constructor " Url="html/f43c6a3e-177d-a3c4-8fdc-f79786ad4f66.htm" />
+      <HelpTOCNode Id="e3839f88-3fd2-42a0-950a-3357971e4306" Title="Method Properties" Url="html/47c8d237-fb2c-4ab6-8530-00e2eb847e1d.htm">
+        <HelpTOCNode Title="Dataset Property " Url="html/f01fd114-70ba-7d31-ce22-ccd7e545a1ed.htm" />
+        <HelpTOCNode Title="Description Property " Url="html/1d60db82-6cb8-bf64-b50b-9821ef9f5e69.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/549a922c-6c16-73d3-c55a-bcaeeb2e7adb.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/f913a395-14fa-c584-e4e7-b6dee08ec924.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Method Methods" Url="html/7276bffb-fd88-85cf-e735-b06ea3a653c9.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="8f0406bc-16ab-4714-9988-d8e2d8e619b0" Title="Permission Class" Url="html/3d57f19c-38e7-7a72-6761-1c4954db0619.htm">
+      <HelpTOCNode Title="Permission Constructor " Url="html/f772b4da-2423-324a-77ce-0cbeaaa96187.htm" />
+      <HelpTOCNode Id="8742e288-67d4-47b1-9566-b1382f581ba4" Title="Permission Properties" Url="html/0054947e-eacf-f04c-8b5f-376c2d73a319.htm">
+        <HelpTOCNode Title="Description Property " Url="html/e1c4f3ab-8964-d1fb-3f59-8ef08dc4c035.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/37ae4ce2-1391-f9a3-c5ed-97e4d251cd27.htm" />
+        <HelpTOCNode Title="User Property " Url="html/faa8d19d-0235-6e8e-5069-ca4db338ae98.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Permission Methods" Url="html/d6928ea0-7c8b-31a4-0bd7-2b929e5b48fd.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="3f5f5c8a-7e8b-4137-a45a-6bf4936b3e97" Title="Projectile Class" Url="html/ff9b4c7d-4776-86a6-c44b-3c8a6ad023ff.htm">
+      <HelpTOCNode Title="Projectile Constructor " Url="html/e3d18767-eb56-ae2b-ef6b-fa8b18284b10.htm" />
+      <HelpTOCNode Id="6491c2e1-d00a-4cf8-b897-26e011775edb" Title="Projectile Properties" Url="html/7d2f5fcf-5547-61c4-6836-4ed700e8a656.htm">
+        <HelpTOCNode Title="Dataset Property " Url="html/30f2f52b-b8a1-4ba5-2d90-a58a9ce00699.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/f3898905-4da0-0dde-7f63-10f3109f5f42.htm" />
+        <HelpTOCNode Title="Mass Property " Url="html/3a3ecf5a-8b9e-5261-f0e1-c305f5533d4d.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/25593e03-8097-b110-ae5b-4358ece68551.htm" />
+        <HelpTOCNode Title="PDGNumber Property " Url="html/40da7c6e-d477-e7bc-8fba-2be8f123d643.htm" />
+        <HelpTOCNode Title="zCharge Property " Url="html/8a0e8e85-0732-0a0a-1bea-bcda87e18f30.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Projectile Methods" Url="html/e39b4d30-6205-6dc8-c00a-f35a91a805e7.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="64758989-adb4-4745-96df-63a2e5f80d3e" Title="Revision Class" Url="html/bf831ac6-5eb5-1adf-fc4d-d12cb7c160ac.htm">
+      <HelpTOCNode Title="Revision Constructor " Url="html/80b3ccf7-131e-95d6-a27f-0b2b3a748a28.htm" />
+      <HelpTOCNode Id="ca02615c-cf3e-4080-8bff-1bb5d33110a8" Title="Revision Properties" Url="html/bfb23f8f-9a4f-37fb-7f3d-bc27f484e508.htm">
+        <HelpTOCNode Title="Approved Property " Url="html/e61a4c05-204a-e106-b976-36397cc80064.htm" />
+        <HelpTOCNode Title="Comment Property " Url="html/173c1d7a-2456-7ff2-b219-c83d8570b26e.htm" />
+        <HelpTOCNode Title="Dataset Property " Url="html/a75cb7e6-9cc4-75c0-9099-5b69fa648ff8.htm" />
+        <HelpTOCNode Title="Dataset_Id Property " Url="html/8f50c925-793a-bf8b-fc9c-d025149f3ce8.htm" />
+        <HelpTOCNode Title="Date Property " Url="html/b882addc-6852-8818-0260-604f50c426ad.htm" />
+        <HelpTOCNode Title="HeadRevision Property " Url="html/83cf72ae-bbcb-62f1-0574-f724097e3a7e.htm" />
+        <HelpTOCNode Title="HeadRevision_Id Property " Url="html/b2972e0f-745b-fb2e-c24d-ddffac2bbb82.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/3a034903-318a-4d83-d426-c41b58f131b6.htm" />
+        <HelpTOCNode Title="prevRevision Property " Url="html/c0598fb3-a92a-8f54-5e19-dd656f2f10e1.htm" />
+        <HelpTOCNode Title="User Property " Url="html/744a936b-c724-cc32-15a0-43f766752293.htm" />
+        <HelpTOCNode Title="UserUserId Property " Url="html/e693bef9-77ba-20f8-e6d7-25cf9b4b077d.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="Revision Methods" Url="html/3ad1e747-86a9-f399-66e4-fe6cdc8cf75f.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c41c65be-bf74-4cbd-a5c9-aa3432da8927" Title="StateOfAggregation Class" Url="html/a5143051-e8d0-063a-2dcf-3942af271999.htm">
+      <HelpTOCNode Title="StateOfAggregation Constructor " Url="html/d39084a0-58ac-b973-1bb2-dd2c361ab662.htm" />
+      <HelpTOCNode Id="5e030cc5-dda8-4753-a60a-1e80dbeef94c" Title="StateOfAggregation Properties" Url="html/fc8ffa35-75d6-c252-cbc6-daa8bacbe9ce.htm">
+        <HelpTOCNode Title="Dataset Property " Url="html/704ad473-ef91-4140-299a-b334a2d761bc.htm" />
+        <HelpTOCNode Title="Form Property " Url="html/06d04023-a4fd-3b73-31fc-713fec074d62.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/25ab702b-9660-6c60-a995-65fea546ef25.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="StateOfAggregation Methods" Url="html/ab231784-47f6-c816-c8e4-93c7ed1f1540.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="80081fa7-be8f-4176-8d57-23c944c85876" Title="sysdiagrams Class" Url="html/9b32f6f1-7aa8-1f47-4145-0b19537664a8.htm">
+      <HelpTOCNode Title="sysdiagrams Constructor " Url="html/9c6309d9-337b-137c-51f6-461205bbaef9.htm" />
+      <HelpTOCNode Id="33568427-1b24-45d2-b272-ed34c6dc21a5" Title="sysdiagrams Properties" Url="html/f344324f-bc7f-176b-ca0a-2d24f86325e6.htm">
+        <HelpTOCNode Title="definition Property " Url="html/2efea034-dce9-724d-1151-3cc4af66fc95.htm" />
+        <HelpTOCNode Title="diagram_id Property " Url="html/2dbc9ba0-4112-c7ce-d5d1-c3aa46b5dc1b.htm" />
+        <HelpTOCNode Title="name Property " Url="html/611d0caf-0d3f-de64-e0b6-3027345f110b.htm" />
+        <HelpTOCNode Title="principal_id Property " Url="html/4e713c4b-d5ef-f7b7-7f7d-15af6e3b2c16.htm" />
+        <HelpTOCNode Title="version Property " Url="html/3fde74b3-8628-f742-6afb-6386a759dc34.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="sysdiagrams Methods" Url="html/afa80cc0-7c3a-d6be-d4df-a2cf064faac2.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="049887b8-ce2a-4f49-a663-4a6bb0b1fda1" Title="TargetMaterial Class" Url="html/a9af84ce-be19-8e76-2f6d-c14cdc19deb3.htm">
+      <HelpTOCNode Title="TargetMaterial Constructor " Url="html/5658a0f6-98a7-f8ae-8218-1a9e088f2627.htm" />
+      <HelpTOCNode Id="a4a85755-c42b-4987-8a4e-f778d4c03c7e" Title="TargetMaterial Properties" Url="html/5c0647a9-3c9e-9129-e6e1-6b95ae797778.htm">
+        <HelpTOCNode Title="ChemicalFormula Property " Url="html/dd0f2309-db96-aa25-7f3d-ef76fc424e68.htm" />
+        <HelpTOCNode Title="Dataset Property " Url="html/b40dac6a-eb47-23af-15f6-cada991cb00d.htm" />
+        <HelpTOCNode Title="ICRUId Property " Url="html/9a836e57-ea8b-ac1c-7c10-c066079448f1.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/fb1ee2d7-7f2d-389e-8653-9cf3c45699fd.htm" />
+        <HelpTOCNode Title="Mass Property " Url="html/818cb755-6ea2-f48d-41d7-de9c9fb52f55.htm" />
+        <HelpTOCNode Title="MolarMass Property " Url="html/ced92185-54a4-0ad9-9914-e5d3d52e83aa.htm" />
+        <HelpTOCNode Title="Name Property " Url="html/b4f28ebc-72d8-871f-11ca-c164ae47ff81.htm" />
+        <HelpTOCNode Title="ZCharge Property " Url="html/b613600c-da40-d04e-d61c-e5d53a22781e.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="TargetMaterial Methods" Url="html/6ad6eede-8169-137a-5477-75209d6cf3cb.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="be8ce945-f6de-4483-b011-19e316287113" Title="TSPDSContext Class" Url="html/46b69893-5252-adc3-98de-51ba2022ce8c.htm">
+      <HelpTOCNode Title="TSPDSContext Constructor " Url="html/5a0d1fd5-51b7-18e3-7d8b-5698a6db01c4.htm" />
+      <HelpTOCNode Id="86e725b1-acc5-4d42-8325-96b7863ff13e" Title="TSPDSContext Properties" Url="html/9698f181-1406-178e-9887-96fca2d49c6a.htm">
+        <HelpTOCNode Title="ArticleReferences Property " Url="html/4188c99d-c72d-e8a6-06c0-c62c7ce20e3c.htm" />
+        <HelpTOCNode Title="Dataformat Property " Url="html/84f9776a-aa28-52f8-4d2f-4faf9fe7486c.htm" />
+        <HelpTOCNode Title="DataPoint Property " Url="html/7b472de5-21d7-1254-ab79-b23e2152b527.htm" />
+        <HelpTOCNode Title="Dataset Property " Url="html/9cadf4b1-118a-ea8b-a0e0-ed2617f41c58.htm" />
+        <HelpTOCNode Title="Method Property " Url="html/033b028a-53f8-6c88-4b17-9fb75031e8d5.htm" />
+        <HelpTOCNode Title="Permission Property " Url="html/b82b5b90-14d4-4c3c-b45a-b61155d93ebd.htm" />
+        <HelpTOCNode Title="Projectile Property " Url="html/201f06c0-5f90-bfd1-b678-f9d58261fd32.htm" />
+        <HelpTOCNode Title="Revision Property " Url="html/9dce6a85-3d67-ae62-f0cc-af01ecc1636a.htm" />
+        <HelpTOCNode Title="StateOfAggregation Property " Url="html/71983570-57e9-cd2d-b2c1-ccabc5ef8e06.htm" />
+        <HelpTOCNode Title="sysdiagrams Property " Url="html/c8a71c2b-0fe6-7fdc-ec09-50e6fd84a082.htm" />
+        <HelpTOCNode Title="TargetMaterial Property " Url="html/5f80276b-ebc7-b346-60a6-d774b1091e17.htm" />
+        <HelpTOCNode Title="User Property " Url="html/78ab6703-611d-9cb2-2310-96bb57d68f02.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="b2d23a07-bd88-46c1-b890-dc1e66f8748f" Title="TSPDSContext Methods" Url="html/49664100-381b-0d82-323b-e47e7a997d20.htm">
+        <HelpTOCNode Title="OnModelCreating Method " Url="html/2d82e484-2e6b-987b-0417-0e5d4d3f4d54.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a9fd2f32-284c-465a-af9c-fe7c7d72733f" Title="User Class" Url="html/e9d12421-10de-f677-1f00-0634c5c4b430.htm">
+      <HelpTOCNode Title="User Constructor " Url="html/8c54a498-149c-8881-c804-d6c7ab58136d.htm" />
+      <HelpTOCNode Id="f7f894c5-3895-46a2-8c18-a76383329193" Title="User Properties" Url="html/010017f7-53e6-b311-f936-1c0d493340eb.htm">
+        <HelpTOCNode Title="Email Property " Url="html/6de910f0-3ca4-c79c-d7e5-60083d4fd66f.htm" />
+        <HelpTOCNode Title="FirstName Property " Url="html/2c779447-07b3-f004-0c20-b288c11c16e4.htm" />
+        <HelpTOCNode Title="Id Property " Url="html/8934d4ec-d791-cace-de57-f245191ef730.htm" />
+        <HelpTOCNode Title="Institute Property " Url="html/27a8fabe-2a2a-d897-b6ed-f48d26648730.htm" />
+        <HelpTOCNode Title="LastName Property " Url="html/b13febe8-1f03-2641-0c94-88b203f81a7e.htm" />
+        <HelpTOCNode Title="Password Property " Url="html/d842820a-08b1-37bb-e47d-0c8d236e2493.htm" />
+        <HelpTOCNode Title="Permission Property " Url="html/8471cef2-2410-6cff-69d5-4c4351a10c82.htm" />
+        <HelpTOCNode Title="PermissionPermissionId Property " Url="html/3590b22e-aa31-c158-dfd8-600d7aa589c8.htm" />
+        <HelpTOCNode Title="PhoneNumber Property " Url="html/662c580d-2c46-3a5b-9c68-0c2872b1a311.htm" />
+        <HelpTOCNode Title="Picture Property " Url="html/a2d408eb-bfd1-2467-5287-7910f1ba149a.htm" />
+        <HelpTOCNode Title="Revision Property " Url="html/95df93b2-df45-37af-c5f8-c4aaec44c9db.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="User Methods" Url="html/2bf46ee3-4553-7867-0e7c-0e0eb8a1127b.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
