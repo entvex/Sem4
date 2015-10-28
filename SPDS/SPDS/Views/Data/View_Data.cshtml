@@ -6,5 +6,17 @@
 <div class="content">
     <h1>VIEW DATA</h1>
 
-    <div class="mainFill">Here you are able to view the collected data present in the database</div>
+    <div class="mainFill">Here you are able to view the collected data present in the database
+
+        <div id="chartcontainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    </div>
+
+
+    <script>
+        var graph = new graph();
+         var somearray = [[1,2],[2,3],[4,6]];
+          
+         graph.drawGraph(somearray,'#chartcontainer');
+    </script>
+
 </div>
