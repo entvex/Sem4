@@ -319,13 +319,99 @@ footer .footWrap .footTxt {
     color: rgba(255,255,255,.8);
 }
 
-/*Graph styles*/
 
-.graph {
-    width: 40%;
-    float: right;
-    margin: 20px 50px 20px 20px;
+
+/*search styles*/
+
+.viewDataWrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    display: flex;
+
 }
+
+.viewDataWrapper h2 {
+     font-family: Century Gothic, sans-serif;
+     font-size: 2em;
+     font-weight: 500;
+     text-shadow: 1px 1px 3px #cdcdcd;
+}
+
+.viewDataWrapper .graph {
+    width: 50%;
+    border: 1px solid black;
+
+}
+
+.viewDataWrapper .graph .graphRender {
+    width: 450px;
+    height: 600px;
+}
+
+.viewDataWrapper .search {
+    width: 50%;
+    
+}
+
+.viewDataWrapper .search fieldset {
+    border: none;
+}
+
+.viewDataWrapper .search legend {
+      font-family: Century Gothic, sans-serif;
+      font-size: 1.5em;
+      font-weight: 500;
+      text-shadow: 1px 1px 3px #cdcdcd;
+}
+
+.viewDataWrapper .search .number {
+    background: #6e80e3;
+    color: #ffffff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.9em;
+    margin-right: 15px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    /*rounded corners*/
+    border-radius: 15px 15px 15px 0;
+}
+
+.viewDataWrapper .search input[type="text"]{
+    height: 30px;
+    width: 220px;
+    margin: 10px 0 40px 0;
+
+    border: 2px solid #6e80e3; 
+    border-radius: 4px;
+    padding: 0 7px 0 7px;
+    color: #000000;
+    background: rgba(200,200,200,.8)
+          
+  
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .subLegend {
+    display: inline-block;
+    font-family: Century Gothic, sans-serif;
+    margin-top: 10px;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset input {
+    margin-top: 13px;
+    float: right;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .SoALabel {
+    margin-top: 10px;
+    float: right;
+}
+
+
 
 
 

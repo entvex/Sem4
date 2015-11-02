@@ -51,18 +51,18 @@ namespace SPDS.Models
         public void Create(string email, string confirmEmail, string Pass, string confirmPass, string institution, string fName, string lName)
         {
 
-            //USE IDALUSERMANAGEMENT TO CREATE USER - ASK RASMUS / DAVID
-            //IDALUserManagement dalUserManage = new MSSQLModelDAL();
+            IDalUserManagement dalUserManage = new MSSQLModelDAL();
 
 
-            User user = new User();
-            user.Email = email;
-            user.Password = Pass;
-            user.Institute = institution;
-            user.FirstName = fName;
-            user.LastName = lName;
-            //Permission perm = dalUserManage.GetPermById(1);
-            //dalUserManage.InsertUser(user,perm);
+            var user = new ParametersForUsers()
+            {
+                Email = email,
+                
+                Institute = institution,
+                FirstName = fName,
+                LastName = lName,
+            };
+            Permission perm = dalUserManage.GetPermByAccessLevel(AccessLevel.Submitter);
 
 
 
@@ -91,9 +91,10 @@ namespace SPDS.Models
         /// <returns></returns>
         public bool Login(string _email, string _pass)
         {
-            //IDALUserManagement dalUserManage = new MSSQLModelDAL();
+            IDalUserManagement dalUserManage = new MSSQLModelDAL();
 
-            //User user = dalUserManage.GetUserByEmail(_email);
+            List<User> user = dalUserManage.GetUsers(new ParametersForUsers()
+            {Email = _pass}); 
 
             //if (user.Password == _pass)
             //{

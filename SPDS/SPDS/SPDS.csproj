@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DataViewModels.cs" />
     <Compile Include="Models\DbModels\ArticleReferences.cs" />
     <Compile Include="Models\DbModels\Dataformat.cs" />
     <Compile Include="Models\DbModels\DataPoint.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Models\DbModels\IDalRetrieve.cs" />
     <Compile Include="Models\DbModels\IDalUserManagement.cs" />
     <Compile Include="Models\DbModels\Method.cs" />
+    <Compile Include="Models\DbModels\MSSQLModel.cs" />
     <Compile Include="Models\DbModels\Parameters.cs" />
     <Compile Include="Models\DbModels\Permission.cs" />
     <Compile Include="Models\DbModels\Projectile.cs" />
