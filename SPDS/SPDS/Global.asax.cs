@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,24 +36,26 @@ namespace SPDS
 
                         string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                         string roles = string.Empty;
+           
+                        //extract role from DBcontext
 
-                        //TO be implemented
-                        //remove hardcoded value before production
+                        //retrieve user with email 'username'
 
+                        IDalRetrieve dal = new MSSQLModelDAL();
+                        List<User> user = dal.GetUsers(new ParametersForUsers()
+                        {
+                            Email = username
+                        });
 
+                            
+                         /*   roles = user.First().PermissionPermissionId.ToString();*/
 
+                        roles = "3";
+                        
 
-                        //extract role from DBcontext - NOT TESTED
+                            //Set principal 
 
-                        //IDALUserManagement dALuserManager = new MSSQLModelDAL();
-
-                        // User user = dALuserManager.GetUserByEmail(username);
-                         //roles = user.PermissionPermissionId.ToString();
-
-
-                        //Set principal 
-
-                        HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(
+                            HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(
                         new System.Security.Principal.GenericIdentity(username, "Forms"), roles.Split(';'));
                     }
                     catch (Exception)

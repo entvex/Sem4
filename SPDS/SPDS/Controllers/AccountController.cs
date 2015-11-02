@@ -56,7 +56,7 @@ namespace SPDS.Controllers
                 if (LVM.Login(LVM._Email, LVM._Pass))
                 {
                     FormsAuthentication.SetAuthCookie(LVM._Email, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("View_Data", "Data");
                 }
                 else
                 {
@@ -70,7 +70,7 @@ namespace SPDS.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("View_Data","Data");
         }
     }
 }
