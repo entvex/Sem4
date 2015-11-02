@@ -96,7 +96,12 @@
             </div>
         </div>
     </div>
+    <script>
+        var uri = 'api/format/twoddataarray';
 
+        $(document).ready(function () {
+            $.getJSON(uri)
+                .done(function (data) {
 
     @* Here is the implemented table for the data - NOT FINISHED*@
     @*<table class="table">
@@ -132,5 +137,10 @@
 
 
 
+                    var graph = new graph();
 
+                    graph.drawGraph(data, '#chartcontainer');
+                });
+        });
+    </script>
 </div>
