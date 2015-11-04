@@ -13,9 +13,13 @@ namespace SPDS.Models
             Condensed
         };
 
+        [Display(Name = "Gaseous")]
         public bool _gaseous { get; set; }
+        [Display(Name = "Condensed")]
         public bool _condensed { get; set; }
+        [Display(Name ="TargetMaterial")]
         public string _targetMaterial { get; set; }
+        [Display(Name = "Projectile")]
         public string _projectile { get; set; }
 
         [Display(Name = "StateOfAggregation")]
@@ -27,17 +31,18 @@ namespace SPDS.Models
 
 
         private IDalRetrieve dal;
-
-        public List<TargetMaterial> GetNameOnTargetMatrials()
+        /// <summary>
+        /// The method shall return the targetmaterial witch is equal to the searched request
+        /// The method shall handle any name, mass etc. and return the propper data
+        /// </summary>
+        /// <returns></returns>
+        public List<Dataset> Search(string name)
         {
-            List<TargetMaterial> target = dal.GetAllTargetMaterials();
-            List<TargetMaterial> list = new List<TargetMaterial>();
+            ParametersForDataset parameters = new ParametersForDataset() {TargetMaterialName = name};
 
-            foreach (var t in target)
-            {
-                if(_stateOfAggregation == _targetMaterial )
-            }
-            return list;
+            List<Dataset> target = dal.GetDatasets(parameters);
+
+            return target;
         }
 
     }

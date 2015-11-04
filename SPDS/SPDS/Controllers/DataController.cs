@@ -15,10 +15,18 @@ namespace SPDS.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult View_Data()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult View_Data(ViewDataViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                model.Search(model._targetMaterial);
+            }
         }
 
         [Authorize(Roles = "3")]
