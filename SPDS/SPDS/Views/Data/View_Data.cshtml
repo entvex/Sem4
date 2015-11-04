@@ -23,12 +23,12 @@
                 //The following are the search options
                 <fieldset>
                     <legend><span class="number">1</span>Enter Projectile</legend>
-                    @Html.TextBoxFor(m => m._showReviewed, new { @class = "searchInput" })
+                    @Html.TextBoxFor(m => m.Projectile, new { @class = "searchInput" })
 
                 </fieldset>
                 <fieldset>
                     <legend><span class="number">2</span>Enter Target</legend>
-                    @Html.TextBox("Name", null, new { @class = "searchInput" })
+                    @Html.TextBox(m => m.TargetMaterial, new { @class = "searchInput" })
                 </fieldset>
 
                 <div class="hiddenOptions">
