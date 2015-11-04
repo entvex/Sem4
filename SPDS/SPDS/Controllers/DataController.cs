@@ -27,6 +27,7 @@ namespace SPDS.Controllers
             {
                 model.Search(model._targetMaterial);
             }
+            return View(model);
         }
 
         [Authorize(Roles = "3")]

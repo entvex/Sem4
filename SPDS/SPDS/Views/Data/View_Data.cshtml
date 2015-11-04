@@ -18,17 +18,17 @@
 
             <h2>SEARCH DATABASE</h2>
 
-            @using (Html.BeginForm("View_Data", "Data", FormMethod.Get))
+            @using (Html.BeginForm())
             {
                 //The following are the search options
                 <fieldset>
                     <legend><span class="number">1</span>Enter Projectile</legend>
-                    @Html.TextBoxFor(m => m.Projectile, new { @class = "searchInput" })
-
+                    @Html.TextBoxFor(m => m._projectile, new { @class = "searchInput" })
                 </fieldset>
+
                 <fieldset>
                     <legend><span class="number">2</span>Enter Target</legend>
-                    @Html.TextBox(m => m.TargetMaterial, new { @class = "searchInput" })
+                    @Html.TextBoxFor(m => m._targetMaterial, new { @class = "searchInput" })
                 </fieldset>
 
                 <div class="hiddenOptions">

@@ -2,6 +2,7 @@
 using SPDS.Models.DbModels;
 using MSSQLModel;
 using System.Collections.Generic;
+using System;
 
 namespace SPDS.Models
 {
@@ -15,10 +16,13 @@ namespace SPDS.Models
 
         [Display(Name = "Gaseous")]
         public bool _gaseous { get; set; }
+
         [Display(Name = "Condensed")]
         public bool _condensed { get; set; }
-        [Display(Name ="TargetMaterial")]
+
+        [Display(Name = "TargetMaterial")]
         public string _targetMaterial { get; set; }
+
         [Display(Name = "Projectile")]
         public string _projectile { get; set; }
 
@@ -38,12 +42,19 @@ namespace SPDS.Models
         /// <returns></returns>
         public List<Dataset> Search(string name)
         {
-            ParametersForDataset parameters = new ParametersForDataset() {TargetMaterialName = name};
+            List<Dataset> target;
 
-            List<Dataset> target = dal.GetDatasets(parameters);
-
-            return target;
+            try
+            {
+                ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = name };
+                target = dal.GetDatasets(parameters);
+                return target;
+            }
+            catch (NullReferenceException e)
+            {
+                target = new List<Dataset>();
+                return target;
+            }
         }
-
     }
 }
