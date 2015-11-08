@@ -3,7 +3,22 @@
     ViewBag.Title = "View_Data";
 }
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
+@*jquery to show or hide search options -- move to script file!*@
+<script>
+$(function() {
+	$("#toggleOptions").click(function() {
+	    $(".hiddenOptions").slideToggle(200);
+	    if ($(this).val() == "Show search options") {
+	        $(this).val("Hide search options");
+	    }
+	    else {
+	        $(this).val("Show search options");
+	    };
+	});
+});
+</script>
 
 <div class="content">
 
@@ -31,30 +46,28 @@
                     @Html.TextBoxFor(m => m._targetMaterial, new { @class = "searchInput" })
                 </fieldset>
 
-                <div class="hiddenOptions">
-                    <label class="optionsToggle" onclick="toggle('box');">
-                        Show all search options
-                    </label>
+                   
+                <input type="button" id="toggleOptions" value="Show search options" />
 
-                    <fieldset>
-                        <legend><span class="number">3</span>Advanced Search Options</legend>
+                    <div id="options" class="hiddenOptions">
+
                         <fieldset>
-                            <label class="subLegend">State of Aggregation:</label>
-                            @Html.RadioButtonFor(m => m._stateOfAggregation, "Gaseous")
-                            <label class="SoALabel">Gaseous</label>
-                            @Html.RadioButtonFor(m => m._stateOfAggregation, "Condensed")
-                            <label class="SoALabel">Condensed</label>
-                            <label class="subLegend">Show only reviewed data:</label>
-                            @Html.CheckBoxFor(m => m._showReviewed)
+                            <legend><span class="number">3</span>Advanced Search Options</legend>
+                            <fieldset>
+                                <label class="subLegend">State of Aggregation:</label>
+                                @Html.CheckBoxFor(m => m._gaseous)
+                                <label class="SoALabel">Gaseous</label>
+                                @Html.CheckBoxFor(m => m._condensed)
+                                <label class="SoALabel">Condensed</label>
+                                <label class="subLegend">Show only reviewed data:</label>
+                                @Html.CheckBoxFor(m => m._showReviewed)
+
+
+                            </fieldset>
 
 
                         </fieldset>
-
-                     
-                    </fieldset>
-
-                   
-                </div>
+                    </div>
 
                 <input type="submit" class="submitBtn" value="Search" />
 

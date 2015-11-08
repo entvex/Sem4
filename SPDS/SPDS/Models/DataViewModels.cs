@@ -9,12 +9,6 @@ namespace SPDS.Models
 {
     public class ViewDataViewModel
     {
-        public enum SoA
-        {
-            Gaseous,
-            Condensed
-        };
-
         [Display(Name = "Gaseous")]
         public bool _gaseous { get; set; }
 
@@ -26,9 +20,6 @@ namespace SPDS.Models
 
         [Display(Name = "Projectile")]
         public string _projectile { get; set; }
-
-        [Display(Name = "StateOfAggregation")]
-        public SoA _stateOfAggregation { get; set; }
 
         [Display(Name = "ShowReviewed")]
         public bool _showReviewed { get; set; }

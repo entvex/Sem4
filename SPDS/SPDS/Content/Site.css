@@ -340,7 +340,7 @@ footer .footWrap .footTxt {
 
 .viewDataWrapper .graph {
     width: 50%;
-    border: 1px solid black;
+   
 
 }
 
@@ -409,6 +409,53 @@ footer .footWrap .footTxt {
 .viewDataWrapper .search .hiddenOptions fieldset .SoALabel {
     margin-top: 10px;
     float: right;
+}
+
+ .viewDataWrapper .search .hiddenOptions {
+    display: none;
+    padding-top: 20px;
+}
+
+ .viewDataWrapper .search input[type=submit] {
+     display: block;
+     margin-top: 20px;
+
+    border-radius: 15px;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    background: #6e80e3;
+    font-size: 24px;
+    text-align: center;
+    font-style: normal;
+    width: 40%;
+    border: 1px solid #616fc1;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+ }
+
+.viewDataWrapper .search input[type=submit]:hover {
+    background: #109177;
+}
+
+.viewDataWrapper .search #toggleOptions {
+    display: block;  
+    border-radius: 15px;
+    padding: 10px 16px;;
+    color: #FFF;
+    
+    background: #6e80e3;
+    font-size: 13px;
+    text-align: center;
+    font-style: normal;
+    
+    
+    border: 1px solid #616fc1;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+
+.viewDataWrapper .search #toggleOptions:hover {
+    background: #109177;
 }
 
 
