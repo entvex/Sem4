@@ -37,10 +37,25 @@ namespace SPDS.Controllers
         }
 
         [Authorize(Roles = "3,1")]
-
         public ActionResult Submit_Data()
         {
+            
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Submit_Data(submitmodel model)
+        {
+            if(ModelState.IsValid)
+            {
+                TempData["notice"] = "Data was successfully Submitted";
+                return RedirectToAction("Index", "Home");
+                
+            }
+            
+       
+
+            return View();  
         }
     }
 }

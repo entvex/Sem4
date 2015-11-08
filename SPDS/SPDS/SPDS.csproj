@@ -183,6 +183,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\submitmodel.cs" />
     <Compile Include="Models\DataViewModels.cs" />
     <Compile Include="Models\DbModels\ArticleReferences.cs" />
     <Compile Include="Models\DbModels\Dataformat.cs" />

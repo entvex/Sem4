@@ -1,4 +1,5 @@
-﻿
+﻿@model SPDS.Models.submitmodel
+
 @{
     ViewBag.Title = "Submit_Data";
 }
@@ -12,22 +13,27 @@
     <div class="mainFill">Here you are able to submit data to the database</div>
 
     <div class="form-style" id="form-style">
-        <form onsubmit="return validateInputs()">
+        @using (Html.BeginForm())
+        { 
+                <div>
+                
+                </div>
             <fieldset>
                 <legend><span class="number">1</span> Data Information</legend>
-                <input type="text" name="field1" placeholder="Projectile" required> <br />
-                <input type="text" name="field2" placeholder="Target Material" required>
-
-
+                @Html.TextBoxFor(model => model._projectile,"", new { placeholder = "Projectile" }) 
+                @Html.ValidationMessageFor(model => model._projectile)<br />
+                @Html.TextBoxFor(model => model._targetMaterial, "", new { placeholder = "Target Material", Required = "required" }) 
+                @Html.ValidationMessageFor(model => model._targetMaterial)<br />
             </fieldset>
             <fieldset>
                 <legend><span class="number">2</span> Data file</legend>
-                <input type="file" accept=".xml" name="upfile" id="upfile"> <br /><br />
+               <!-- <input type="file" accept=".xml" name="upfile" id="upfile"> <br /><br />
                 <input type="button" value="Validate XML" onclick="isxml()">
-                <span> <div class="fileok" id="fileok"> XML file status:  </div></span><br />
-                <textarea name="comment" id="comment" placeholder="comments about the result here"></textarea>
+                <span> <div class="fileok" id="fileok"> XML file status:  </div></span><br /> -->
+                @Html.TextArea("comment","", new { placeholder = "Comment about result here" })
             </fieldset>
             <input type="submit" value="Submit Data" />
-        </form>
+        
+        }
     </div>
 </div>
