@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using MSSQLModel;
+using MSSQLModel.Exceptions;
 using SPDS.Models.DbModels;
 
 namespace SPDS.Models
@@ -12,7 +12,53 @@ namespace SPDS.Models
     /// </summary>
     public class WebModel
     {
-        private readonly IDalRetrieve dal = new MSSQLModelDAL();
+        private readonly IDalRetrieve _dalRetrieve = new MSSQLModelDAL();
+        private readonly IDalInsert _dalInsert = new MSSQLModelDAL();
+
+        public void SetDataset(List<DataPoint> datapoints, string targetMaterial, string projectile, string format,
+                               string stateOfAggregation, string doiNumber, string email, string method, string comment)
+        {
+            var tm = _dalRetrieve.GetTargetMaterialByName(targetMaterial);
+            if (tm.Id == 0)
+                return;
+            var pjt = _dalRetrieve.GetProjectileByName(projectile);
+            if (pjt.Id == 0)
+                return;
+            var fmt = _dalRetrieve.GetDataformatByNotation(format);
+            if (fmt.Id == 0)
+                return;
+            var soa = _dalRetrieve.GetStateOfAggregationByForm(stateOfAggregation);
+            if (soa.Id == 0)
+                return;
+            var article = _dalRetrieve.GetArticleReferences(new ParametersForArticelreferences() { DOINumber = doiNumber });
+            if (!article.Any())
+                return;
+            var md = _dalRetrieve.GetMethodByName(method);
+            if (md.Id == 0)
+                return;
+
+            Revision revision = new Revision();
+            revision.Date = DateTime.Now;
+            revision.Comment = comment;
+
+            var users = _dalRetrieve.GetUsers(new ParametersForUsers() { Email = email });
+            if (!users.Any())
+                return;
+
+            try
+            {
+                _dalInsert.InsertDataset(datapoints, tm, pjt, fmt, fmt, revision, users[0], null, article[0], md, soa);
+            }
+            catch (DALInfoNotSpecifiedException e)
+            {
+                // error handling
+            }
+            catch (DALAlreadyExistsException e)
+            {
+                // error handling
+            }
+        }
+
 
         /// <summary>
         /// 
@@ -25,7 +71,7 @@ namespace SPDS.Models
             parameters.ProjectileName = projectileName;
             parameters.TargetMaterialName = targetMaterialName;
 
-            List<Dataset> datasets = dal.GetDatasets(parameters);
+            List<Dataset> datasets = _dalRetrieve.GetDatasets(parameters);
             
             return datasets;
         }
@@ -37,7 +83,7 @@ namespace SPDS.Models
         /// <returns></returns>
         public string[,] GetDataPointsByDataSet(Dataset d)
         {
-            DataPoint[] data = dal.GetDataPointsByDataSet(d).ToArray();
+            DataPoint[] data = _dalRetrieve.GetDataPointsByDataSet(d).ToArray();
             string[,] convertedlist = new string[data.Length + 1, 5];
 
             convertedlist[0, 0] = "ProjectileCharge";
@@ -64,7 +110,7 @@ namespace SPDS.Models
         /// <returns></returns>
         public string[] GetProjectileNameList()
         {
-            List<Projectile> projectiles = dal.GetallProjectiles();
+            List<Projectile> projectiles = _dalRetrieve.GetallProjectiles();
             string[] projectilelist = new string[projectiles.Count];
             int i = 0;
 
@@ -82,7 +128,7 @@ namespace SPDS.Models
         /// <returns></returns>
         public string[] GetTargetMaterialNameList()
         {
-            List<TargetMaterial> targetMartials = dal.GetAllTargetMaterials();
+            List<TargetMaterial> targetMartials = _dalRetrieve.GetAllTargetMaterials();
             string[] targetMartiallist = new string[targetMartials.Count];
             int i = 0;
 

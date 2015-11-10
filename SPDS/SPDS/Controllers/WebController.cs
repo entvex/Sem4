@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using SPDS.Models;
 using SPDS.Models.DbModels;
@@ -65,9 +62,19 @@ namespace SPDS.Controllers
         [HttpGet]
         public string[] TargetMartialsNames()
         {
-            return _webmodel.GetProjectileNameList();
+            return _webmodel.GetTargetMaterialNameList();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public void Dataset(List<DataPoint> datapoints, string targetMaterial, string projectile, string format,
+                               string stateOfAggregation, string doiNumber, string email, string method, string comment)
+        {
+             _webmodel.SetDataset(datapoints, targetMaterial, projectile, format,
+                                  stateOfAggregation, doiNumber, email,  method,  comment);
+        }
     }
 }
