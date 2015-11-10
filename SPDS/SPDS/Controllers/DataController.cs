@@ -36,7 +36,7 @@ namespace SPDS.Controllers
             return View();
         }
 
-        [Authorize(Roles = "3,1")]
+        //[Authorize(Roles = "3,1")]
         public ActionResult Submit_Data()
         {
             
@@ -48,6 +48,7 @@ namespace SPDS.Controllers
         {
             if(ModelState.IsValid)
             {
+
                 TempData["notice"] = "Data was successfully Submitted";
                 return RedirectToAction("Index", "Home");
                 

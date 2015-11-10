@@ -30,10 +30,44 @@
                <!-- <input type="file" accept=".xml" name="upfile" id="upfile"> <br /><br />
                 <input type="button" value="Validate XML" onclick="isxml()">
                 <span> <div class="fileok" id="fileok"> XML file status:  </div></span><br /> -->
-                @Html.TextArea("comment","", new { placeholder = "Comment about result here" })
+                @Html.TextBoxFor(model => model._uploadedfile, new { type = "file", accept = ".csv" })
+                <br />
+                <br />
+                <div id="manual" onclick="manualInput(this)" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
+                <div id="Manualinputfield">
+                    @Html.TextAreaFor(model => model._manualString, new { placeholder = "Insert Data here seperated by ; and new lines" })
+                 </div>
+                
+
+                
+
+                
             </fieldset>
-            <input type="submit" value="Submit Data" />
-        
+            <fieldset>
+                <legend><span class="number">3</span>Comments</legend>
+                @Html.TextAreaFor(model => model._comment, new { placeholder = "Comment about your result here" })
+                <input type="submit" value="Submit Data" />
+
+
+                </fieldset>
+                
+                <script>
+                    document.getElementById("Manualinputfield").style.visibility = "hidden";
+                </script>
+                }
+</div>
+
+
+    <script>
+
+        function manualInput()
+        {
+            document.getElementById("Manualinputfield").style.visibility = "visible";
+            document.getElementById("manual").style.visibility = "hidden";
+            
+            
+
+
         }
-    </div>
+    </script>
 </div>

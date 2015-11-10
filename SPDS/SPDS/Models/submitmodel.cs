@@ -3,6 +3,7 @@ using SPDS.Models.DbModels;
 using MSSQLModel;
 using System.Collections.Generic;
 using System;
+using System.Web;
 
 namespace SPDS.Models
 {
@@ -17,6 +18,12 @@ namespace SPDS.Models
 
         
         public string _comment { get; set; }
+
+
+        public HttpPostedFileBase _uploadedfile { get; set; }
+
+        public string _manualString { get; set; }
+
 
 
 
