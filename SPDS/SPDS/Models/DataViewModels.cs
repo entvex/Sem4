@@ -32,20 +32,21 @@ namespace SPDS.Models
         /// The method shall handle any name, mass etc. and return the propper data
         /// </summary>
         /// <returns></returns>
-        public List<Dataset> Search(string name)
+        public List<Dataset> Search(string targetName, string projectileName)
         {
-            List<Dataset> target;
+            List<Dataset> dataName;
 
             try
             {
-                ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = name };
-                target = dal.GetDatasets(parameters);
-                return target;
+                ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = targetName, ProjectileName = projectileName };
+                dal = new MSSQLModelDAL();
+                dataName = dal.GetDatasets(parameters);
+                return dataName;
             }
             catch (NullReferenceException e)
             {
-                target = new List<Dataset>();
-                return target;
+                dataName = new List<Dataset>();
+                return dataName;
             }
         }
     }
