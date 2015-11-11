@@ -37,6 +37,7 @@
                     <li class="Right">
                         <a href="">@Html.Encode(User.Identity.Name)</a>
                         <ul>
+                            <li class="dropdown">@Html.ActionLink("Profile", "ProfilePage", "Account")</li>
                             <li class="dropdown">@Html.ActionLink("Log Out", "LogOut", "Account")</li>
                         </ul>
                     </li>

@@ -17,6 +17,13 @@ namespace SPDS.Controllers
             return View();
         }
 
+
+        [Authorize(Roles = "3,1")]
+        [HttpGet]
+        public ActionResult ProfilePage()
+        {
+            return View();
+        }
         [HttpGet]
         public ActionResult CreateAccount()
         {

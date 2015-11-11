@@ -57,7 +57,7 @@ namespace SPDS.Models
             var user = new ParametersForUsers()
             {
                 Email = email,
-                
+                 
                 Institute = institution,
                 FirstName = fName,
                 LastName = lName,
@@ -106,5 +106,32 @@ namespace SPDS.Models
             //    return false;
             //}
         }
+    }
+
+    public class ProfilePageViewModel
+    {
+        [Required]
+        [Display(Name = "Email")]
+        public string _newEmail { get; set; }
+
+              [Required]
+        [Display(Name = "Password")]
+        public string _newPass { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
+        public string _confirmNewPass { get; set; }
+
+        [Required]
+        [Display(Name = "Password")]
+        public string _newInstitution { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string _newFirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string _newLastName { get; set; }
     }
 }

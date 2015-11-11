@@ -231,6 +231,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\package.json" />
     <Content Include="Views\Manage\Administrator.cshtml" />
+    <Content Include="Views\Account\ProfilePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -55,12 +55,12 @@ $(function() {
                             <legend><span class="number">3</span>Advanced Search Options</legend>
                             <fieldset>
                                 <label class="subLegend">State of Aggregation:</label>
-                                @Html.CheckBoxFor(m => m._gaseous)
-                                <label class="SoALabel">Gaseous</label>
-                                @Html.CheckBoxFor(m => m._condensed)
-                                <label class="SoALabel">Condensed</label>
-                                <label class="subLegend">Show only reviewed data:</label>
-                                @Html.CheckBoxFor(m => m._showReviewed)
+                                <label class="SoALabel">Gaseous:</label>
+                                @Html.CheckBoxFor(m => m._gaseous, new { @class = "SoAChkBox" })
+                                <label class="SoALabel">Condensed:</label>
+                                @Html.CheckBoxFor(m => m._condensed, new { @class = "SoAChkBox" })
+                                <label class="subLegend" id="showReviewedLabel">Show only reviewed data:</label>
+                                @Html.CheckBoxFor(m => m._showReviewed, new { @class = "ShowReviewedChkBox" })
 
 
                             </fieldset>

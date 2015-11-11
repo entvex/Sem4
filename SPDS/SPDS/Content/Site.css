@@ -247,7 +247,7 @@
     body {
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
+        height: 100vh;
     }
 
 
@@ -333,9 +333,10 @@ footer .footWrap .footTxt {
 
 .viewDataWrapper h2 {
      font-family: Century Gothic, sans-serif;
-     font-size: 2em;
+     font-size: 1.8em;
      font-weight: 500;
      text-shadow: 1px 1px 3px #cdcdcd;
+    text-align: center;
 }
 
 .viewDataWrapper .graph {
@@ -351,11 +352,17 @@ footer .footWrap .footTxt {
 
 .viewDataWrapper .search {
     width: 50%;
-    
+}
+
+.viewDataWrapper .search form {
+    margin: auto 20px auto 20px;
 }
 
 .viewDataWrapper .search fieldset {
     border: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px;
 }
 
 .viewDataWrapper .search legend {
@@ -363,6 +370,10 @@ footer .footWrap .footTxt {
       font-size: 1.5em;
       font-weight: 500;
       text-shadow: 1px 1px 3px #cdcdcd;
+      margin-left: auto;
+      margin-right: auto;
+      float: left;
+
 }
 
 .viewDataWrapper .search .number {
@@ -383,9 +394,8 @@ footer .footWrap .footTxt {
 
 .viewDataWrapper .search input[type="text"]{
     height: 30px;
-    width: 220px;
-    margin: 10px 0 40px 0;
-
+    margin: 10px auto 20px auto;
+    width: 215px;
     border: 2px solid #6e80e3; 
     border-radius: 4px;
     padding: 0 7px 0 7px;
@@ -396,24 +406,34 @@ footer .footWrap .footTxt {
 }
 
 .viewDataWrapper .search .hiddenOptions fieldset .subLegend {
-    display: inline-block;
+    display: block;
     font-family: Century Gothic, sans-serif;
     margin-top: 10px;
+    font-size: 1em;
+}
+.viewDataWrapper .search .hiddenOptions fieldset #showReviewedLabel {
+    display: inline-block;
 }
 
-.viewDataWrapper .search .hiddenOptions fieldset input {
-    margin-top: 13px;
-    float: right;
+.viewDataWrapper .search .hiddenOptions fieldset .SoAChkBox {
+    display: inline-block;
+    margin-right: 12px;
+    margin-left: 3px;
+
 }
 
 .viewDataWrapper .search .hiddenOptions fieldset .SoALabel {
     margin-top: 10px;
-    float: right;
+    display: inline-block;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .ShowReviewedChkBox {
+    display: inline;
 }
 
  .viewDataWrapper .search .hiddenOptions {
     display: none;
-    padding-top: 20px;
+    padding-top: 10px;    
 }
 
  .viewDataWrapper .search input[type=submit] {
@@ -427,14 +447,16 @@ footer .footWrap .footTxt {
     font-size: 24px;
     text-align: center;
     font-style: normal;
-    width: 40%;
-    border: 1px solid #616fc1;
+     width: 200px;
+    border: 1px solid #000000;
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
  }
 
 .viewDataWrapper .search input[type=submit]:hover {
-    background: #109177;
+    background:         linear-gradient(90deg, #809f98 10%, #85D8CE 90%); /* W3C */
 }
 
 .viewDataWrapper .search #toggleOptions {
@@ -442,20 +464,23 @@ footer .footWrap .footTxt {
     border-radius: 15px;
     padding: 10px 16px;;
     color: #FFF;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
     
-    background: #6e80e3;
+    background: #aaaaaa;
     font-size: 13px;
     text-align: center;
     font-style: normal;
-    
-    
-    border: 1px solid #616fc1;
+
+
+    border: 1px solid #6e80e3;
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
 }
 
 .viewDataWrapper .search #toggleOptions:hover {
-    background: #109177;
+    background:         linear-gradient(90deg, #809f98 10%, #85D8CE 90%); /* W3C */
 }
 
 
