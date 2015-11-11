@@ -25,8 +25,12 @@ namespace SPDS.Controllers
         {
             if(ModelState.IsValid)
             {
-                model.Search(model._targetMaterial);
+                model.Search(model._targetMaterial, model._projectile);
             }
+
+            ViewBag.TargetName = model._targetMaterial;
+            ViewBag.ProjectileName = model._projectile;
+
             return View(model);
         }
 
