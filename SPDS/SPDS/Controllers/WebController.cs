@@ -23,15 +23,28 @@ namespace SPDS.Controllers
             this._webmodel = formatmodel;
         }
 
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="d"></param>
         /// <returns></returns>
         [HttpGet]
-        public List<Dataset> Datasets(string projectile, string targetMarterial)
+        public string[,] table(string projectile, string targetMarterial)
         {
-            return _webmodel.GetDatasetList(projectile, targetMarterial);
+            return _webmodel.GetDataPointsByDataSet(_webmodel.GetDatasetList(projectile, targetMarterial)[0]);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public Dataset[] Datasets(string projectile, string targetMarterial)
+        {
+            return _webmodel.GetDatasetList(projectile, targetMarterial).ToArray();
         }
 
         /// <summary>
@@ -70,11 +83,24 @@ namespace SPDS.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public void Dataset(List<DataPoint> datapoints, string targetMaterial, string projectile, string format,
-                               string stateOfAggregation, string doiNumber, string email, string method, string comment)
+        public void DatasetManuel(DatasetQuery d)
         {
-             _webmodel.SetDataset(datapoints, targetMaterial, projectile, format,
-                                  stateOfAggregation, doiNumber, email,  method,  comment);
+             _webmodel.SetDataset(d.datapoints, d.targetMaterial, d.projectile, d.format,
+                                  d.stateOfAggregation, d.doiNumber, d.email, d.method, d.comment);
         }
+    }
+
+    public struct DatasetQuery
+    {
+        public decimal price;
+        public DataPoint[] datapoints;
+        public string targetMaterial;
+        public string projectile;
+        public string format;
+        public string stateOfAggregation;
+        public string doiNumber;
+        public string email;
+        public string method;
+        public string comment;
     }
 }

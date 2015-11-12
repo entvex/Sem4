@@ -7,7 +7,7 @@ using System.Web;
 
 namespace SPDS.Models
 {
-    public class submitmodel
+    public class Submitmodel
     {
 
         [Required(ErrorMessage ="Field Required")]
@@ -23,9 +23,6 @@ namespace SPDS.Models
         public HttpPostedFileBase _uploadedfile { get; set; }
 
         public string _manualString { get; set; }
-
-
-
 
     }
 }

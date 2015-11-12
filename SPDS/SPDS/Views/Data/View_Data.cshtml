@@ -7,32 +7,25 @@
 
 @*jquery to show or hide search options -- move to script file!*@
 <script>
-$(function() {
-	$("#toggleOptions").click(function() {
-	    $(".hiddenOptions").slideToggle(200);
-	    if ($(this).val() == "Show search options") {
-	        $(this).val("Hide search options");
-	    }
-	    else {
-	        $(this).val("Show search options");
-	    };
-	});
-});
+    $(function () {
+        $("#toggleOptions").click(function () {
+            $(".hiddenOptions").slideToggle(200);
+            if ($(this).val() == "Show search options") {
+                $(this).val("Hide search options");
+            }
+            else {
+                $(this).val("Show search options");
+            };
+        });
+    });
 </script>
 
 <div class="content">
-
     <h1>VIEW DATA</h1>
-
-
     <div class="mainFill">Here you are able to view the collected data present in the database</div>
-
     <div class="viewDataWrapper">
-
         <div class="search">
-
             <h2>SEARCH DATABASE</h2>
-
             @using (Html.BeginForm())
             {
                 //The following are the search options
@@ -40,51 +33,29 @@ $(function() {
                     <legend><span class="number">1</span>Enter Projectile</legend>
                     @Html.TextBoxFor(m => m._projectile, new { @class = "searchInput" })
                 </fieldset>
-
                 <fieldset>
                     <legend><span class="number">2</span>Enter Target</legend>
                     @Html.TextBoxFor(m => m._targetMaterial, new { @class = "searchInput" })
                 </fieldset>
-
-                   
                 <input type="button" id="toggleOptions" value="Show search options" />
-
-                    <div id="options" class="hiddenOptions">
-
+                <div id="options" class="hiddenOptions">
+                    <fieldset>
+                        <legend><span class="number">3</span>Advanced Search Options</legend>
                         <fieldset>
-                            <legend><span class="number">3</span>Advanced Search Options</legend>
-                            <fieldset>
-                                <label class="subLegend">State of Aggregation:</label>
-                                <label class="SoALabel">Gaseous:</label>
-                                @Html.CheckBoxFor(m => m._gaseous, new { @class = "SoAChkBox" })
-                                <label class="SoALabel">Condensed:</label>
-                                @Html.CheckBoxFor(m => m._condensed, new { @class = "SoAChkBox" })
-                                <label class="subLegend" id="showReviewedLabel">Show only reviewed data:</label>
-                                @Html.CheckBoxFor(m => m._showReviewed, new { @class = "ShowReviewedChkBox" })
-
-
-                            </fieldset>
-
-
+                            <label class="subLegend">State of Aggregation:</label>
+                            <label class="SoALabel">Gaseous:</label>
+                            @Html.CheckBoxFor(m => m._gaseous, new { @class = "SoAChkBox" })
+                            <label class="SoALabel">Condensed:</label>
+                            @Html.CheckBoxFor(m => m._condensed, new { @class = "SoAChkBox" })
+                            <label class="subLegend" id="showReviewedLabel">Show only reviewed data:</label>
+                            @Html.CheckBoxFor(m => m._showReviewed, new { @class = "ShowReviewedChkBox" })
                         </fieldset>
-                    </div>
-
-                <input type="submit" class="submitBtn" value="Search" />
-
-
+                    </fieldset>
+                </div>
+                    <input type="submit" class="submitBtn" value="Search" />
             }
         </div>
-
-
-
-
-
         <div class="graph">
-
-
-
-
-
             <canvas id="canvas" height="450" width="600"></canvas>
             <script>
                 var Xpoints = [1, 2, 3, 4, 5, 6, 7];
@@ -101,23 +72,10 @@ $(function() {
             </div>
         </div>
     </div>
-    <script>
-        var uri = 'api/format/twoddataarray';
-
-        $(document).ready(function () {
-            $.getJSON(uri)
-                .done(function (data) {
-
-                    var graph = new graph();
-
-                    graph.drawGraph(data, '#chartcontainer');
-                });
-        });
-    </script>
 
     @*This table is for serach functions returned data*@
     @*The table needs a connection to the controller*@
-    <div >
+    <div>
         <b>Target name:</b>@ViewBag.TargetName<br />
         <b>Projectile name:</b>@ViewBag.ProjectileName<br />
     </div>

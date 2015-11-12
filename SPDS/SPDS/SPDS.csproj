@@ -168,7 +168,9 @@
     <Content Include="Scripts\table.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Views\Data\DataView.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -183,7 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\submitmodel.cs" />
+    <Compile Include="Models\Submitmodel.cs" />
     <Compile Include="Models\DataViewModels.cs" />
     <Compile Include="Models\DbModels\ArticleReferences.cs" />
     <Compile Include="Models\DbModels\Dataformat.cs" />

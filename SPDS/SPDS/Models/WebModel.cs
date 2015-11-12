@@ -15,7 +15,7 @@ namespace SPDS.Models
         private readonly IDalRetrieve _dalRetrieve = new MSSQLModelDAL();
         private readonly IDalInsert _dalInsert = new MSSQLModelDAL();
 
-        public void SetDataset(List<DataPoint> datapoints, string targetMaterial, string projectile, string format,
+        public void SetDataset(DataPoint[] datapoints, string targetMaterial, string projectile, string format,
                                string stateOfAggregation, string doiNumber, string email, string method, string comment)
         {
             var tm = _dalRetrieve.GetTargetMaterialByName(targetMaterial);
@@ -47,7 +47,7 @@ namespace SPDS.Models
 
             try
             {
-                _dalInsert.InsertDataset(datapoints, tm, pjt, fmt, fmt, revision, users[0], null, article[0], md, soa);
+                _dalInsert.InsertDataset(datapoints.OfType<DataPoint>().ToList(), tm, pjt, fmt, fmt, revision, users[0], null, article[0], md, soa);
             }
             catch (DALInfoNotSpecifiedException e)
             {
@@ -58,7 +58,6 @@ namespace SPDS.Models
                 // error handling
             }
         }
-
 
         /// <summary>
         /// 

@@ -1,4 +1,4 @@
-﻿@model SPDS.Models.submitmodel
+﻿@model SPDS.Models.Submitmodel
 
 @{
     ViewBag.Title = "Submit_Data";
@@ -14,58 +14,53 @@
 
     <div class="form-style" id="form-style">
         @using (Html.BeginForm())
-        { 
-                <div>
-                
-                </div>
-            <fieldset>
-                <legend><span class="number">1</span> Data Information</legend>
-                @Html.TextBoxFor(model => model._projectile,"", new { placeholder = "Projectile" }) 
-                @Html.ValidationMessageFor(model => model._projectile)<br />
-                @Html.TextBoxFor(model => model._targetMaterial, "", new { placeholder = "Target Material", Required = "required" }) 
-                @Html.ValidationMessageFor(model => model._targetMaterial)<br />
-            </fieldset>
-            <fieldset>
-                <legend><span class="number">2</span> Data file</legend>
-               <!-- <input type="file" accept=".xml" name="upfile" id="upfile"> <br /><br />
-                <input type="button" value="Validate XML" onclick="isxml()">
-                <span> <div class="fileok" id="fileok"> XML file status:  </div></span><br /> -->
-                @Html.TextBoxFor(model => model._uploadedfile, new { type = "file", accept = ".csv" })
-                <br />
-                <br />
-                <div id="manual" onclick="manualInput(this)" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
-                <div id="Manualinputfield">
-                    @Html.TextAreaFor(model => model._manualString, new { placeholder = "Insert Data here seperated by ; and new lines" })
-                 </div>
-                
+        {
+            <div>
 
-                
+            </div>
+                <fieldset>
+                    <legend><span class="number">1</span> Data Information</legend>
+                    @Html.TextBoxFor(model => model._projectile, "", new { placeholder = "Projectile" })
+                    @Html.ValidationMessageFor(model => model._projectile)<br />
+                    @Html.TextBoxFor(model => model._targetMaterial, "", new { placeholder = "Target Material", Required = "required" })
+                    @Html.ValidationMessageFor(model => model._targetMaterial)<br />
+                </fieldset>
+                <fieldset>
+                    <legend><span class="number">2</span> Data file</legend>
+                    <!-- <input type="file" accept=".xml" name="upfile" id="upfile"> <br /><br />
+                     <input type="button" value="Validate XML" onclick="isxml()">
+                     <span> <div class="fileok" id="fileok"> XML file status:  </div></span><br /> -->
+                    @Html.TextBoxFor(model => model._uploadedfile, new { type = "file", accept = ".csv" })
+                    <br />
+                    <br />
+                    <div id="manual" onclick="manualInput(this)" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
+                    <div id="Manualinputfield">
+                        @Html.TextAreaFor(model => model._manualString, new { placeholder = "Insert Data here seperated by ; and new lines" })
+                    </div>
 
-                
-            </fieldset>
-            <fieldset>
-                <legend><span class="number">3</span>Comments</legend>
-                @Html.TextAreaFor(model => model._comment, new { placeholder = "Comment about your result here" })
-                <input type="submit" value="Submit Data" />
+
+
 
 
                 </fieldset>
-                
+                <fieldset>
+                    <legend><span class="number">3</span>Comments</legend>
+                    @Html.TextAreaFor(model => model._comment, new { placeholder = "Comment about your result here" })
+                    <input type="submit" value="Submit Data" />
+
+
+                </fieldset>
+
                 <script>
                     document.getElementById("Manualinputfield").style.visibility = "hidden";
                 </script>
-                }
-</div>
-
-
+        }
+    </div>
     <script>
 
-        function manualInput()
-        {
+        function manualInput() {
             document.getElementById("Manualinputfield").style.visibility = "visible";
             document.getElementById("manual").style.visibility = "hidden";
-            
-            
 
 
         }

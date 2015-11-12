@@ -48,7 +48,7 @@ namespace SPDS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Submit_Data(submitmodel model)
+        public ActionResult Submit_Data(Submitmodel model)
         {
             if(ModelState.IsValid)
             {
