@@ -75,8 +75,29 @@
 
     @*This table is for serach functions returned data*@
     @*The table needs a connection to the controller*@
-    <div>
-        <b>Target name:</b>@ViewBag.TargetName<br />
-        <b>Projectile name:</b>@ViewBag.ProjectileName<br />
-    </div>
+    <table>
+        @if (Model != null)
+            {
+            <tr>
+                <td>Target Material</td>
+                <td>Projectile Material</td>
+            </tr>
+            foreach (var i in Model._foundDataSets)
+            {
+                <tr>
+
+                    <td>@i[0]</td>
+
+                    <td>@i[1]</td>
+
+
+
+                </tr>
+
+
+            }
+        }
+
+    </table>
+
 </div>

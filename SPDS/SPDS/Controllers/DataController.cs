@@ -25,7 +25,7 @@ namespace SPDS.Controllers
         {
             if(ModelState.IsValid)
             {
-                model.Search(model._targetMaterial, model._projectile);
+                model.Search(model._targetMaterial);
             }
 
             ViewBag.TargetName = model._targetMaterial;
@@ -54,7 +54,7 @@ namespace SPDS.Controllers
             {
 
                 TempData["notice"] = "Data was successfully Submitted";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("View_Data", "Data");
                 
             }
             
