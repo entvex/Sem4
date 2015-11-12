@@ -10,6 +10,7 @@ namespace SPDS.Models.DbModels
         public TSPDSContext()
             : base("name=TSPDSContext1")
         {
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public virtual DbSet<ArticleReferences> ArticleReferences { get; set; }

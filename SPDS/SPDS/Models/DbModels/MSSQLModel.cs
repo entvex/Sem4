@@ -26,6 +26,9 @@ namespace MSSQLModel
         {
             using (var db = new TSPDSContext())
             {
+
+                
+
                 var query = from b in db.Dataformat
                     where b.Id == originalFormat.Id
                     where b.Id == convertedFormat.Id
@@ -67,8 +70,8 @@ namespace MSSQLModel
                 rev.Dataset = dataset;
                 rev.UserUserId = user.Id;
                 rev.Dataset_Id = dataset.Id;
- 
                 
+
                 if (prevRevision != null)
                 {
                     if (prevRevision.Id == 0)
@@ -76,10 +79,12 @@ namespace MSSQLModel
                     prevRevision.HeadRevision = rev;
                     prevRevision.HeadRevision_Id = rev.Id;
                     rev.HeadRevision_Id = prevRevision.Id;
+                    db.Entry(prevRevision).State = EntityState.Modified;
                 }
-                db.Entry(dataset).State = EntityState.Modified;                
+                db.Entry(dataset).State = EntityState.Modified;            
+                db.Entry(user).State = EntityState.Modified;;
                 db.Revision.Add(rev);
-                
+
                 db.SaveChanges();
             }
         }
@@ -133,14 +138,14 @@ namespace MSSQLModel
                 Projectile_Id = projectile.Id,
                 TargetMaterial_Id = impactMaterial.Id,
                 ArticleReferences = AR,
-                ArticleReferences_Id = AR.Id,
                 Projectile = projectile,
                 Method = method,
-                Method_Id = method.Id,
                 StateOfAggregation = stateOfAggregation,
-                StateOfAggregation_Id = stateOfAggregation.Id,
                 TargetMaterial = impactMaterial,
             };
+            if (AR != null) dataset.ArticleReferences_Id = AR.Id;
+            if (method != null) dataset.Method_Id = method.Id;
+            if (stateOfAggregation != null) dataset.StateOfAggregation_Id = stateOfAggregation.Id;
             using (var db = new TSPDSContext())
             {
                 db.Entry(dataset).State = EntityState.Modified;
@@ -503,7 +508,6 @@ namespace MSSQLModel
                 if (query.Any())
                 {
                     Permission perm = query.ToList()[0];
-
                     return perm;
                 }
                 throw new DALOutOfRangeException("Perm id was out of range");
@@ -620,7 +624,7 @@ namespace MSSQLModel
                 if (!string.IsNullOrWhiteSpace(parameters.FirstName))
                     query = query.Where(x => x.Firstname == parameters.FirstName);
                 if (!string.IsNullOrWhiteSpace(parameters.LastName))
-                    query = query.Where(x => x.Lastname == parameters.FirstName);
+                    query = query.Where(x => x.Lastname == parameters.LastName);
                 if (parameters.Year.HasValue)
                     query = query.Where(x => x.Year == parameters.Year);
                 if (!string.IsNullOrWhiteSpace(parameters.DOINumber))

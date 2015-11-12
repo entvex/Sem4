@@ -25,7 +25,9 @@ namespace SPDS.Models
         public bool _showReviewed { get; set; }
 
         [Display(Name = "FoundDataSets")]
-        public List<string[]> _foundDataSets { get; set; }
+        //public List<string[]> _foundDataSets { get; set; }
+        public List<Dataset> _foundDataSets { get; set; }
+
 
         private IDalRetrieve dal;
         /// <summary>
@@ -52,11 +54,40 @@ namespace SPDS.Models
                 ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = targetName };
                 dal = new MSSQLModelDAL();
                 var foundData = dal.GetDatasets(parameters);
+                var targetList = dal.GetAllTargetMaterials();
+                var projectileList = dal.GetallProjectiles();
+                foreach (var VAR in foundData)
+                {
+
+
+                    foreach (var VARIABLE in targetList)
+                    {
+                        if (VARIABLE.Id == VAR.TargetMaterial_Id)
+                        {
+                            VAR.TargetMaterial = VARIABLE;
+                        }
+                    }
+                }
+                foreach (var VAR in foundData)
+                {
+
+
+                    foreach (var VARIABLE in projectileList)
+                    {
+                        if (VARIABLE.Id == VAR.Projectile_Id)
+                        {
+                            VAR.Projectile = VARIABLE;
+                        }
+                    }
+                }
+
+
+                _foundDataSets = foundData;
 
 
 
 
-                _foundDataSets = new List<string[]>();
+                /*     _foundDataSets = new List<string[]>();
                 _foundDataSets.Add(dummy0);
                 _foundDataSets.Add(dummy1);
                 _foundDataSets.Add(dummy2);
@@ -65,7 +96,7 @@ namespace SPDS.Models
 
                 _foundDataSets.Add(dummy4);
 
-                _foundDataSets.Add(dummy5);
+                _foundDataSets.Add(dummy5);*/
 
 
             }
