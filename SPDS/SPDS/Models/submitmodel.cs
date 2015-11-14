@@ -23,6 +23,12 @@ namespace SPDS.Models
         public HttpPostedFileBase _uploadedfile { get; set; }
 
         public string _manualString { get; set; }
+        public string _format { get; set; }
+        public string _stateOfAggregation { get; set; }
+        public string _doiNumber { get; set; }
+        public string _author { get; set; }
+        public string _method { get; set; }
+        
 
     }
 }

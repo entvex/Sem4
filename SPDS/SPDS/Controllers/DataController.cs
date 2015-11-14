@@ -40,7 +40,7 @@ namespace SPDS.Controllers
             return View();
         }
 
-        [Authorize(Roles = "3,1")]
+        //[Authorize(Roles = "3,1")]
         public ActionResult Submit_Data()
         {
             
@@ -53,7 +53,7 @@ namespace SPDS.Controllers
             if(ModelState.IsValid)
             {
 
-                TempData["notice"] = "Data was successfully Submitted";
+                TempData["notice"] = "Data was successfully Submitted:" + model._projectile + " -> " + model._targetMaterial + " which is a " + model._stateOfAggregation + "object";
                 return RedirectToAction("View_Data", "Data");
                 
             }

@@ -1,4 +1,6 @@
-﻿@model SPDS.Models.Submitmodel
+﻿@using System
+@using System.Collections.Generic
+@model SPDS.Models.Submitmodel
 
 @{
     ViewBag.Title = "Submit_Data";
@@ -23,7 +25,26 @@
                     @Html.TextBoxFor(model => model._projectile, "", new { placeholder = "Projectile" })
                     @Html.ValidationMessageFor(model => model._projectile)<br />
                     @Html.TextBoxFor(model => model._targetMaterial, "", new { placeholder = "Target Material", Required = "required" })
-                    @Html.ValidationMessageFor(model => model._targetMaterial)<br />
+                    @Html.ValidationMessageFor(model => model._targetMaterial)<br/>
+                    @{
+                        List<SelectListItem> typelist = new List<SelectListItem>();
+
+                        typelist.Add(new SelectListItem() {Value = "gas", Text = "gas"});
+                        typelist.Add(new SelectListItem() { Value = "Condence", Text = "Condence" });
+                        }
+                    @Html.DropDownListFor(model => model._stateOfAggregation, typelist ,1)
+                    State of Aggregation
+                    <br/>
+                    
+                    @Html.DropDownListFor(model => model._stateOfAggregation,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "Method1" , Text = "Method1" },
+                       new SelectListItem { Value = "Method2" , Text = "Method2" },
+                       new SelectListItem { Value = "Method3" , Text = "Method3" },
+                       new SelectListItem { Value = "Method4" , Text = "Method4"}
+
+                  })
+                    Testing method
                 </fieldset>
                 <fieldset>
                     <legend><span class="number">2</span> Data file</legend>
@@ -36,7 +57,10 @@
                     <div id="manual" onclick="manualInput(this)" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
                     <div id="Manualinputfield">
                         @Html.TextAreaFor(model => model._manualString, new { placeholder = "Insert Data here seperated by ; and new lines" })
-                    </div>
+                    </div><br/>
+                    @Html.TextBoxFor(model => model._author, "", new { placeholder = "Enter Authorname of Dataset" })
+                    <br/>
+                    @Html.TextBoxFor(model => model._doiNumber, "", new { placeholder = "Enter Doi Number" })
 
 
 
