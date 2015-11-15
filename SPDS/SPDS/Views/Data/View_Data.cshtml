@@ -42,7 +42,7 @@
                     <fieldset>
                         <legend><span class="number">3</span>Advanced Search Options</legend>
                         <fieldset>
-                            <label class="subLegend">State of Aggregation:</label>
+                            <label class="subLegend">Physical State:</label>
                             <label class="SoALabel">Gaseous:</label>
                             @Html.CheckBoxFor(m => m._gaseous, new { @class = "SoAChkBox" })
                             <label class="SoALabel">Condensed:</label>
@@ -52,9 +52,11 @@
                         </fieldset>
                     </fieldset>
                 </div>
-                    <input type="submit" class="submitBtn" value="Search" />
+                <input type="submit" class="submitBtn" value="Search" />
             }
+
         </div>
+
         <div class="graph">
             <canvas id="canvas" height="450" width="600"></canvas>
             <script>
@@ -63,43 +65,113 @@
                 var graphdisplay = new chartline();
                 graphdisplay.drawLineGraph(Xpoints, Ypoints, "canvas")
             </script>
-            <div class="table">
-                <script>
-                    var data = [["power", "length", "Energy"], [1, 2, 3], [2, 3, 5], [3, 5, 8], [4, 8, 12], [5, 4, 9], [6, 4, 10], [7, 8, 15]];
-                    var table = new TableClass();
-                    table.createTable(data);
-                </script>
-            </div>
+        @*     <div class="table">
+        <script>
+            var data = [["power", "length", "Energy"], [1, 2, 3], [2, 3, 5], [3, 5, 8], [4, 8, 12], [5, 4, 9], [6, 4, 10], [7, 8, 15]];
+            var table = new TableClass();
+            table.createTable(data);
+        </script>
+        </div> *@
         </div>
     </div>
-
     @*This table is for serach functions returned data*@
     @*The table needs a connection to the controller*@
-    <table>
-        @if (Model != null)
-            {
+    <table class="DataSetTable">
+        @* @if (Model != null)
+            { *@
+        <thead>
             <tr>
-                <td>Target Material</td>
-                <td>Projectile Material</td>
+                <th>Target Material</th>
+                <th>Projectile Material</th>
+                <th>Projectile type</th>
+                <th>Physical State</th>
+                <th>Minimum Energy</th>
+                <th>Maximum Energy</th>
+                <th>Method</th>
+                <th>First Author</th>
+                <th>Year</th>
+                <th>View All Metadata</th>
+                <th>View on Graph</th>
             </tr>
-            foreach (var i in Model._foundDataSets)
-            {
-                <tr>
+        </thead>
 
-                    @* <td>@i[0]</td>
+        <tbody>
+            <tr>
+                <td>test material</td>
+                <td>test target</td>
+                <td>test type</td>
+                <td>G</td>
+                <td>90KeV</td>
+                <td>398KeV</td>
+                <td>S</td>
+                <td>Knudsen</td>
+                <td>1998</td>
+                <td><input type="button" value="View MetaData" /></td>
+                <td><input type="button" value="View" /></td>
+            </tr>
+            <tr>
+                <td>test material</td>
+                <td>test target</td>
+                <td>test type</td>
+                <td>G</td>
+                <td>90KeV</td>
+                <td>398KeV</td>
+                <td>S</td>
+                <td>Knudsen</td>
+                <td>1998</td>
+                <td><input type="button" value="View MetaData" /></td>
+                <td><input type="button" value="View" /></td>
+            </tr>
+            <tr>
+                <td>test material</td>
+                <td>test target</td>
+                <td>test type</td>
+                <td>G</td>
+                <td>90KeV</td>
+                <td>398KeV</td>
+                <td>S</td>
+                <td>Knudsen</td>
+                <td>1998</td>
+                <td><input type="button" value="View MetaData" /></td>
+                <td><input type="button" value="View" /></td>
+            </tr>
+            <tr>
+                <td>test material</td>
+                <td>test target</td>
+                <td>test type</td>
+                <td>G</td>
+                <td>90KeV</td>
+                <td>398KeV</td>
+                <td>S</td>
+                <td>Knudsen</td>
+                <td>1998</td>
+                <td><input type="button" value="View MetaData" /></td>
+                <td><input type="button" value="View" /></td>
+            </tr>
+            <tr>
+                <td>test material</td>
+                <td>test target</td>
+                <td>test type</td>
+                <td>G</td>
+                <td>90KeV</td>
+                <td>398KeV</td>
+                <td>S</td>
+                <td>Knudsen</td>
+                <td>1998</td>
+                <td><input type="button" value="View MetaData" /></td>
+                <td><input type="button" value="View" /></td>
+            </tr>
 
-                    <td>@i[1]</td>
-                       *@
-                    <td>@i.TargetMaterial.Name</td>
-                    <td>@i.Projectile.Name</td>
-
-
-                </tr>
-
-
-            }
-        }
+        </tbody>
+        @*   foreach (var i in Model._foundDataSets)
+                {
+                    <tr>
+                        <td>@i.TargetMaterial.Name</td>
+                        <td>@i.Projectile.Name</td>
+                    </tr>
+               }
+            }*@
 
     </table>
-
+   
 </div>
