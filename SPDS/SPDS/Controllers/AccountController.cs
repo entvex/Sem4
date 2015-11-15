@@ -32,8 +32,7 @@ namespace SPDS.Controllers
 
         [HttpPost]
         public ActionResult CreateAccount(Models.CreateAccountViewModel caVM)
-        {
-          
+        {          
             if(ModelState.IsValid)
             {
                 caVM.Create(caVM._Email,
