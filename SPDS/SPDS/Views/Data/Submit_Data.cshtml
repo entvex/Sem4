@@ -38,8 +38,8 @@
                     
                     @Html.DropDownListFor(model => model._stateOfAggregation,
                   new List<SelectListItem> {
-                       new SelectListItem { Value = "Method1" , Text = "Method1" },
-                       new SelectListItem { Value = "Method2" , Text = "Method2" },
+                       new SelectListItem { Value = "Transmission" , Text = "Transmission" },
+                       new SelectListItem { Value = "Reflection" , Text = "Reflection" },
                        new SelectListItem { Value = "Method3" , Text = "Method3" },
                        new SelectListItem { Value = "Method4" , Text = "Method4"}
 
@@ -54,11 +54,11 @@
                     @Html.TextBoxFor(model => model._uploadedfile, new { type = "file", accept = ".csv" })
                     <br />
                     <br />
-                    <div id="manual" onclick="manualInput(this)" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
+                    <div id="manual" onclick="manualInput()" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
                     <div id="Manualinputfield">
                         @Html.TextAreaFor(model => model._manualString, new { placeholder = "Insert Data here seperated by ; and new lines" })
                     </div><br/>
-                    @Html.TextBoxFor(model => model._author, "", new { placeholder = "Enter Authorname of Dataset" })
+                    @Html.TextBoxFor(model => model._author,"", new { placeholder = "Enter Authorname of Dataset" })
                     <br/>
                     @Html.TextBoxFor(model => model._doiNumber, "", new { placeholder = "Enter Doi Number" })
 

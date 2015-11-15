@@ -53,7 +53,20 @@ namespace SPDS.Controllers
             if(ModelState.IsValid)
             {
 
-                TempData["notice"] = "Data was successfully Submitted:" + model._projectile + " -> " + model._targetMaterial + " which is a " + model._stateOfAggregation + "object";
+                TempData["notice"] = "Data was successfully Submitted";
+
+                var Datacollection = new DatasetQuery();
+                Datacollection.comment = model._comment;
+                Datacollection.doiNumber = model._doiNumber;
+                Datacollection.method = model._method;
+                Datacollection.projectile = model._projectile;
+                Datacollection.stateOfAggregation = model._stateOfAggregation;
+                Datacollection.targetMaterial = model._targetMaterial;
+                Datacollection.email = model._author;
+                //Datacollection.datapoints =;
+
+
+
                 return RedirectToAction("View_Data", "Data");
                 
             }
