@@ -10,6 +10,7 @@ namespace SPDS.Controllers
 {
     public class DataController : Controller
     {
+
         // GET: Data
         public ActionResult Data()
         {

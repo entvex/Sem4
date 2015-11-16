@@ -431,6 +431,30 @@ footer .footWrap .footTxt {
     display: inline;
 }
 
+.viewDataWrapper .search .hiddenOptions fieldset .EnergyMax {
+    display: inline;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .EnergyMin {
+    display: inline;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .Author {
+    display: inline;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .Year {
+    display: inline;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .DOI {
+    display: inline;
+}
+
+.viewDataWrapper .search .hiddenOptions fieldset .Methods {
+    display: inline;
+}
+
  .viewDataWrapper .search .hiddenOptions {
     display: none;
     padding-top: 10px;    
