@@ -36,15 +36,17 @@
                     State of Aggregation
                     <br/>
                     
-                    @Html.DropDownListFor(model => model._stateOfAggregation,
-                  new List<SelectListItem> {
-                       new SelectListItem { Value = "Transmission" , Text = "Transmission" },
-                       new SelectListItem { Value = "Reflection" , Text = "Reflection" },
-                       new SelectListItem { Value = "Method3" , Text = "Method3" },
-                       new SelectListItem { Value = "Method4" , Text = "Method4"}
+                    @{
+                        List<SelectListItem> methodlist = new List<SelectListItem>();
 
-                  })
-                    Testing method
+                        methodlist.Add(new SelectListItem() { Value = "Transmission", Text = "Transmission" });
+                        methodlist.Add(new SelectListItem() { Value = "Reflection", Text = "Reflection" });
+                        methodlist.Add(new SelectListItem() { Value = "method3", Text = "method3" });
+                        methodlist.Add(new SelectListItem() { Value = "method3", Text = "method3" });
+                    }
+                    @Html.DropDownListFor(model => model._method, methodlist, 1)
+                    Testing Method
+                    <br />
                 </fieldset>
                 <fieldset>
                     <legend><span class="number">2</span> Data file</legend>
