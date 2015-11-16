@@ -315,10 +315,6 @@ namespace MSSQLModel
             }
         }
 
-
-
-
-
         public List<Revision> GetAllRevisonBydataset(Dataset dataset)
         {
 
@@ -328,6 +324,13 @@ namespace MSSQLModel
 
                 if (query.Any())
                 {
+                    query = query.Include(m => m.Dataset.Projectile);
+                    query = query.Include(m => m.Dataset.Method);
+                    query = query.Include(m => m.Dataset.TargetMaterial);
+                    query = query.Include(m => m.Dataset.StateOfAggregation);
+                    query = query.Include(m => m.Dataset.ArticleReferences);
+                    query = query.Include(m => m.Dataset.DataPoint);
+                    query = query.Include(m => m.Dataset.Revision);
                     return query.ToList();
                 }
                 return new List<Revision>();
@@ -341,7 +344,18 @@ namespace MSSQLModel
             {
                 var query = from b in db.Revision where b.Dataset_Id == dataset.Id select b;
                 if (query.Any())
+                {
+                    query = query.Include(m => m.Dataset.Projectile);
+                    query = query.Include(m => m.Dataset.Method);
+                    query = query.Include(m => m.Dataset.TargetMaterial);
+                    query = query.Include(m => m.Dataset.StateOfAggregation);
+                    query = query.Include(m => m.Dataset.ArticleReferences);
+                    query = query.Include(m => m.Dataset.DataPoint);
+                    query = query.Include(m => m.Dataset.Revision);
+
                     return query.ToList().Last();
+                }
+                    
                 return new Revision();
             }
         }
@@ -608,6 +622,15 @@ namespace MSSQLModel
 
                 if (parameters.ProjectilezCharge.HasValue)
                     query = query.Where(x => x.Projectile.zCharge == parameters.ProjectilezCharge);
+
+                query = query.Include(m => m.Projectile);
+                query = query.Include(m => m.Method);
+                query = query.Include(m => m.TargetMaterial);
+                query = query.Include(m => m.StateOfAggregation);
+                query = query.Include(m => m.ArticleReferences);
+                query = query.Include(m => m.DataPoint);
+                query = query.Include(m => m.Revision);
+
                 return query.ToList();
             }
         }
@@ -647,6 +670,7 @@ namespace MSSQLModel
                     query = query.Where(x => x.PhoneNumber == parameters.PhoneNumber);
                 if (parameters.WaitingOnPromotion == true)
                     query = query.Where(x => x.Permission.Id == 2);
+                query = query.Include(x => x.Permission);
                 return query.ToList();
             }
         }
