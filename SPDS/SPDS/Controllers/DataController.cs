@@ -25,11 +25,35 @@ namespace SPDS.Controllers
         {
             if(ModelState.IsValid)
             {
-                model.Search(model._targetMaterial);
-            }
+                //if both target material and projectile are invalid
+                if((model._targetMaterial == null || model._targetMaterial == "") &&
+                       (model._projectile == null || model._projectile == ""))
+                {
+                    //invalid search - error
+                }
+                //invalid projectile entered - valid target material
+                else if ((!(model._targetMaterial == null) || !(model._targetMaterial == "")) &&
+                                (model._projectile == null || model._projectile == ""))
+                {
+                    //search for target material
+                    model.Search(model._targetMaterial);
+                }
+                //invalid targetmaterial - valid projectile
+                else if ((model._targetMaterial == null || model._targetMaterial == "") &&
+                               (!(model._projectile == null) || !(model._projectile == "")))
+                {
+                    //search for projectile
+                    model.Search(model._projectile,0);
+                }
+                //both targetmaterial and projectile are valid
+                else if((!(model._targetMaterial == null) || !(model._targetMaterial == "")) &&
+                      (!(model._projectile == null) || !(model._projectile == "")))
+                {
+                    //search for both target material and projectile
+                    model.Search(model._projectile, model._targetMaterial);
+                }
 
-            ViewBag.TargetName = model._targetMaterial;
-            ViewBag.ProjectileName = model._projectile;
+            }
 
             return View(model);
         }

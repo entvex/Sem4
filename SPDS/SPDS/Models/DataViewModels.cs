@@ -37,40 +37,23 @@ namespace SPDS.Models
         /// <returns></returns>
         public void Search(string targetName)
         {
-
-            string[] dummy0 = { "TargetMaterial", "Projectile" };
-
-            string[] dummy1 = { "Target1", "Projectile1" };
-            string[] dummy2 = { "Target2", "Projectile1" };
-
-            string[] dummy3 = { "Target2", "Projectile2" };
-
-            string[] dummy4 = { "Target3", "Projectile3" };
-
-            string[] dummy5 = { "Target4", "Projectile3" };
-
             try
             {
-                ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = targetName };
                 dal = new MSSQLModelDAL();
+
+                //retrieve datasets with desired targetmaterial
+                ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = targetName };
                 var foundData = dal.GetDatasets(parameters);
-                var targetList = dal.GetAllTargetMaterials();
+               
+                //Retrieve targetmaterial object
+                var target = dal.GetTargetMaterialByName(targetName);
+                
                 var projectileList = dal.GetallProjectiles();
+                var physState = dal.GetAllStateOfAggregation();
+
                 foreach (var VAR in foundData)
                 {
-
-
-                    foreach (var VARIABLE in targetList)
-                    {
-                        if (VARIABLE.Id == VAR.TargetMaterial_Id)
-                        {
-                            VAR.TargetMaterial = VARIABLE;
-                        }
-                    }
-                }
-                foreach (var VAR in foundData)
-                {
-
+                    VAR.TargetMaterial = target;
 
                     foreach (var VARIABLE in projectileList)
                     {
@@ -79,25 +62,122 @@ namespace SPDS.Models
                             VAR.Projectile = VARIABLE;
                         }
                     }
+                    if (VAR.StateOfAggregation_Id == null)
+                    {
+                        VAR.StateOfAggregation = new StateOfAggregation() { Form = "NA" };
+                    }
+                    else
+                    {
+                        foreach (var physS in physState)
+                        {
+                            if (VAR.StateOfAggregation_Id == physS.Id)
+                            {
+                                VAR.StateOfAggregation = physS;
+                            }
+                        }
+                    }
                 }
 
 
                 _foundDataSets = foundData;
 
+            }
+            catch (NullReferenceException e)
+            {
+            }
+
+        }
+
+        public void Search(string projectileName, int dummy)
+        {
+            try
+            {
+                dal = new MSSQLModelDAL();
+
+                //retrieve datasets with desired targetmaterial
+                ParametersForDataset parameters = new ParametersForDataset() { ProjectileName = projectileName  };
+                var foundData = dal.GetDatasets(parameters);
+
+                //Retrieve Projectile name
+                var projectile = dal.GetProjectileByName(projectileName);
+
+                var targetList = dal.GetAllTargetMaterials();
+                var physState = dal.GetAllStateOfAggregation();
+
+                foreach (var VAR in foundData)
+                {
+                    VAR.Projectile = projectile;
+
+                    foreach (var VARIABLE in targetList)
+                    {
+                        if (VARIABLE.Id == VAR.TargetMaterial_Id)
+                        {
+                            VAR.TargetMaterial = VARIABLE;
+                        }
+                    }
+                    if (VAR.StateOfAggregation_Id == null)
+                    {
+                        VAR.StateOfAggregation = new StateOfAggregation() { Form = "NA" };
+                    }
+                    else
+                    {
+                        foreach (var physS in physState)
+                        {
+                            if (VAR.StateOfAggregation_Id == physS.Id)
+                            {
+                                VAR.StateOfAggregation = physS;
+                            }
+                        }
+                    }
+                }
 
 
+                _foundDataSets = foundData;
 
-                /*     _foundDataSets = new List<string[]>();
-                _foundDataSets.Add(dummy0);
-                _foundDataSets.Add(dummy1);
-                _foundDataSets.Add(dummy2);
+            }
+            catch (NullReferenceException e)
+            {
+            }
 
-                _foundDataSets.Add(dummy3);
+        }
 
-                _foundDataSets.Add(dummy4);
+        public void Search(string projectileName, string targetMaterial)
+        {
+            try
+            {
+                dal = new MSSQLModelDAL();
 
-                _foundDataSets.Add(dummy5);*/
+                //retrieve datasets with desired targetmaterial
+                ParametersForDataset parameters = new ParametersForDataset() { ProjectileName = projectileName, TargetMaterialName = targetMaterial };
+                var foundData = dal.GetDatasets(parameters);
 
+                //Retrieve Projectile and targetmaterial 
+                var projectile = dal.GetProjectileByName(projectileName);
+                var target = dal.GetTargetMaterialByName(targetMaterial);
+                var physState = dal.GetAllStateOfAggregation(); 
+
+                foreach (var VAR in foundData)
+                {
+                    VAR.Projectile = projectile;
+                    VAR.TargetMaterial = target;
+                    if (VAR.StateOfAggregation_Id == null)
+                    {
+                        VAR.StateOfAggregation = new StateOfAggregation() { Form = "NA" };
+                    }
+                    else
+                    {
+                        foreach (var physS in physState)
+                        {
+                            if (VAR.StateOfAggregation_Id == physS.Id)
+                            {
+                                VAR.StateOfAggregation = physS;
+                            }
+                        }
+                    }
+                }
+
+
+                _foundDataSets = foundData;
 
             }
             catch (NullReferenceException e)
