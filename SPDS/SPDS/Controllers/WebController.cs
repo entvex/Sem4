@@ -88,7 +88,15 @@ namespace SPDS.Controllers
              _webmodel.SetDataset(d.datapoints, d.targetMaterial, d.projectile, d.format,
                                   d.stateOfAggregation, d.doiNumber, d.email, d.method, d.comment);
         }
+
+        [HttpGet]
+        public User[] GetAllUsers()
+        {
+            return _webmodel.GetALlUsers();
+        }
     }
+
+
 
     public struct DatasetQuery
     {

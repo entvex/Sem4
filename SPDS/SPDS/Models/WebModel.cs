@@ -14,6 +14,12 @@ namespace SPDS.Models
     {
         private readonly IDalRetrieve _dalRetrieve = new MSSQLModelDAL();
         private readonly IDalInsert _dalInsert = new MSSQLModelDAL();
+        private readonly IDalUserManagement _dalUserManagement = new MSSQLModelDAL();
+
+        public User[] GetALlUsers()
+        {
+            return _dalUserManagement.GetUsers(new ParametersForUsers()).ToArray();
+        }
 
         public void SetDataset(DataPoint[] datapoints, string targetMaterial, string projectile, string format,
                                string stateOfAggregation, string doiNumber, string email, string method, string comment)
