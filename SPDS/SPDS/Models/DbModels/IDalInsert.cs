@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using MSSQLModel.Exceptions;
-using SPDS.Models.DbModels;
-
 namespace MSSQLModel
 {
     public interface IDalInsert
@@ -25,52 +23,52 @@ namespace MSSQLModel
         ///     <code>
         ///     IDalInsert insert = new MSSQLModelDAL();
         ///     IDalRetrieve recv = new MSSQLModelDAL();
-        ///     var dataPointList = new List[DataPoint]
-        ///     for (int i = 10;i >=0;i++)
+        ///     var dataPointList = new List[DataPoint]();
+        ///     for (int i = 10; i >= 0; i--)
         ///     {
-        ///        var datapoint = new DataPoint();
-        ///        datapoint.EqEnergy = i* 50;
-        ///        datapoint.StoppingPower = i* 20;
-        ///        datapoint.ConvertetData = i* 50;
-        ///        dataPointList.Add(datapoint);
+        ///         var datapoint = new DataPoint();
+        ///         datapoint.EqEnergy = i * 50;
+        ///         datapoint.StoppingPower = i * 20;
+        ///         datapoint.ConvertetData = i * 50;
+        ///         dataPointList.Add(datapoint);
         ///     }
         ///     var targetmat = recv.GetTargetMaterialByName("AG");
-        ///     if (targetMat.Id == 0)
-        ///       return;
+        ///     if (targetmat.Id == 0)
+        ///         return;
         ///     
         ///     var projectile = recv.GetProjectileByName("H");
         ///     if (projectile.Id == 0)
-        ///      return;
+        ///         return;
         ///     var format = recv.GetDataformatByNotation("myNotation");
         ///     if (format.Id == 0)
-        ///       return;
+        ///         return;
         ///     var SOA = recv.GetStateOfAggregationByForm("S");
-        ///     if (SOA.Id ==0)
-        ///       return;
+        ///     if (SOA.Id == 0)
+        ///         return;
         ///     var article = recv.GetArticleReferences(new ParametersForArticelreferences() { DOINumber = "666" });
         ///     if (!article.Any())
-        ///       return;
+        ///         return;
         ///     var method = recv.GetMethodByName("MyMethodName");
         ///     if (method.Id == 0)
-        ///       return;
+        ///         return;
         ///     Revision revision = new Revision();
         ///     revision.Date = DateTime.Now;
         ///     revision.Comment = "There could be an error in ...";
-        ///     var users = recv.GetUsers(new ParametersForUsers() {Email = "Email@science.com"});
+        ///     var users = recv.GetUsers(new ParametersForUsers() { Email = "sumsar1812_1337@hotmail.com" });
         ///     if (!users.Any())
-        ///       return;
+        ///         return;
         ///     try
         ///     {
-        ///         insert.InsertDataset(dataPointList,targetmat,projectile,format,format,revision,users[0],null,article[0],method,SOA);
+        ///         insert.InsertDataset(dataPointList, targetmat, projectile, format, format, revision, users[0], null, article[0], method, SOA);;
         ///     }
-        ///     catch(DALInfoNotSpecifiedException e)
+        ///     catch (DALInfoNotSpecifiedException e)
         ///     {
-        ///       // error handling
+        ///         // error handling
         ///     }
-        ///     catch(DALAlreadyExistsException e)
+        ///     catch (DALAlreadyExistsException e)
         ///     {
-        ///       // error handling
-        ///     }
+        ///         // error handling
+        ///     }                                                                                                                      
         /// 
         /// </code>
         /// </example>

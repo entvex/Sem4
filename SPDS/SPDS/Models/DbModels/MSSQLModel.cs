@@ -10,7 +10,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MSSQLModel.Exceptions;
-using SPDS.Models.DbModels;
 
 namespace MSSQLModel
 {
@@ -26,9 +25,6 @@ namespace MSSQLModel
         {
             using (var db = new TSPDSContext())
             {
-
-                
-
                 var query = from b in db.Dataformat
                     where b.Id == originalFormat.Id
                     where b.Id == convertedFormat.Id
