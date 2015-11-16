@@ -64,6 +64,15 @@
                     <br/>
                     @Html.TextBoxFor(model => model._doiNumber, "", new { placeholder = "Enter Doi Number" })
 
+                    @{
+                        List<SelectListItem> formatlist = new List<SelectListItem>();
+
+                        methodlist.Add(new SelectListItem() { Value = "feVcm^2/atom", Text = "feVcm^2/atom" });
+                        
+                    }
+                    @Html.DropDownListFor(model => model._format, methodlist, 1)
+                    Format
+
 
 
 
