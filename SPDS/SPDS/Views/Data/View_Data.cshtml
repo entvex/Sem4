@@ -6,7 +6,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
 @*jquery to show or hide search options -- move to script file!*@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+<script>
     $(function () {
         $("#toggleOptions").click(function () {
             $(".hiddenOptions").slideToggle(200);
@@ -45,17 +45,51 @@
                         <fieldset>
                             <label class="subLegend">Physical State:</label>
                             <label class="SoALabel">Gaseous:</label>
-                            @Html.CheckBoxFor(m => m._gaseous, new { @class = "SoAChkBox" })
+                            @Html.CheckBoxFor(m => m._gaseous, new { @class = "SoAChkBox", @checked = "checked" })
                             <label class="SoALabel">Condensed:</label>
-                            @Html.CheckBoxFor(m => m._condensed, new { @class = "SoAChkBox" })
+                            @Html.CheckBoxFor(m => m._condensed, new { @class = "SoAChkBox", @checked = "checked" })
                             <label class="subLegend" id="showReviewedLabel">Show only reviewed data:</label>
-                            @Html.CheckBoxFor(m => m._showReviewed, new { @class = "ShowReviewedChkBox" })
+                            @Html.CheckBoxFor(m => m._showReviewed, new { @class = "ShowReviewedChkBox", @checked = "checked" })
+                            <label class="subLegend">Energy Max:</label>
+                            @Html.CheckBoxFor(m => m._energyMax, new { @class = "EnergyMax", @checked = "checked" })
+                            <label class="subLegend">Energy Min:</label>
+                            @Html.CheckBoxFor(m => m._energyMin, new { @class = "EnergyMin", @checked = "checked" })
+                            <label class="subLegend">Author:</label>
+                            @Html.TextBoxFor(m => m._showReviewed, new { @class = "Author" })
+                            <label class="subLegend">Year:</label>
+                            @Html.TextBoxFor(m => m._year, new { @class = "Year"})
+                            <label class="subLegend">DOI:</label>
+                            @Html.TextBoxFor(m => m._doi, new { @class = "DOI" })
+                            <label class="subLegend">Methods:</label>
+                            @{ 
+                                List<SelectListItem> methods = new List<SelectListItem>();
+                                methods.Add(new SelectListItem
+                                {
+                                    Text = "Transmission",
+                                    Value = "Transmission"
+                                });
+                                methods.Add(new SelectListItem
+                                {
+                                    Text = "Gaseous Transmission",
+                                    Value = "Gaseous Transmission"
+                                });
+                                methods.Add(new SelectListItem
+                                {
+                                    Text = "Reflection",
+                                    Value = "Reflection"
+                                });
+                                methods.Add(new SelectListItem
+                                {
+                                    Text = "Rutherford Backscattering",
+                                    Value = "Rutherford Backscattering"
+                                });
+                            }
+                            @Html.DropDownListFor(m => m._methods, methods, new { @class = "Methods" })
                         </fieldset>
                     </fieldset>
                 </div>
                 <input type="submit" class="submitBtn" value="Search" />
             }
-
         </div>
 
         <div class="graph">

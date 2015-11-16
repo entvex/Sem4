@@ -4,6 +4,7 @@ using SPDS.Models.DbModels;
 using MSSQLModel;
 using System.Collections.Generic;
 using System;
+using System.Web.Mvc;
 
 namespace SPDS.Models
 {
@@ -27,6 +28,24 @@ namespace SPDS.Models
         [Display(Name = "FoundDataSets")]
         //public List<string[]> _foundDataSets { get; set; }
         public List<Dataset> _foundDataSets { get; set; }
+
+        [Display(Name = "Energy Max")]
+        public bool _energyMax { get; set; }
+
+        [Display(Name = "Energy Min")]
+        public bool _energyMin { get; set; }
+
+        [Display(Name = "Author")]
+        public string _author { get; set; }
+
+        [Display(Name = "Year")]
+        public string _year { get; set; }
+
+        [Display(Name = "DOI")]
+        public int _doi { get; set; }
+
+        [Display (Name = "Methods")]
+        public string _methods { get; set; }
 
 
         private IDalRetrieve dal;
