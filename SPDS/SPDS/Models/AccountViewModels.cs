@@ -11,7 +11,7 @@ namespace SPDS.Models
     public class CreateAccountViewModel
     {
         private string _confirmPassback;
-        private string _pass;
+        private string _passback;
 
         [Required]
         [Display(Name = "Email")]
@@ -27,11 +27,11 @@ namespace SPDS.Models
         {
             get
             {
-                return _pass;
+                return _passback;
             }
             set
             {
-                _pass = Encryption.EncryptPassword(value);
+                _passback = Encryption.EncryptPassword(value);
             }
         }
 
@@ -71,18 +71,40 @@ namespace SPDS.Models
         /// <param name="institution">user institute</param>
         /// <param name="fName">user first name</param>
         /// <param name="lName">user last name</param>
-        public void Create(string email, string confirmEmail, string Pass, string confirmPass, string institution, string fName, string lName)
+        public bool Create(string email, string confirmEmail, string pass, string confirmPass, string institution, string fName, string lName)
         {
-            IDalUserManagement dalUserManage = new MSSQLModelDAL();
-
-            var user = new ParametersForUsers()
+            //validate user input
+            if (email != confirmEmail)
             {
-                Email = email,                 
-                Institute = institution,
-                FirstName = fName,
-                LastName = lName,
-            };
-            Permission perm = dalUserManage.GetPermByAccessLevel(AccessLevel.Submitter);
+                //user email doesn't match
+                return false;
+            }
+
+            if (pass != confirmPass)
+            {
+                //user pass doesn't match
+                return false;
+            }
+            try
+            {
+                IDalUserManagement dalUserManage = new MSSQLModelDAL();
+                User user = new User()
+                {
+                    Email = email,
+                    FirstName = fName,
+                    LastName = lName,
+                    Institute = institution,
+                    Password = pass
+                };
+                Permission perm = dalUserManage.GetPermByAccessLevel(AccessLevel.Submitter);
+                dalUserManage.InsertUser(user, perm);
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+                
+                return false;
+            }
         }
     }
 
@@ -106,18 +128,20 @@ namespace SPDS.Models
         {
             IDalUserManagement dalUserManage = new MSSQLModelDAL();
 
-            List<User> user = dalUserManage.GetUsers(new ParametersForUsers()
-            {Email = _pass}); 
+            List<User> users = dalUserManage.GetUsers(new ParametersForUsers()
+            {Email = _email});
+            User user = users.Find(x => x.Email == _email);
+            String passback = Encryption.EncryptPassword(_pass);
+            String passback2 = Encryption.EncryptPassword(user.Password);
 
-            //if (user.Password == _pass)
-            //{
+            if (passback == _pass)
+            {
                 return true;
-            //}
-
-            //else
-            //{
-            //    return false;
-            //}
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 

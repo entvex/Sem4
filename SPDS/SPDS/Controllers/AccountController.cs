@@ -32,20 +32,28 @@ namespace SPDS.Controllers
 
         [HttpPost]
         public ActionResult CreateAccount(Models.CreateAccountViewModel caVM)
-        {          
-            if(ModelState.IsValid)
+        {
+            if (ModelState.IsValid)
             {
-                caVM.Create(caVM._Email,
+                if (caVM.Create(caVM._Email,
                     caVM._confirmEmail,
                     caVM._Pass,
                     caVM._confirmPass,
                     caVM._Institution,
                     caVM._FirstName,
-                    caVM._LastName);
-                FormsAuthentication.SetAuthCookie(caVM._Email, false);
-                return RedirectToAction("Index", "Home");
+                    caVM._LastName))
+                {
+                    FormsAuthentication.SetAuthCookie(caVM._Email, false);
+                    return RedirectToAction("View_Data", "Data");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Login Data is incorrect!");
+                }
+
             }
             return View(caVM);
+
         }
 
         [HttpGet]
