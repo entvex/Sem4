@@ -87,8 +87,8 @@ namespace SPDS.Controllers
                 Datacollection.projectile = model._projectile;
                 Datacollection.stateOfAggregation = model._stateOfAggregation;
                 Datacollection.targetMaterial = model._targetMaterial;
-                Datacollection.email = model._author;
-                //Datacollection.datapoints =;
+                Datacollection.email = User.Identity.Name;
+                Datacollection.datapoints = model._manualString;
 
 
 

@@ -85,8 +85,7 @@ namespace SPDS.Controllers
         [HttpPost]
         public void DatasetManuel(DatasetQuery d)
         {
-             _webmodel.SetDataset(d.datapoints, d.targetMaterial, d.projectile, d.format,
-                                  d.stateOfAggregation, d.doiNumber, d.email, d.method, d.comment);
+             _webmodel.SetDataset(d);
         }
 
         [HttpGet]
@@ -94,21 +93,5 @@ namespace SPDS.Controllers
         {
             return _webmodel.GetALlUsers();
         }
-    }
-
-
-
-    public struct DatasetQuery
-    {
-        public decimal price;
-        public DataPoint[] datapoints;
-        public string targetMaterial;
-        public string projectile;
-        public string format;
-        public string stateOfAggregation;
-        public string doiNumber;
-        public string email;
-        public string method;
-        public string comment;
     }
 }

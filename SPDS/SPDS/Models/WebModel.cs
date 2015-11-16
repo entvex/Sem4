@@ -4,6 +4,7 @@ using System.Linq;
 using MSSQLModel;
 using MSSQLModel.Exceptions;
 using SPDS.Models.DbModels;
+using FileHelpers;
 
 namespace SPDS.Models
 {
@@ -15,45 +16,67 @@ namespace SPDS.Models
         private readonly IDalRetrieve _dalRetrieve = new MSSQLModelDAL();
         private readonly IDalInsert _dalInsert = new MSSQLModelDAL();
         private readonly IDalUserManagement _dalUserManagement = new MSSQLModelDAL();
+        private FileHelperEngine<CSVData> engine = new FileHelperEngine<CSVData>();
 
         public User[] GetALlUsers()
         {
             return _dalUserManagement.GetUsers(new ParametersForUsers()).ToArray();
         }
 
-        public void SetDataset(DataPoint[] datapoints, string targetMaterial, string projectile, string format,
-                               string stateOfAggregation, string doiNumber, string email, string method, string comment)
+        public void SetDataset(DatasetQuery dataq)
         {
-            var tm = _dalRetrieve.GetTargetMaterialByName(targetMaterial);
+            dataq.format = "feVcm^2/atom";
+
+            //StreamReader stream = new StreamReader(dataq.datapoints.InputStream);
+            //string csv = stream.ReadToEnd();
+            var result = engine.ReadString(dataq.datapoints);
+
+            List<DataPoint> data = new List<DataPoint>();
+            DataPoint temp = new DataPoint();
+
+
+            foreach (var d in result)
+            {
+                temp.ConvertetData = d.ConvertetData;
+                temp.EqEnergy = d.EqEnergy;
+                temp.Error = d.Error;
+                temp.ProjectileCharge = d.ProjectileCharge;
+                temp.StoppingPower = d.StoppingPower;
+
+                data.Add(temp);
+            }
+
+
+            var tm = _dalRetrieve.GetTargetMaterialByName(dataq.targetMaterial);
             if (tm.Id == 0)
                 return;
-            var pjt = _dalRetrieve.GetProjectileByName(projectile);
+            var pjt = _dalRetrieve.GetProjectileByName(dataq.projectile);
             if (pjt.Id == 0)
                 return;
-            var fmt = _dalRetrieve.GetDataformatByNotation(format);
+            var fmt = _dalRetrieve.GetDataformatByNotation(dataq.format);
             if (fmt.Id == 0)
                 return;
-            var soa = _dalRetrieve.GetStateOfAggregationByForm(stateOfAggregation);
+            var soa = _dalRetrieve.GetStateOfAggregationByForm(dataq.stateOfAggregation);
             if (soa.Id == 0)
                 return;
-            var article = _dalRetrieve.GetArticleReferences(new ParametersForArticelreferences() { DOINumber = doiNumber });
+            var article = _dalRetrieve.GetArticleReferences(new ParametersForArticelreferences() { DOINumber = dataq.doiNumber });
             if (!article.Any())
                 return;
-            var md = _dalRetrieve.GetMethodByName(method);
+            var md = _dalRetrieve.GetMethodByName(dataq.method);
             if (md.Id == 0)
                 return;
 
             Revision revision = new Revision();
             revision.Date = DateTime.Now;
-            revision.Comment = comment;
+            revision.Comment = dataq.comment;
 
-            var users = _dalRetrieve.GetUsers(new ParametersForUsers() { Email = email });
+            var users = _dalRetrieve.GetUsers(new ParametersForUsers() { Email = dataq.email });
             if (!users.Any())
                 return;
 
             try
             {
-                _dalInsert.InsertDataset(datapoints.OfType<DataPoint>().ToList(), tm, pjt, fmt, fmt, revision, users[0], null, article[0], md, soa);
+                _dalInsert.InsertDataset(data, tm, pjt, fmt, fmt, revision, users[0], null, article[0], md, soa);
             }
             catch (DALInfoNotSpecifiedException e)
             {
@@ -77,7 +100,7 @@ namespace SPDS.Models
             parameters.TargetMaterialName = targetMaterialName;
 
             List<Dataset> datasets = _dalRetrieve.GetDatasets(parameters);
-            
+
             return datasets;
         }
 
@@ -146,4 +169,31 @@ namespace SPDS.Models
         }
 
     }
+}
+
+[DelimitedRecord(",")]
+public class CSVData
+{
+    public double ProjectileCharge;
+
+    public double EqEnergy;
+
+    public double StoppingPower;
+
+    public double ConvertetData;
+
+    public double Error;
+}
+
+public struct DatasetQuery
+{
+    public string datapoints;
+    public string targetMaterial;
+    public string projectile;
+    public string format;
+    public string stateOfAggregation;
+    public string doiNumber;
+    public string email;
+    public string method;
+    public string comment;
 }
