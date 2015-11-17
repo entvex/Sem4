@@ -83,6 +83,11 @@
                                     Text = "Rutherford Backscattering",
                                     Value = "Rutherford Backscattering"
                                 });
+                                methods.Add(new SelectListItem
+                                {
+                                    Text = "All",
+                                    Value = "All"
+                                });
                             }
                             @Html.DropDownListFor(m => m._methods, methods, new { @class = "Methods" })
                         </fieldset>
