@@ -14,15 +14,24 @@ namespace SPDS.Models
         private string _passback;
 
         [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         [Display(Name = "Email")]
         public string _Email { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        [Compare("_Email",ErrorMessage = "Email does not match")]
         [Display(Name = "Email")]
         public string _confirmEmail { get; set; }
 
         [Required]
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
+        [MinLength(8,ErrorMessage = "Password must be at least 8 characters long")]
+        [MaxLength(19, ErrorMessage = "Password must be under characters long")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage ="Password must contains at least: one upper case letter, one lower case letter and one digit")]
         public string _Pass
         {
             get
@@ -36,6 +45,9 @@ namespace SPDS.Models
         }
 
         [Required]
+        [Compare("_Pass",ErrorMessage ="Passwords does not match")]
+        [DataType(DataType.Password)]
+        [MinLength(8)]
         [Display(Name = "Password")]
         public string _confirmPass
         {
@@ -73,18 +85,7 @@ namespace SPDS.Models
         /// <param name="lName">user last name</param>
         public bool Create(string email, string confirmEmail, string pass, string confirmPass, string institution, string fName, string lName)
         {
-            //validate user input
-            if (email != confirmEmail)
-            {
-                //user email doesn't match
-                return false;
-            }
-
-            if (pass != confirmPass)
-            {
-                //user pass doesn't match
-                return false;
-            }
+           
             try
             {
                 IDalUserManagement dalUserManage = new MSSQLModelDAL();
@@ -110,13 +111,25 @@ namespace SPDS.Models
 
     public class LoginViewModel
     {
+        private string _passback;
+
         [Required]
         [Display(Name = "Email")]
         public string _Email { get; set; }
 
         [Required]
         [Display(Name = "Password")]
-        public string _Pass { get; set; }
+        public string _Pass
+        {
+            get
+            {
+                return _passback;
+            }
+            set
+            {
+                _passback = Encryption.EncryptPassword(value);
+            }
+        }
 
         /// <summary>
         /// Method Logs user into application if validated succesfully
@@ -124,23 +137,38 @@ namespace SPDS.Models
         /// <param name="_email">User submitted email</param>
         /// <param name="_pass">User submitted password</param>
         /// <returns></returns>
-        public bool Login(string _email, string _pass)
+        public LoginReturn Login(string _email, string _pass)
         {
-            IDalUserManagement dalUserManage = new MSSQLModelDAL();
+            LoginReturn result = new LoginReturn();
 
-            List<User> users = dalUserManage.GetUsers(new ParametersForUsers()
-            {Email = _email});
-            User user = users.Find(x => x.Email == _email);
-            String passback = Encryption.EncryptPassword(_pass);
-            String passback2 = Encryption.EncryptPassword(user.Password);
-
-            if (passback == _pass)
+            try
             {
-                return true;
+
+                IDalUserManagement dalUserManage = new MSSQLModelDAL();
+
+                List<User> users = dalUserManage.GetUsers(new ParametersForUsers()
+                { Email = _email });
+                User user = users.Find(x => x.Email == _email);
+
+
+                if (_pass == user.Password)
+                {
+                    result.status = true;
+                    result.message = "";
+                    return result;
+                }
+                else
+                {
+                    result.status = false;
+                    result.message = "Password is incorrect!";
+                    return result;
+                }
             }
-            else
+            catch(NullReferenceException e)
             {
-                return false;
+                result.status = false;
+                result.message = String.Format("No user with email: {0} found",_email);
+                return result;
             }
         }
     }
@@ -170,5 +198,13 @@ namespace SPDS.Models
         [Required]
         [Display(Name = "Last Name")]
         public string _newLastName { get; set; }
+    }
+    public class LoginReturn
+    {
+        public bool status
+        {
+            get; set;
+        }
+        public string message {get; set;}
     }
 }

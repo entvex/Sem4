@@ -18,7 +18,7 @@ namespace SPDS.Controllers
         }
 
 
-        [Authorize(Roles = "3,1")]
+        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
         [HttpGet]
         public ActionResult ProfilePage()
         {
@@ -63,22 +63,25 @@ namespace SPDS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Models.LoginViewModel LVM)
+        public ActionResult Login(Models.LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (LVM.Login(LVM._Email, LVM._Pass))
+                LoginReturn result = model.Login(model._Email, model._Pass);
+
+                if (result.status)
                 {
-                    FormsAuthentication.SetAuthCookie(LVM._Email, false);
+                    FormsAuthentication.SetAuthCookie(model._Email, false);
                     return RedirectToAction("View_Data", "Data");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Login Data is incorrect!");
+                    ViewBag.Message = result.message;
                 }
 
             }
-            return View(LVM);
+            return View(model);
         }
 
         public ActionResult LogOut()
