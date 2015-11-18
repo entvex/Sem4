@@ -4,6 +4,7 @@ using SPDS.Models.DbModels;
 using MSSQLModel;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SPDS.Models
@@ -44,11 +45,12 @@ namespace SPDS.Models
         [Display(Name = "DOI")]
         public int _doi { get; set; }
 
-        [Display (Name = "Methods")]
+        [Display(Name = "Methods")]
         public string _methods { get; set; }
 
 
         private IDalRetrieve dal;
+
         /// <summary>
         /// The method shall return the targetmaterial witch is equal to the searched request
         /// The method shall handle any name, mass etc. and return the propper data
@@ -56,144 +58,135 @@ namespace SPDS.Models
         /// <returns></returns>
         public void Search(string targetName)
         {
-            try
+            dal = new MSSQLModelDAL();
+
+            //retrieve datasets with desired targetmaterial
+            ParametersForDataset parameters = new ParametersForDataset() {TargetMaterialName = targetName};
+            var foundData = dal.GetDatasets(parameters);
+
+            if (!foundData.Any())
             {
-                dal = new MSSQLModelDAL();
+                new Dataset();
+            }
 
-                //retrieve datasets with desired targetmaterial
-                ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = targetName };
-                var foundData = dal.GetDatasets(parameters);
-
-
-                foreach (var dataSet in foundData)
+            foreach (var dataSet in foundData)
+            {
+                if (dataSet.TargetMaterial == null)
                 {
-                    if (dataSet.Method == null)
-                    {
-                        dataSet.Method = new Method();
-                        dataSet.Method.Name = "";
-                    }
-
-
-                    var projectileList = dal.GetallProjectiles();
-
-                    if (projectileList == null)
-                    {
-                        //No data in dataset
-
-                    }
-                    var physState = dal.GetAllStateOfAggregation();
-
-                    if (physState == null)
-                    {
-                        //No data in dataset
-                    }
+                    dataSet.TargetMaterial = new TargetMaterial();
+                    dataSet.TargetMaterial.Name = "";
                 }
 
-                _foundDataSets = foundData;
+                if (dataSet.StateOfAggregation == null)
+                {
+                    dataSet.StateOfAggregation = new StateOfAggregation();
+                    dataSet.StateOfAggregation.Form = "";
+                }
 
-            }
-            catch (NullReferenceException e)
-            {
+                if (dataSet.Projectile == null)
+                {
+                    dataSet.Projectile = new Projectile();
+                    dataSet.Projectile.Name = "";
+                }
+
+                if (dataSet.Method == null)
+                {
+                    dataSet.Method = new Method();
+                    dataSet.Method.Name = "";
+                }
             }
 
+            _foundDataSets = foundData;
         }
 
         public void Search(string projectileName, int dummy)
         {
-            try
+            dal = new MSSQLModelDAL();
+
+            //retrieve datasets with desired targetmaterial
+            ParametersForDataset parameters = new ParametersForDataset() {ProjectileName = projectileName};
+            var foundData = dal.GetDatasets(parameters);
+
+            if (!foundData.Any())
             {
-                dal = new MSSQLModelDAL();
+                new Dataset();
+            }
 
-                //retrieve datasets with desired targetmaterial
-                ParametersForDataset parameters = new ParametersForDataset() { ProjectileName = projectileName  };
-                var foundData = dal.GetDatasets(parameters);
-
-                //Retrieve Projectile name
-                var projectile = dal.GetProjectileByName(projectileName);
-
-                var targetList = dal.GetAllTargetMaterials();
-                var physState = dal.GetAllStateOfAggregation();
-
-                foreach (var VAR in foundData)
+            foreach (var dataSet in foundData)
+            {
+                if (dataSet.TargetMaterial == null)
                 {
-                    VAR.Projectile = projectile;
-
-                    foreach (var VARIABLE in targetList)
-                    {
-                        if (VARIABLE.Id == VAR.TargetMaterial_Id)
-                        {
-                            VAR.TargetMaterial = VARIABLE;
-                        }
-                    }
-                    if (VAR.StateOfAggregation_Id == null)
-                    {
-                        VAR.StateOfAggregation = new StateOfAggregation() { Form = "NA" };
-                    }
-                    else
-                    {
-                        foreach (var physS in physState)
-                        {
-                            if (VAR.StateOfAggregation_Id == physS.Id)
-                            {
-                                VAR.StateOfAggregation = physS;
-                            }
-                        }
-                    }
+                    dataSet.TargetMaterial = new TargetMaterial();
+                    dataSet.TargetMaterial.Name = "";
                 }
 
+                if (dataSet.StateOfAggregation == null)
+                {
+                    dataSet.StateOfAggregation = new StateOfAggregation();
+                    dataSet.StateOfAggregation.Form = "";
+                }
 
-                _foundDataSets = foundData;
+                if (dataSet.Projectile == null)
+                {
+                    dataSet.Projectile = new Projectile();
+                    dataSet.Projectile.Name = "";
+                }
 
+                if (dataSet.Method == null)
+                {
+                    dataSet.Method = new Method();
+                    dataSet.Method.Name = "";
+                }
             }
-            catch (NullReferenceException e)
-            {
-            }
+            _foundDataSets = foundData;
 
         }
 
         public void Search(string projectileName, string targetMaterial)
         {
-            try
+
+            dal = new MSSQLModelDAL();
+
+            //retrieve datasets with desired targetmaterial
+            ParametersForDataset parameters = new ParametersForDataset()
             {
-                dal = new MSSQLModelDAL();
+                ProjectileName = projectileName,
+                TargetMaterialName = targetMaterial
+            };
+            var foundData = dal.GetDatasets(parameters);
 
-                //retrieve datasets with desired targetmaterial
-                ParametersForDataset parameters = new ParametersForDataset() { ProjectileName = projectileName, TargetMaterialName = targetMaterial };
-                var foundData = dal.GetDatasets(parameters);
+            if (!foundData.Any())
+            {
+                new Dataset();
+            }
 
-                //Retrieve Projectile and targetmaterial 
-                var projectile = dal.GetProjectileByName(projectileName);
-                var target = dal.GetTargetMaterialByName(targetMaterial);
-                var physState = dal.GetAllStateOfAggregation(); 
-
-                foreach (var VAR in foundData)
+            foreach (var dataSet in foundData)
+            {
+                if (dataSet.TargetMaterial == null)
                 {
-                    VAR.Projectile = projectile;
-                    VAR.TargetMaterial = target;
-                    if (VAR.StateOfAggregation_Id == null)
-                    {
-                        VAR.StateOfAggregation = new StateOfAggregation() { Form = "NA" };
-                    }
-                    else
-                    {
-                        foreach (var physS in physState)
-                        {
-                            if (VAR.StateOfAggregation_Id == physS.Id)
-                            {
-                                VAR.StateOfAggregation = physS;
-                            }
-                        }
-                    }
+                    dataSet.TargetMaterial = new TargetMaterial();
+                    dataSet.TargetMaterial.Name = "";
                 }
 
+                if (dataSet.StateOfAggregation == null)
+                {
+                    dataSet.StateOfAggregation = new StateOfAggregation();
+                    dataSet.StateOfAggregation.Form = "";
+                }
 
-                _foundDataSets = foundData;
+                if (dataSet.Projectile == null)
+                {
+                    dataSet.Projectile = new Projectile();
+                    dataSet.Projectile.Name = "";
+                }
+
+                if (dataSet.Method == null)
+                {
+                    dataSet.Method = new Method();
+                    dataSet.Method.Name = "";
+                }
 
             }
-            catch (NullReferenceException e)
-            {
-            }
-
         }
     }
 }
