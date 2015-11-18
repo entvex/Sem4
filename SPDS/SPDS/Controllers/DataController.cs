@@ -24,39 +24,44 @@ namespace SPDS.Controllers
         [HttpPost]
         public ActionResult View_Data(ViewDataViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                //if both target material and projectile are invalid
-                if((model._targetMaterial == null || model._targetMaterial == "") &&
-                       (model._projectile == null || model._projectile == ""))
+                if (string.IsNullOrEmpty(model._targetMaterial) &&
+                    string.IsNullOrEmpty(model._projectile))
                 {
-                    //invalid search - error
+                    //invalid search - create empty list of datasets
+                    model._foundDataSets = new List<Dataset>();
                 }
+
                 //invalid projectile entered - valid target material
-                else if ((!(model._targetMaterial == null) || !(model._targetMaterial == "")) &&
-                                (model._projectile == null || model._projectile == ""))
+                if ((model._targetMaterial != null || model._targetMaterial != "") &&
+                    string.IsNullOrEmpty(model._projectile))
                 {
                     //search for target material
                     model.Search(model._targetMaterial);
                 }
                 //invalid targetmaterial - valid projectile
                 else if (string.IsNullOrEmpty(model._targetMaterial) &&
-                               (model._projectile != null || model._projectile != ""))
+                         (model._projectile != null || model._projectile != ""))
                 {
                     //search for projectile
-                    model.Search(model._projectile,0);
+                    model.Search(model._projectile, 0);
                 }
                 //both targetmaterial and projectile are valid
-                else if((model._targetMaterial != null || model._targetMaterial != "") &&
-                      (model._projectile != null || model._projectile != ""))
+                else if ((model._targetMaterial != null || model._targetMaterial != "") &&
+                         (model._projectile != null || model._projectile != ""))
                 {
                     //search for both target material and projectile
                     model.Search(model._projectile, model._targetMaterial);
                 }
 
+                return View(model);
+            }
+            else
+            {
+                return View();
             }
 
-            return View(model);
         }
 
         [Authorize(Roles = "3")]
