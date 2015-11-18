@@ -61,29 +61,18 @@ namespace SPDS.Models
                 dal = new MSSQLModelDAL();
 
                 //retrieve datasets with desired targetmaterial
-                
                 ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = targetName };
                 var foundData = dal.GetDatasets(parameters);
-               
-                //Retrieve targetmaterial object
-                var target = dal.GetTargetMaterialByName(targetName);
-                
-                if (target != null)
+
+
+                foreach (var dataSet in foundData)
                 {
-
-                    //var methods = dal.GetMethodByName(methodname);
-
-                    //if (methods == null)
+                    if (dataSet.Method == null)
                     {
-                        //No data in dataset
+                        dataSet.Method = new Method();
+                        dataSet.Method.Name = "";
                     }
 
-                    var articelRef = dal.GetAllArticleReferenceses();
-
-                    if (articelRef == null)
-                    {
-                        //No data in dataset
-                    }
 
                     var projectileList = dal.GetallProjectiles();
 

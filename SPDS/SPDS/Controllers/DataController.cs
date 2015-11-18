@@ -40,15 +40,15 @@ namespace SPDS.Controllers
                     model.Search(model._targetMaterial);
                 }
                 //invalid targetmaterial - valid projectile
-                else if ((model._targetMaterial == null || model._targetMaterial == "") &&
-                               (!(model._projectile == null) || !(model._projectile == "")))
+                else if (string.IsNullOrEmpty(model._targetMaterial) &&
+                               (model._projectile != null || model._projectile != ""))
                 {
                     //search for projectile
                     model.Search(model._projectile,0);
                 }
                 //both targetmaterial and projectile are valid
-                else if((!(model._targetMaterial == null) || !(model._targetMaterial == "")) &&
-                      (!(model._projectile == null) || !(model._projectile == "")))
+                else if((model._targetMaterial != null || model._targetMaterial != "") &&
+                      (model._projectile != null || model._projectile != ""))
                 {
                     //search for both target material and projectile
                     model.Search(model._projectile, model._targetMaterial);
