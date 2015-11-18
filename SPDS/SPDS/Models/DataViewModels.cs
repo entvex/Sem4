@@ -43,7 +43,7 @@ namespace SPDS.Models
         public string _year { get; set; }
 
         [Display(Name = "DOI")]
-        public int _doi { get; set; }
+        public string _doi { get; set; }
 
         [Display(Name = "Methods")]
         public string _methods { get; set; }

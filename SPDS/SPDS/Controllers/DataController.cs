@@ -24,6 +24,8 @@ namespace SPDS.Controllers
         [HttpPost]
         public ActionResult View_Data(ViewDataViewModel model)
         {
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
+
             if (ModelState.IsValid)
             {
                 if (string.IsNullOrEmpty(model._targetMaterial) &&
