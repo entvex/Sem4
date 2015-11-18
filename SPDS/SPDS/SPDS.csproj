@@ -138,9 +138,7 @@
     <Content Include="Scripts\.gitignore" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Chart.js" />
-    <Content Include="Scripts\Chart.min.js" />
-    <Content Include="Scripts\chartingclass.js" />
+    <Content Include="Scripts\exporting.js" />
     <Content Include="Scripts\graphscript\.gitignore" />
     <Content Include="Scripts\graphscript\Chart.js" />
     <Content Include="Scripts\graphscript\Chart.min.js" />
@@ -156,10 +154,12 @@
     <Content Include="Scripts\gulpfile.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\highchart.js" />
+    <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
