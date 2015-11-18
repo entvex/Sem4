@@ -137,14 +137,17 @@
             </thead>
 
              Html.Raw("<tbody>");
-             foreach (var i in Model._foundDataSets)
+             foreach (var item in Model._foundDataSets)
              {
                         <tr>
-                            <td>@i.TargetMaterial.Name</td>
-                            <td>@i.Projectile.Name</td>
+                            <td>@item.TargetMaterial.Name</td>
+                            <td>@item.Projectile.Name</td>
+                            <td>@item.StateOfAggregation.Form</td>
+                            <td>@item.Method.Name</td>
+                            <td>@item.ArticleReferences.Firstname</td> @*Måske year i stedet for?*@
                             <td></td>
 
-                                <td>@i.StateOfAggregation.Form</td>
+                                
 
                         </tr>
              }

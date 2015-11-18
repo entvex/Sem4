@@ -61,7 +61,6 @@ namespace SPDS.Models
                 dal = new MSSQLModelDAL();
 
                 //retrieve datasets with desired targetmaterial
-
                 
                 ParametersForDataset parameters = new ParametersForDataset() { TargetMaterialName = targetName };
                 var foundData = dal.GetDatasets(parameters);
@@ -69,36 +68,37 @@ namespace SPDS.Models
                 //Retrieve targetmaterial object
                 var target = dal.GetTargetMaterialByName(targetName);
                 
-                var projectileList = dal.GetallProjectiles();
-                var physState = dal.GetAllStateOfAggregation();
-
-                foreach (var VAR in foundData)
+                if (target != null)
                 {
-                    VAR.TargetMaterial = target;
 
-                    foreach (var VARIABLE in projectileList)
+                    //var methods = dal.GetMethodByName(methodname);
+
+                    //if (methods == null)
                     {
-                        if (VARIABLE.Id == VAR.Projectile_Id)
-                        {
-                            VAR.Projectile = VARIABLE;
-                        }
+                        //No data in dataset
                     }
-                    if (VAR.StateOfAggregation_Id == null)
+
+                    var articelRef = dal.GetAllArticleReferenceses();
+
+                    if (articelRef == null)
                     {
-                        VAR.StateOfAggregation = new StateOfAggregation() { Form = "NA" };
+                        //No data in dataset
                     }
-                    else
+
+                    var projectileList = dal.GetallProjectiles();
+
+                    if (projectileList == null)
                     {
-                        foreach (var physS in physState)
-                        {
-                            if (VAR.StateOfAggregation_Id == physS.Id)
-                            {
-                                VAR.StateOfAggregation = physS;
-                            }
-                        }
+                        //No data in dataset
+
+                    }
+                    var physState = dal.GetAllStateOfAggregation();
+
+                    if (physState == null)
+                    {
+                        //No data in dataset
                     }
                 }
-
 
                 _foundDataSets = foundData;
 
