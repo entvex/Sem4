@@ -11,6 +11,7 @@
     margin: auto;
 }
 
+
  .login .heading {
         text-align: center;
         margin-top: 1%;
@@ -36,7 +37,7 @@
     text-decoration: underline;
 }
 
-.inputStyle {
+.login .inputStyle {
     border-bottom: 1px solid rgba(0,0,0,.2);
     border-top: 1px solid rgba(0,0,0,.2);
     border-left: none;
@@ -52,14 +53,14 @@
 
 }
 
-.inputStyle:focus {
+.login .inputStyle:focus {
     border-bottom: 1px solid rgba(0,0,0,.8);
     border-top: 1px solid rgba(0,0,0,.8);
     border-left: none;
     border-right: none;
     
 }
-input:focus {
+.login input:focus {
     outline: none;   
 }
 

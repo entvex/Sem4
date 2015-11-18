@@ -11,7 +11,7 @@
 
             @using (Html.BeginForm())
             {
-                @Html.ValidationSummary(true, "Login failed. Check your login credentials.")
+                @ViewBag.Message
 
                 @Html.TextBoxFor(model => model._Email, new { autofocus = "", @class = "inputStyle", placeholder = "Enter Email" })
                 @Html.ValidationMessageFor(model => model._Email)

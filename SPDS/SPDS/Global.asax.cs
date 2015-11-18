@@ -39,21 +39,18 @@ namespace SPDS
                         string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                         string roles = string.Empty;
            
-                        //extract role from DBcontext
 
-                        //retrieve user with email 'username'
+                        //retrieve user with email 'username' and extrack role as string
 
-                        IDalRetrieve dal = new MSSQLModelDAL();
-                        List<User> user = dal.GetUsers(new ParametersForUsers()
+                        IDalUserManagement dal = new MSSQLModelDAL();
+                        List<User> users = dal.GetUsers(new ParametersForUsers()
                         {
                             Email = username
                         });
-
-                            
-                         /*   roles = user.First().PermissionPermissionId.ToString();*/
-
-                        roles = "3";
-                        
+                        if(users.Any())
+                        {
+                            roles = users.First().Permission.Description;
+                        }
 
                             //Set principal 
 
