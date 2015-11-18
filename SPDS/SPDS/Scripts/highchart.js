@@ -1,21 +1,22 @@
+
 function graph() {
 
 }
 
-graph.prototype.drawGraph = function (graphdata, containername) {
-    $(function () {
-        $(containername).highcharts({
-
-            chart: {
-                width: 900,
-                height: 600,
-                spacingRight: 20
+graph.prototype.drawGraph = function (graphdata, containername, title, comment) {
+    var chart = new Highcharts.Chart({
+              chart: {
+                  width: 800,
+                  height: 450,
+                  spacingRight: 20,
+                  plotBackgroundColor: null,
+                renderTo: containername
             },
             title: {
-                text: 'Atom# -> Atom#'
+                text: title
             },
             subtitle: {
-                text: '#Comment or something here#'
+                text: comment
             },
 
             xAxis: {
@@ -34,6 +35,7 @@ graph.prototype.drawGraph = function (graphdata, containername) {
                 min: 1,
                 tickInterval: 1,
                 minorTickInterval: 0.1,
+                gridLineWidth: 1,
                 title: {
                     text: 'Power (kVm)'
                 }
@@ -55,23 +57,22 @@ graph.prototype.drawGraph = function (graphdata, containername) {
             }]
 
         });
-    });
 }
 
-graph.prototype.drawGraphDoublePlots = function (graphdata, graphdata2, containername) {
-    $(function () {
-        $(containername).highcharts({
+graph.prototype.drawGraphDoublePlots = function (graphdata, graphdata2, containername, title, comment) {
+    var chart = new Highcharts.Chart({
 
             chart: {
-                width: 900,
-                height: 600,
-                spacingRight: 20
+                width: 800,
+                height: 450,
+                spacingRight: 20,
+                renderTo: containername
             },
             title: {
-                text: 'Atom# -> Atom#'
+                text: title
             },
             subtitle: {
-                text: '#Comment or something here#'
+                text: comment
             },
 
             xAxis: {
@@ -115,5 +116,5 @@ graph.prototype.drawGraphDoublePlots = function (graphdata, graphdata2, containe
             }]
 
         });
-    });
+
 }
