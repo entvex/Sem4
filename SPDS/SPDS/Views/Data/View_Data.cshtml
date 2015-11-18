@@ -118,43 +118,53 @@
     @*This table is for serach functions returned data*@
     @*The table needs a connection to the controller*@
     <table id="searchResultTable"class="DataSetTable">
-         @if (Model != null)
-         {
+        @if (Model != null)
+        {
             <thead>
-                <tr>
-                    <th>Target Material</th>
-                    <th>Projectile Material</th>
-                    <th>Projectile type</th>
-                    <th>Physical State</th>
-                    <th>Minimum Energy</th>
-                    <th>Maximum Energy</th>
-                    <th>Method</th>
-                    <th>First Author</th>
-                    <th>Year</th>
-                    <th>View All Metadata</th>
-                    <th>View on Graph</th>
-                </tr>
+            <tr>
+                <th>Target Material</th>
+                <th>Projectile Material</th>
+                <th>Projectile type</th>
+                <th>Physical State</th>
+                <th>Minimum Energy</th>
+                <th>Maximum Energy</th>
+                <th>Method</th>
+                <th>First Author</th>
+                <th>Year</th>
+                <th>View All Metadata</th>
+                <th>View on Graph</th>
+            </tr>
 
             </thead>
 
-             Html.Raw("<tbody>");
-             foreach (var item in Model._foundDataSets)
-             {
-                        <tr>
-                            <td>@item.TargetMaterial.Name</td>
-                            <td>@item.Projectile.Name</td>
-                            <td>@item.StateOfAggregation.Form</td>
-                            <td>@item.Method.Name</td>
-                            <td>@item.ArticleReferences.Firstname</td> @*Måske year i stedet for?*@
-                            <td></td>
+            Html.Raw("<tbody>");
+            foreach (var item in Model._foundDataSets)
+            {
+                <tr>
+                    <td>@item.TargetMaterial.Name</td>
+                    <td>@item.Projectile.Name</td>
+                    <td>@item.StateOfAggregation.Form</td>
+                    <td>@item.Method.Name</td>
+                    <td>@item.ArticleReferences.Firstname</td> @*Måske year i stedet for?*@
+                    <td></td>
 
-                                
 
-                        </tr>
-             }
-             Html.Raw("</tbody>");
 
-         }
+                </tr>
+            }
+            Html.Raw("</tbody>");
+
+        }
     </table>
-   
+
+    <script>
+        $(document).ready(function() {
+            $('searchResultTable').DataTable({
+                "scrollY": "200px",
+                "scrollCollapse": true,
+                "paging": false
+            });
+        });
+    </script>
+
 </div>
