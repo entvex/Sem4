@@ -1,6 +1,10 @@
-﻿
+﻿@using SPDS.Models.DbModels
+
 @{
+
     ViewBag.Title = "Administrator";
+    List<User> users = (List<User>) ViewBag.users;
+
 }
 
 <div class="content">
@@ -27,7 +31,7 @@
     </style>
 
     <div class="table">
-        <script>
+        <script type="text/javascript">
 
             function DeleteRowFunction(btndel) {
 
@@ -38,12 +42,14 @@
                 } else {
                     return false;
                 }
+
             }
 
-            var data = [["Nils Bassler", "Department of Physics and Astronomy, Aarhus", "bassler@phys.au.dk", "Reviewer"],
-                        ["Helmut Paul", "Institute of Experimental Physics, Linz", "paul@iaea.org", "Reviewer"],
-                        ["Poul Ejner", "School of Engineering, Aarhus", "per@ase.au.dk", "Submitter"],
-                        ["David Jensen", "School of Engineering, Aarhus", "entvex@gmail.com", "Submitter"]];
+            var data = [];
+            @foreach (var user in users)
+            {
+                @:data.push(["@user.FirstName", "@user.Institute", "@user.Email", "@user.Permission.Description"]);
+            }
 
             var len = data[0].length;
             var hei = data.length;
@@ -52,18 +58,21 @@
 
             document.write("<tr>" +
                 "<td>" + "User" + "</td>" +
-                 "<td>" + "Organization" + "</td>" +
+                "<td>" + "Organization" + "</td>" +
                 "<td>" + "E-mail" + "</td>" +
                 "<td>" + "User role in system" + "</td>" +
-                "<td>" + "Actions" + "</td>" +
+                "<td colspan='3' >" + "Actions" + "</td>" +
                 "</tr>");
 
-            for (i = 0; i < hei ; i++) {
+            for (i = 0; i < hei; i++) {
                 document.write("<tr>");
-                for (j = 0; j < len; j++) {
+                for (j = 0; j < len; j++)
+                {
                     document.write("<td>" + data[i][j] + "</td>");
                 }
                 document.write("<td><input type=\"button\" value=\"Delete User\" onclick=\"DeleteRowFunction(this);\"></td>");
+                document.write("<td><input type=\"button\" value=\"Promte\" onclick=\"DeleteRowFunction(this);\"></td>");
+                document.write("<td><input type=\"button\" value=\"Demote\" onclick=\"DeleteRowFunction(this);\"></td>");
                 document.write("</tr>");
             }
             document.write("</table>");
