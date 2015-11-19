@@ -10,7 +10,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MSSQLModel.Exceptions;
-using SPDS.Models.DbModels;
 
 namespace MSSQLModel
 {
@@ -273,13 +272,16 @@ namespace MSSQLModel
         {
             if (user.Id == 0)
                 return;
-            user.FirstName = user.Id.ToString();
+            user.FirstName = "DeletedUser" + user.Id.ToString();
             user.LastName = null;
             user.Institute = null;
             user.Password = Encryption.EncryptPassword(DateTime.Now.ToString());
             var perm = new Permission {Id = 1};
             user.Permission = perm;
             user.PermissionPermissionId = perm.Id;
+            user.Picture = null;
+            user.PhoneNumber = null;
+            user.Email = null;
             using (var db = new TSPDSContext())
             {
                 db.Entry(user).State = EntityState.Modified;
