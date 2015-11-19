@@ -12,17 +12,7 @@ namespace SPDS.Controllers
     /// </summary>
     public class WebController : ApiController
     {
-        private WebModel _webmodel;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="formatmodel"></param>
-        public WebController(WebModel formatmodel)
-        {
-            this._webmodel = formatmodel;
-        }
-
+        private WebModel _webmodel = new WebModel();
 
         /// <summary>
         /// 
@@ -92,6 +82,12 @@ namespace SPDS.Controllers
         public User[] GetAllUsers()
         {
             return _webmodel.GetALlUsers();
+        }
+
+        [HttpGet]
+        public string hello()
+        {
+            return "hello";
         }
     }
 }
