@@ -1,49 +1,20 @@
-﻿@using SPDS.Models.DbModels
+﻿@using SPDS.Models
+@using SPDS.Models.DbModels
 
 @{
-
     ViewBag.Title = "Administrator";
     List<User> users = (List<User>) ViewBag.users;
-
 }
 
 <div class="content">
+    <link rel="stylesheet" type="text/css" href="~/Content/Administrator.css">
+    <script src="~/Scripts/Administrator.js"></script>
+
     <h1>ADMINISTRATION</h1>
     <h3 align="center">Here you are able to administrate users in the system</h3>
-    <style>
-        table {
-            border-spacing: 0;
-            width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        table, td, th {
-            border: 1px solid black;
-            font-family: "Verdana";
-        }
-
-        th {
-            color: white;
-            background-color: black;
-            font-style: oblique;
-        }
-    </style>
 
     <div class="table">
-        <script type="text/javascript">
-
-            function DeleteRowFunction(btndel) {
-
-                var result = window.confirm("Are you sure?");
-
-                if (typeof (btndel) == "object" && result == true) {
-                    $(btndel).closest("tr").remove();
-                } else {
-                    return false;
-                }
-
-            }
+        <script type="text/javascript">            
 
             var data = [];
             @foreach (var user in users)
@@ -66,16 +37,16 @@
 
             for (i = 0; i < hei; i++) {
                 document.write("<tr>");
-                for (j = 0; j < len; j++)
-                {
+                for (j = 0; j < len; j++) {
                     document.write("<td>" + data[i][j] + "</td>");
                 }
                 document.write("<td><input type=\"button\" value=\"Delete User\" onclick=\"DeleteRowFunction(this);\"></td>");
-                document.write("<td><input type=\"button\" value=\"Promte\" onclick=\"DeleteRowFunction(this);\"></td>");
-                document.write("<td><input type=\"button\" value=\"Demote\" onclick=\"DeleteRowFunction(this);\"></td>");
+                document.write("<td><input type=\"button\" value=\"Promte\" onclick=\"Promote(this);\"></td>");
+                document.write("<td><input type=\"button\" value=\"Demote\" onclick=\"Demote(this);\"></td>");
                 document.write("</tr>");
             }
             document.write("</table>");
+
         </script>
     </div>
 </div>
