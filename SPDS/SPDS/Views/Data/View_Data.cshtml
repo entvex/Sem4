@@ -103,7 +103,7 @@
 		    <script>
 				var randomarray = [[1,2],[2,3],[3,6]];
 				var graf = new graph();
-				graf.drawGraph(randomarray,"container","random test","with a random comment Kappa");
+				graf.drawGraph(randomarray,"container","View SPDS data","Target Material: " + "Projectile: ");
 
 
             </script>
@@ -126,16 +126,31 @@
             <tr>
                 <th>Target Material</th>
                 <th>Projectile Material</th>
-                <th>Projectile type</th>
                 <th>Physical State</th>
-                <th>Minimum Energy</th>
-                <th>Maximum Energy</th>
+                <th>DOI Number</th>
+               @* <th>Minimum Energy</th> -- Missing implementation
+    <th>Maximum Energy</th>*@
                 <th>Method</th>
                 <th>First Author</th>
                 <th>Year</th>
                 <th>View All Metadata</th>
                 <th>View on Graph</th>
             </tr>
+            <tfoot>
+                <tr>
+                    <th>Target Material</th>
+                    <th>Projectile Material</th>
+                    <th>Physical State</th>
+                    <th>DOI Number</th>
+                    @*<th>Minimum Energy</th> -- Missing implementation
+    <th>Maximum Energy</th>*@
+                    <th>Method</th>
+                    <th>First Author</th>
+                    <th>Year</th>
+                    <th>View All Metadata</th>
+                    <th>View on Graph</th>
+                </tr>
+            </tfoot>
 
             </thead>
 
@@ -146,27 +161,24 @@
                     <td>@item.TargetMaterial.Name</td>
                     <td>@item.Projectile.Name</td>
                     <td>@item.StateOfAggregation.Form</td>
+                    <td>@item.ArticleReferences.DOINumber</td>
+                    @*Implementation of Minimum Energy missing*@
+                    @*Implementation of Maximum Energy missing*@
                     <td>@item.Method.Name</td>
-                    <td>@item.ArticleReferences.Firstname</td> @*Måske year i stedet for?*@
-                    <td></td>
-
-
-
+                    <td>@item.ArticleReferences.Firstname</td>
+                    <td>@item.ArticleReferences.Year</td>
+                    <td>
+                        <button type="button" onclick="alert('@item.Projectile.Name, @item.TargetMaterial.Name')">Click Me!</button>
+                    </td>
+                    <td>
+                        <button type="button" onclick="alert('VIEW ON GRAPH')">Click Me!</button>
+                    </td>
+                    
                 </tr>
             }
             Html.Raw("</tbody>");
 
         }
     </table>
-
-    <script>
-        $(document).ready(function() {
-            $('searchResultTable').DataTable({
-                "scrollY": "200px",
-                "scrollCollapse": true,
-                "paging": false
-            });
-        });
-    </script>
 
 </div>

@@ -94,6 +94,14 @@ namespace SPDS.Models
                     dataSet.Method = new Method();
                     dataSet.Method.Name = "";
                 }
+
+                if (dataSet.ArticleReferences == null)
+                {
+                    dataSet.ArticleReferences = new ArticleReferences();
+                    dataSet.ArticleReferences.DOINumber = "";
+                    dataSet.ArticleReferences.Firstname = "";
+                    dataSet.ArticleReferences.Year = 0;
+                }
             }
 
             _foundDataSets = foundData;
@@ -136,6 +144,14 @@ namespace SPDS.Models
                 {
                     dataSet.Method = new Method();
                     dataSet.Method.Name = "";
+                }
+
+                if (dataSet.ArticleReferences == null)
+                {
+                    dataSet.ArticleReferences = new ArticleReferences();
+                    dataSet.ArticleReferences.DOINumber = "";
+                    dataSet.ArticleReferences.Firstname = "";
+                    dataSet.ArticleReferences.Year = 0;
                 }
             }
             _foundDataSets = foundData;
@@ -186,7 +202,16 @@ namespace SPDS.Models
                     dataSet.Method.Name = "";
                 }
 
+                if (dataSet.ArticleReferences == null)
+                {
+                    dataSet.ArticleReferences = new ArticleReferences();
+                    dataSet.ArticleReferences.DOINumber = "";
+                    dataSet.ArticleReferences.Firstname = "";
+                    dataSet.ArticleReferences.Year = 0;
+                }
+
             }
+            _foundDataSets = foundData;
         }
     }
 }
