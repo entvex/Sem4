@@ -15,20 +15,10 @@ namespace SPDS.Models
     {
         private readonly IDalRetrieve _dalRetrieve = new MSSQLModelDAL();
         private readonly IDalInsert _dalInsert = new MSSQLModelDAL();
-        private readonly IDalUserManagement _dalUserManagement = new MSSQLModelDAL();
         private FileHelperEngine<CSVData> engine = new FileHelperEngine<CSVData>();
-
-        public User[] GetALlUsers()
-        {
-            return _dalUserManagement.GetUsers(new ParametersForUsers()).ToArray();
-        }
 
         public void SetDataset(DatasetQuery dataq)
         {
-            dataq.format = "feVcm^2/atom";
-
-            //StreamReader stream = new StreamReader(dataq.datapoints.InputStream);
-            //string csv = stream.ReadToEnd();
             var result = engine.ReadString(dataq.datapoints);
 
             List<DataPoint> data = new List<DataPoint>();
@@ -64,7 +54,10 @@ namespace SPDS.Models
                 return;
             var md = _dalRetrieve.GetMethodByName(dataq.method);
             if (md.Id == 0)
-                return;
+            {
+                _dalInsert.InsertMethod(new Method { Name = dataq.method });
+                md = _dalRetrieve.GetMethodByName(dataq.method);
+            }
 
             Revision revision = new Revision();
             revision.Date = DateTime.Now;
@@ -136,36 +129,21 @@ namespace SPDS.Models
         /// 
         /// </summary>
         /// <returns></returns>
-        public string[] GetProjectileNameList()
+        public Projectile[] GetProjectiles()
         {
             List<Projectile> projectiles = _dalRetrieve.GetallProjectiles();
-            string[] projectilelist = new string[projectiles.Count];
-            int i = 0;
 
-            foreach (var p in projectiles)
-            {
-                projectilelist[i] = p.Name;
-                ++i;
-            }
-            return projectilelist;
+            return projectiles.ToArray();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public string[] GetTargetMaterialNameList()
+        public TargetMaterial[] GetTargetMaterials()
         {
             List<TargetMaterial> targetMartials = _dalRetrieve.GetAllTargetMaterials();
-            string[] targetMartiallist = new string[targetMartials.Count];
-            int i = 0;
-
-            foreach (var p in targetMartials)
-            {
-                targetMartiallist[i] = p.Name;
-                ++i;
-            }
-            return targetMartiallist;
+            return targetMartials.ToArray();
         }
 
     }

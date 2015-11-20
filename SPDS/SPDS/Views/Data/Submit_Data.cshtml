@@ -15,89 +15,77 @@
     <div class="mainFill">Here you are able to submit data to the database</div>
 
     <div class="form-style" id="form-style">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div>
 
             </div>
-                <fieldset>
-                    <legend><span class="number">1</span> Data Information</legend>
-                    @Html.TextBoxFor(model => model._projectile, "", new { placeholder = "Projectile" })
-                    @Html.ValidationMessageFor(model => model._projectile)<br />
-                    @Html.TextBoxFor(model => model._targetMaterial, "", new { placeholder = "Target Material", Required = "required" })
-                    @Html.ValidationMessageFor(model => model._targetMaterial)<br/>
-                    @{
-                        List<SelectListItem> typelist = new List<SelectListItem>();
+            <fieldset>
+                <legend><span class="number">1</span> Data Information</legend>
+                @Html.TextBoxFor(model => model._projectile, "", new { placeholder = "Projectile" })
+                @Html.ValidationMessageFor(model => model._projectile)<br />
+                @Html.TextBoxFor(model => model._targetMaterial, "", new { placeholder = "Target Material", Required = "required" })
+                @Html.ValidationMessageFor(model => model._targetMaterial)<br />
+                @{
+                    List<SelectListItem> typelist = new List<SelectListItem>();
 
-                        typelist.Add(new SelectListItem() {Value = "gas", Text = "gas"});
-                        typelist.Add(new SelectListItem() { Value = "Condence", Text = "Condence" });
-                        }
-                    @Html.DropDownListFor(model => model._stateOfAggregation, typelist ,1)
-                    State of Aggregation
-                    <br/>
-                    
-                    @{
-                        List<SelectListItem> methodlist = new List<SelectListItem>();
+                    typelist.Add(new SelectListItem() { Value = "g", Text = "Gas" });
+                    typelist.Add(new SelectListItem() { Value = "S", Text = "Condence" });
+                }
+                @Html.DropDownListFor(model => model._stateOfAggregation, typelist, 1)
+                State of Matter
+                <br />
+                @{
+                    List<SelectListItem> methodlist = new List<SelectListItem>();
 
-                        methodlist.Add(new SelectListItem() { Value = "Transmission", Text = "Transmission" });
-                        methodlist.Add(new SelectListItem() { Value = "Reflection", Text = "Reflection" });
-                        methodlist.Add(new SelectListItem() { Value = "method3", Text = "method3" });
-                        methodlist.Add(new SelectListItem() { Value = "method3", Text = "method3" });
+                    methodlist.Add(new SelectListItem() { Value = "Tc", Text = "Tc" });
+                    methodlist.Add(new SelectListItem() { Value = "Tg", Text = "Tg" });
+                    methodlist.Add(new SelectListItem() { Value = "R", Text = "R" });
+                    methodlist.Add(new SelectListItem() { Value = "RB", Text = "RB" });
+                }
+                @Html.DropDownListFor(model => model._method, methodlist, 1)
+                Testing Method
+                <br />
+            </fieldset>
+            <fieldset>
+                <legend><span class="number">2</span> Data file</legend>
+                <!-- <input type="file" accept=".xml" name="upfile" id="upfile"> <br /><br />
+                 <input type="button" value="Validate XML" onclick="isxml()">
+                 <span> <div class="fileok" id="fileok"> XML file status:  </div></span><br /> -->
+                @Html.TextBoxFor(model => model._uploadedfile, new { type = "file", accept = ".csv" })
+                <br />
+                <br />
+                <div id="manual" onclick="manualInput()" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
+                <div id="Manualinputfield">
+                    @Html.TextAreaFor(model => model._manualString, new { placeholder = "Insert Data here seperated by ; and new lines" })
+                </div>
+                @Html.TextBoxFor(model => model._doiNumber, "", new { placeholder = "Enter Doi Number" })
+
+                @{
+                    List<SelectListItem> formatlist = new List<SelectListItem>();
+
+                    formatlist.Add(new SelectListItem() { Value = "feVcm^2/atom", Text = "feVcm^2/atom" });
+
+                }
+                @Html.DropDownListFor(model => model._format, formatlist, 1)
+                Format
+
+            </fieldset>
+            <fieldset>
+                <legend><span class="number">3</span>Comments</legend>
+                @Html.TextAreaFor(model => model._comment, new { placeholder = "Comment about your result here" })
+                <input type="submit" value="Submit Data" />
+            </fieldset>
+            <script>
+                document.getElementById("Manualinputfield").style.visibility = "hidden";
+            </script>
                     }
-                    @Html.DropDownListFor(model => model._method, methodlist, 1)
-                    Testing Method
-                    <br />
-                </fieldset>
-                <fieldset>
-                    <legend><span class="number">2</span> Data file</legend>
-                    <!-- <input type="file" accept=".xml" name="upfile" id="upfile"> <br /><br />
-                     <input type="button" value="Validate XML" onclick="isxml()">
-                     <span> <div class="fileok" id="fileok"> XML file status:  </div></span><br /> -->
-                    @Html.TextBoxFor(model => model._uploadedfile, new { type = "file", accept = ".csv" })
-                    <br />
-                    <br />
-                    <div id="manual" onclick="manualInput()" style="font-style:italic; font-size:small;">Rather Type In manually? CLICK HERE</div>
-                    <div id="Manualinputfield">
-                        @Html.TextAreaFor(model => model._manualString, new { placeholder = "Insert Data here seperated by ; and new lines" })
-                    </div><br/>
-                    @Html.TextBoxFor(model => model._author,"", new { placeholder = "Enter Authorname of Dataset" })
-                    <br/>
-                    @Html.TextBoxFor(model => model._doiNumber, "", new { placeholder = "Enter Doi Number" })
-
-                    @{
-                        List<SelectListItem> formatlist = new List<SelectListItem>();
-
-                        methodlist.Add(new SelectListItem() { Value = "feVcm^2/atom", Text = "feVcm^2/atom" });
-                        
-                    }
-                    @Html.DropDownListFor(model => model._format, methodlist, 1)
-                    Format
-
-
-
-
-
-                </fieldset>
-                <fieldset>
-                    <legend><span class="number">3</span>Comments</legend>
-                    @Html.TextAreaFor(model => model._comment, new { placeholder = "Comment about your result here" })
-                    <input type="submit" value="Submit Data" />
-
-
-                </fieldset>
-
-                <script>
-                    document.getElementById("Manualinputfield").style.visibility = "hidden";
-                </script>
-        }
     </div>
     <script>
 
         function manualInput() {
             document.getElementById("Manualinputfield").style.visibility = "visible";
             document.getElementById("manual").style.visibility = "hidden";
-
-
         }
     </script>
 </div>

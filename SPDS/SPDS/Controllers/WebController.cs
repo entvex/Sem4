@@ -20,18 +20,6 @@ namespace SPDS.Controllers
         /// <param name="d"></param>
         /// <returns></returns>
         [HttpGet]
-        public string[,] table(string projectile, string targetMarterial)
-        {
-            return _webmodel.GetDataPointsByDataSet(_webmodel.GetDatasetList(projectile, targetMarterial)[0]);
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="d"></param>
-        /// <returns></returns>
-        [HttpGet]
         public Dataset[] Datasets(string projectile, string targetMarterial)
         {
             return _webmodel.GetDatasetList(projectile, targetMarterial).ToArray();
@@ -53,9 +41,9 @@ namespace SPDS.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public string[] ProjectileNames()
+        public Projectile[] Projectiles()
         {
-            return _webmodel.GetProjectileNameList();
+            return _webmodel.GetProjectiles();
         }
 
         /// <summary>
@@ -63,31 +51,10 @@ namespace SPDS.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public string[] TargetMartialsNames()
+        public TargetMaterial[] TargetMaterials()
         {
-            return _webmodel.GetTargetMaterialNameList();
+            return _webmodel.GetTargetMaterials();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public void DatasetManuel(DatasetQuery d)
-        {
-             _webmodel.SetDataset(d);
-        }
-
-        [HttpGet]
-        public User[] GetAllUsers()
-        {
-            return _webmodel.GetALlUsers();
-        }
-
-        [HttpGet]
-        public string hello()
-        {
-            return "hello";
-        }
     }
 }
