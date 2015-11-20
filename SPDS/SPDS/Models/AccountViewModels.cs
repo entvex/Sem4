@@ -30,7 +30,7 @@ namespace SPDS.Models
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         [MinLength(8,ErrorMessage = "Password must be at least 8 characters long")]
-        [MaxLength(19, ErrorMessage = "Password must be under characters long")]
+        [MaxLength(19, ErrorMessage = "Password must be under 20 characters long")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage ="Password must contains at least: one upper case letter, one lower case letter and one digit")]
         public string _Pass
         {
@@ -45,9 +45,7 @@ namespace SPDS.Models
         }
 
         [Required]
-        [Compare("_Pass",ErrorMessage ="Passwords does not match")]
         [DataType(DataType.Password)]
-        [MinLength(8)]
         [Display(Name = "Password")]
         public string _confirmPass
         {
@@ -85,10 +83,24 @@ namespace SPDS.Models
         /// <param name="lName">user last name</param>
         public bool Create(string email, string confirmEmail, string pass, string confirmPass, string institution, string fName, string lName)
         {
-           
+
+            if (_confirmPass != _Pass)
+            {
+                return false;
+            }
+            
             try
             {
                 IDalUserManagement dalUserManage = new MSSQLModelDAL();
+
+                ParametersForUsers parameters = new ParametersForUsers()
+                {Email = email};
+
+                if (dalUserManage.GetUsers(parameters).Any())
+                {
+                    return false;
+                }
+
                 User user = new User()
                 {
                     Email = email,

@@ -9,7 +9,9 @@ namespace SPDS.Controllers
 {
     public class AboutController : Controller
     {
-        // GET: About
+
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult About()
         {
             return View();

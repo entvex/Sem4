@@ -12,17 +12,23 @@ namespace SPDS.Controllers
     public class DataController : Controller
     {
 
-        // GET: Data
+        // GET controller for Data popup-window
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Data()
         {
             return View();
         }
+
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult View_Data()
         {
             return View();
         }
+
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult View_Data(ViewDataViewModel model)
         {
             if (ModelState.IsValid)
@@ -65,13 +71,14 @@ namespace SPDS.Controllers
 
         }
 
-        [Authorize(Roles = "3")]
+        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
         public ActionResult Review_Data()
         {
             return View();
         }
 
-        //[Authorize(Roles = "3,1")]
+        [HttpGet]
+        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
         public ActionResult Submit_Data()
         {
             
@@ -79,6 +86,7 @@ namespace SPDS.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
         public ActionResult Submit_Data(Submitmodel model)
         {
             if(ModelState.IsValid)

@@ -11,7 +11,8 @@ namespace SPDS.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult ForgotPass()
         {
             return View();
@@ -24,6 +25,7 @@ namespace SPDS.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult CreateAccount()
         {
@@ -33,6 +35,8 @@ namespace SPDS.Controllers
         [HttpPost]
         public ActionResult CreateAccount(Models.CreateAccountViewModel caVM)
         {
+            var allErrors = ModelState.Values.SelectMany(v => v.Errors);
+
             if (ModelState.IsValid)
             {
                 if (caVM.Create(caVM._Email,
@@ -57,12 +61,14 @@ namespace SPDS.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(Models.LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -84,6 +90,7 @@ namespace SPDS.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

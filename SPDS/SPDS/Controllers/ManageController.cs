@@ -15,6 +15,8 @@ namespace SPDS.Controllers
     public class ManageController : Controller
     {
         // GET: Manage
+        [HttpGet]
+        [Authorize(Roles = "Reviewer")]
         public ActionResult Administrator()
         {
             IDalUserManagement daluserManagement = new MSSQLModelDAL();
@@ -29,6 +31,8 @@ namespace SPDS.Controllers
         /// <param name="email"> user email </param>
         /// <returns>200 for ok else 404</returns>
         [HttpPost]
+        [Authorize(Roles = "Reviewer")]
+
         public ActionResult Administrator(string email)
         {
             if (!String.IsNullOrWhiteSpace(email) && email.Contains(";") && email.Contains("@"))
