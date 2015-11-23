@@ -48,8 +48,18 @@ namespace SPDS.Models
         [Display(Name = "Methods")]
         public string _methods { get; set; }
 
+        public int dataSetIndex { get; set; }
+
 
         private IDalRetrieve dal;
+
+        public double[][] dataArray;
+
+        public ViewDataViewModel()
+        {
+            dataSetIndex = 0;
+        }
+
 
         /// <summary>
         /// The method shall return the targetmaterial witch is equal to the searched request
