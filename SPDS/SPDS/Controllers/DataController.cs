@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MSSQLModel;
 using SPDS.Models;
 using SPDS.Models.DbModels;
+using System.IO;
 
 namespace SPDS.Controllers
 {
@@ -86,33 +87,42 @@ namespace SPDS.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
         public ActionResult Submit_Data(Submitmodel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                WebModel _web = new WebModel();
 
                 TempData["notice"] = "Data was successfully Submitted";
 
                 var Datacollection = new DatasetQuery();
                 Datacollection.comment = model._comment;
+                Datacollection.format = model._format;
                 Datacollection.doiNumber = model._doiNumber;
                 Datacollection.method = model._method;
                 Datacollection.projectile = model._projectile;
                 Datacollection.stateOfAggregation = model._stateOfAggregation;
                 Datacollection.targetMaterial = model._targetMaterial;
                 Datacollection.email = User.Identity.Name;
-                Datacollection.datapoints = model._manualString;
 
+                string result = new StreamReader(model._uploadedfile.InputStream).ReadToEnd();
 
+                if (result != null)
+                {
+                    Datacollection.datapoints = result;
+                }
+                else
+                {
+                    Datacollection.datapoints = model._manualString;
+                }
+
+                _web.SetDataset(Datacollection);
 
                 return RedirectToAction("View_Data", "Data");
-                
-            }
-            
-       
 
-            return View();  
+            }
+
+            return View();
         }
     }
 }

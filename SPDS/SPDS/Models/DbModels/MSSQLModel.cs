@@ -451,7 +451,7 @@ namespace MSSQLModel
         {
             using (var db = new TSPDSContext())
             {
-                var query = from b in db.Method select b;
+                var query = from b in db.Method where b.Name == name select b;
                 if (query.Any())
                 {
                     return query.Single();
