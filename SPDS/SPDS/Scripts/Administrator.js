@@ -1,9 +1,10 @@
 ﻿function DeleteRowFunction(btndel) {
-    var result = window.confirm("Are you sure?");
-    if (typeof (btndel) == "object" && result == true) {
 
+    var result = window.confirm("Are you sure?");
+
+    if (typeof (btndel) == "object" && result == true) {
+        
         var email = $(btndel).closest("tr").find('td:eq(2)').text();
-        console.log("Email:" + email);
         var request = new XMLHttpRequest();
         request.open("POST", "Administrator", true);
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -31,7 +32,6 @@ function Promote(btndel) {
     if (typeof (btndel) == "object" && result == true) {
 
         var email = $(btndel).closest("tr").find('td:eq(2)').text();
-        console.log("Email:" + email);
         var request = new XMLHttpRequest();
         request.open("POST", "Administrator", true);
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -59,7 +59,6 @@ function Demote(btndel) {
     if (typeof (btndel) == "object" && result == true) {
 
         var email = $(btndel).closest("tr").find('td:eq(2)').text();
-        console.log("Email:" + email);
         var request = new XMLHttpRequest();
         request.open("POST", "Administrator", true);
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

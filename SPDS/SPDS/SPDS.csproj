@@ -121,6 +121,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Administrator.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CONTENT.css" />
@@ -137,6 +138,7 @@
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
     <Content Include="Scripts\.gitignore" />
+    <Content Include="Scripts\Administrator.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.js" />
