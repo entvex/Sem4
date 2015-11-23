@@ -17,13 +17,12 @@ namespace SPDS.Models
         private readonly IDalInsert _dalInsert = new MSSQLModelDAL();
         private FileHelperEngine<CSVData> engine = new FileHelperEngine<CSVData>();
 
-        public void SetDataset(DatasetQuery dataq)
+        public bool SetDataset(DatasetQuery dataq)
         {
             var result = engine.ReadString(dataq.datapoints);
 
             List<DataPoint> data = new List<DataPoint>();
             DataPoint temp = new DataPoint();
-
 
             foreach (var d in result)
             {
@@ -36,22 +35,21 @@ namespace SPDS.Models
                 data.Add(temp);
             }
 
-
             var tm = _dalRetrieve.GetTargetMaterialByName(dataq.targetMaterial);
             if (tm.Id == 0)
-                return;
+                return false;
             var pjt = _dalRetrieve.GetProjectileByName(dataq.projectile);
             if (pjt.Id == 0)
-                return;
+                return false;
             var fmt = _dalRetrieve.GetDataformatByNotation(dataq.format);
             if (fmt.Id == 0)
-                return;
+                return false;
             var soa = _dalRetrieve.GetStateOfAggregationByForm(dataq.stateOfAggregation);
             if (soa.Id == 0)
-                return;
+                return false;
             var article = _dalRetrieve.GetArticleReferences(new ParametersForArticelreferences() { DOINumber = dataq.doiNumber });
             if (!article.Any())
-                return;
+                return false;
             var md = _dalRetrieve.GetMethodByName(dataq.method);
             if (md.Id == 0)
             {
@@ -65,19 +63,20 @@ namespace SPDS.Models
 
             var users = _dalRetrieve.GetUsers(new ParametersForUsers() { Email = dataq.email });
             if (!users.Any())
-                return;
+                return false;
 
             try
             {
                 _dalInsert.InsertDataset(data, tm, pjt, fmt, fmt, revision, users[0], null, article[0], md, soa);
+                return true;
             }
             catch (DALInfoNotSpecifiedException e)
             {
-                // error handling
+                return false;
             }
             catch (DALAlreadyExistsException e)
             {
-                // error handling
+                return false;
             }
         }
 

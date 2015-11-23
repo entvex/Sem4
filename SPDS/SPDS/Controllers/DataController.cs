@@ -116,9 +116,19 @@ namespace SPDS.Controllers
                     Datacollection.datapoints = model._manualString;
                 }
 
-                _web.SetDataset(Datacollection);
+                if (_web.SetDataset(Datacollection))
+                {
+                    TempData["notice"] = "Data was successfully Submitted";
+                    return RedirectToAction("View_Data", "Data");
+                }
+                else
+                {
+                    TempData["notice"] = "Data was not submitted due to invalid parameters entered";
+                    return RedirectToAction("Submit_Data", "Data");
+                }
 
-                return RedirectToAction("View_Data", "Data");
+                
+                
 
             }
 
