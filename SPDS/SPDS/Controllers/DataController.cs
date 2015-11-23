@@ -71,14 +71,14 @@ namespace SPDS.Controllers
 
         }
 
-        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
+        [Authorize(Roles = "Reviewer")]
         public ActionResult Review_Data()
         {
             return View();
         }
 
         [HttpGet]
-        [Authorize(Roles = "Reviewer,Waiting for approval,Submitter")]
+        [Authorize(Roles = "Reviewer")]
         public ActionResult Submit_Data()
         {
             
