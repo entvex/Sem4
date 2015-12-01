@@ -18,7 +18,10 @@
 
         request.send('email=' + 'delete;' + email);
 
-        $(btndel).closest("tr").remove();
+        $(btndel).closest("tr").find('td:eq(0)').text("DeletedUser");
+        $(btndel).closest("tr").find('td:eq(1)').text("");
+        $(btndel).closest("tr").find('td:eq(2)').text("");
+        $(btndel).closest("tr").find('td:eq(3)').text("Submitter");
 
     } else {
         return false;
