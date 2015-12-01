@@ -99,9 +99,7 @@
 
 
         <div class="graph" id="container">
-		<div class="data" id="metadata">
-		Hello world
-		</div>
+
             <script>
                 
 
@@ -135,6 +133,8 @@
                 
             </script>
         </div>
+				<div class="data" id="metadata">
+		</div>
         @*     <div class="table">
             <script>
                 var data = [["power", "length", "Energy"], [1, 2, 3], [2, 3, 5], [3, 5, 8], [4, 8, 12], [5, 4, 9], [6, 4, 10], [7, 8, 15]];
@@ -195,7 +195,7 @@
                     <td>@item.ArticleReferences.Firstname</td>
                     <td>@item.ArticleReferences.Year</td>
                     <td>
-                        <button type="button" onclick="showmetadata()">View Metadata</button>
+                        <button type="button" onclick="showmetadata('Projectile name: @item.Projectile.Name <br /> Projectile Mass: @item.Projectile.Mass<br /> Projectile PDGNR: @item.Projectile.PDGNumber<br /> Projectile zCharge: @item.Projectile.zCharge<br /> Targetmaterial name: @item.TargetMaterial.Name<br /> Targetmaterial Mass: @item.TargetMaterial.Mass<br /> Targetmaterial Chemicalformula:  @item.TargetMaterial.ChemicalFormula<br /> Targetmaterial Molarmass: @item.TargetMaterial.MolarMass<br /> Targetmaterial ZCharge: @item.TargetMaterial.ZCharge<br /> Method Name: @item.Method.Name<br /> Author: @item.ArticleReferences.Firstname @item.ArticleReferences.Lastname<br /> DOI Number: @item.ArticleReferences.DOINumber<br /> Year: @item.ArticleReferences.Year<br /> State of Aggregation: @item.StateOfAggregation.Form')">View Metadata</button>
                     </td>
                     <td>
                         <button type="button" onclick="createDataArray('@Html.Raw(Json.Encode(Model.dataSetIndex))')">
@@ -208,10 +208,9 @@
 
                 </tr>
 				<script>
-					function showmetadata()
+					function showmetadata(metastring)
 						{
-						var metadat = 'Projectile name: @item.Projectile.Name, Projectile Mass: @item.Projectile.Mass, Projectile PDGNR: @item.Projectile.PDGNumber, Projectile zCharge: @item.Projectile.zCharge, Targetmaterial name: @item.TargetMaterial.Name, Targetmaterial Mass: @item.TargetMaterial.Mass, Targetmaterial Chemicalformula:  @item.TargetMaterial.ChemicalFormula, Targetmaterial Molarmass: @item.TargetMaterial.MolarMass, Targetmaterial ZCharge: @item.TargetMaterial.ZCharge, Method Name: @item.Method.Name, Author Firstname: @item.ArticleReferences.Firstname, Author Lastname: @item.ArticleReferences.Lastname, DOI Number: @item.ArticleReferences.DOINumber, Year: @item.ArticleReferences.Year, State of Aggregation: @item.StateOfAggregation.Form';
-						document.getElementById("metadata").innerHTML = metadat;
+						document.getElementById("metadata").innerHTML = metastring;
 						}
 
 				</script>
