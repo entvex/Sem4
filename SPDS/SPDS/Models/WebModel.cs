@@ -17,9 +17,18 @@ namespace SPDS.Models
         private readonly IDalInsert _dalInsert = new MSSQLModelDAL();
         private FileHelperEngine<CSVData> engine = new FileHelperEngine<CSVData>();
 
-        public bool SetDataset(DatasetQuery dataq)
+        public string SetDataset(DatasetQuery dataq)
         {
-            var result = engine.ReadString(dataq.datapoints);
+            CSVData[] result;
+
+            try
+            {
+                result = engine.ReadString(dataq.datapoints);
+            }
+            catch (Exception e)
+            {
+                return "not successful. Reason: invalid datapoints";
+            }
 
             List<DataPoint> data = new List<DataPoint>();
             DataPoint temp = new DataPoint();
@@ -37,19 +46,19 @@ namespace SPDS.Models
 
             var tm = _dalRetrieve.GetTargetMaterialByName(dataq.targetMaterial);
             if (tm.Id == 0)
-                return false;
+                return "not successful. Reason: invalid target material";
             var pjt = _dalRetrieve.GetProjectileByName(dataq.projectile);
             if (pjt.Id == 0)
-                return false;
+                return "not successful. Reason: invalid projectile";
             var fmt = _dalRetrieve.GetDataformatByNotation(dataq.format);
             if (fmt.Id == 0)
-                return false;
+                return "not successful. Reason: invalid format";
             var soa = _dalRetrieve.GetStateOfAggregationByForm(dataq.stateOfAggregation);
             if (soa.Id == 0)
-                return false;
+                return "not successful. Reason: invalid physical state";
             var article = _dalRetrieve.GetArticleReferences(new ParametersForArticelreferences() { DOINumber = dataq.doiNumber });
             if (!article.Any())
-                return false;
+                return "not successful. Reason: invalid article references";
             var md = _dalRetrieve.GetMethodByName(dataq.method);
             if (md.Id == 0)
             {
@@ -63,20 +72,20 @@ namespace SPDS.Models
 
             var users = _dalRetrieve.GetUsers(new ParametersForUsers() { Email = dataq.email });
             if (!users.Any())
-                return false;
+                return "not successful. Reason: invalid user";
 
             try
             {
                 _dalInsert.InsertDataset(data, tm, pjt, fmt, fmt, revision, users[0], null, article[0], md, soa);
-                return true;
+                return "successful";
             }
             catch (DALInfoNotSpecifiedException e)
             {
-                return false;
+                return e.ToString();
             }
             catch (DALAlreadyExistsException e)
             {
-                return false;
+                return e.ToString();
             }
         }
 

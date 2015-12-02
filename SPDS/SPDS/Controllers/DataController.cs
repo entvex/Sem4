@@ -82,7 +82,7 @@ namespace SPDS.Controllers
         [Authorize(Roles = "Reviewer")]
         public ActionResult Submit_Data()
         {
-            
+
             return View();
         }
 
@@ -92,6 +92,7 @@ namespace SPDS.Controllers
             if (ModelState.IsValid)
             {
                 WebModel _web = new WebModel();
+                string result = null;
 
                 TempData["notice"] = "Data was successfully Submitted";
 
@@ -105,7 +106,10 @@ namespace SPDS.Controllers
                 Datacollection.targetMaterial = model._targetMaterial;
                 Datacollection.email = User.Identity.Name;
 
-                string result = new StreamReader(model._uploadedfile.InputStream).ReadToEnd();
+                if (model._uploadedfile != null)
+                {
+                    result = new StreamReader(model._uploadedfile.InputStream).ReadToEnd();
+                }
 
                 if (result != null)
                 {
@@ -116,20 +120,10 @@ namespace SPDS.Controllers
                     Datacollection.datapoints = model._manualString;
                 }
 
-                if (_web.SetDataset(Datacollection))
-                {
-                    TempData["notice"] = "Data was successfully Submitted";
-                    return RedirectToAction("View_Data", "Data");
-                }
-                else
-                {
-                    TempData["notice"] = "Data was not submitted due to invalid parameters entered";
-                    return RedirectToAction("Submit_Data", "Data");
-                }
+                result = _web.SetDataset(Datacollection);
 
-                
-                
-
+                TempData["notice"] = "Submission was " + result;
+                return RedirectToAction("Submit_Data", "Data");
             }
 
             return View();
