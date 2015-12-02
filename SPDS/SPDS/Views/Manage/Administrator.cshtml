@@ -19,7 +19,10 @@
             var data = [];
             @foreach (var user in users)
             {
+                if( !@user.FirstName.Contains("DeletedUser") )
+                {
                 @:data.push(["@user.FirstName", "@user.Institute", "@user.Email", "@user.Permission.Description"]);
+                }
             }
 
             var len = data[0].length;
