@@ -40,7 +40,7 @@ namespace SPDS.Controllers
                     //invalid search - create empty list of datasets
                     //add error to modelstate
                     model._foundDataSets = new List<Dataset>();
-                    ModelState.AddModelError("","Please enter Target material and / or Projectile");
+                    ModelState.AddModelError("", "Please enter Target material and / or Projectile");
                 }
 
                 //invalid projectile entered - valid target material
@@ -84,7 +84,7 @@ namespace SPDS.Controllers
         [Authorize(Roles = "Reviewer,Submitter")]
         public ActionResult Submit_Data()
         {
-            
+
             return View();
         }
 
@@ -95,6 +95,7 @@ namespace SPDS.Controllers
             if (ModelState.IsValid)
             {
                 WebModel _web = new WebModel();
+                string result = null;
 
                 TempData["notice"] = "Data was successfully Submitted";
 
@@ -108,7 +109,10 @@ namespace SPDS.Controllers
                 Datacollection.targetMaterial = model._targetMaterial;
                 Datacollection.email = User.Identity.Name;
 
-                string result = new StreamReader(model._uploadedfile.InputStream).ReadToEnd();
+                if (model._uploadedfile != null)
+                {
+                    result = new StreamReader(model._uploadedfile.InputStream).ReadToEnd();
+                }
 
                 if (result != null)
                 {
@@ -119,9 +123,10 @@ namespace SPDS.Controllers
                     Datacollection.datapoints = model._manualString;
                 }
 
-                _web.SetDataset(Datacollection);
+                result = _web.SetDataset(Datacollection);
 
-                return RedirectToAction("View_Data", "Data");
+                TempData["notice"] = "Submission was " + result;
+                return RedirectToAction("Submit_Data", "Data");
 
             }
 
