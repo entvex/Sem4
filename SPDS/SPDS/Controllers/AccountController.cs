@@ -35,9 +35,7 @@ namespace SPDS.Controllers
         [HttpPost]
         public ActionResult CreateAccount(Models.CreateAccountViewModel caVM)
         {
-            var allErrors = ModelState.Values.SelectMany(v => v.Errors);
-
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && (caVM._Institution != "" || caVM._Institution != null))
             {
                 if (caVM.Create(caVM._Email,
                     caVM._confirmEmail,
@@ -50,10 +48,30 @@ namespace SPDS.Controllers
                     FormsAuthentication.SetAuthCookie(caVM._Email, false);
                     return RedirectToAction("View_Data", "Data");
                 }
-                else
+                
+                
+                ModelState.AddModelError("", "Login Data is incorrect!");
+                return View(caVM);
+                
+
+            }
+
+            if (ModelState.IsValid && string.IsNullOrEmpty(caVM._Institution))
+            {
+                if (caVM.Create(caVM._Email,
+                    caVM._confirmEmail,
+                    caVM._Pass,
+                    caVM._confirmPass,
+                    caVM._FirstName,
+                    caVM._LastName))
                 {
-                    ModelState.AddModelError("", "Login Data is incorrect!");
+                    FormsAuthentication.SetAuthCookie(caVM._Email, false);
+                    return RedirectToAction("View_Data", "Data");
                 }
+                
+                ModelState.AddModelError("", "Login Data is incorrect!");
+                return View(caVM);
+                
 
             }
             return View(caVM);

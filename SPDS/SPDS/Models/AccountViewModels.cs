@@ -30,7 +30,7 @@ namespace SPDS.Models
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         [MinLength(8,ErrorMessage = "Password must be at least 8 characters long")]
-        [MaxLength(19, ErrorMessage = "Password must be under 20 characters long")]
+        [MaxLength(64, ErrorMessage = "Password must be under 65 characters long")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage ="Password must contains at least: one upper case letter, one lower case letter and one digit")]
         public string _Pass
         {
@@ -59,7 +59,6 @@ namespace SPDS.Models
             }
         }
 
-        [Required]
         [Display(Name = "Institution")]
         public string _Institution { get; set; }
 
@@ -109,6 +108,8 @@ namespace SPDS.Models
                     Institute = institution,
                     Password = pass
                 };
+                
+
                 Permission perm = dalUserManage.GetPermByAccessLevel(AccessLevel.Submitter);
                 dalUserManage.InsertUser(user, perm);
                 return true;
@@ -116,6 +117,55 @@ namespace SPDS.Models
             catch (NullReferenceException e)
             {
                 
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Method creates user and inserts it into database
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="confirmEmail">user email confirmed</param>
+        /// <param name="Pass">user password</param>
+        /// <param name="confirmPass">user password confirmed</param>
+        /// <param name="fName">user first name</param>
+        /// <param name="lName">user last name</param>
+        public bool Create(string email, string confirmEmail, string pass, string confirmPass, string fName, string lName)
+        {
+
+            if (_confirmPass != _Pass)
+            {
+                return false;
+            }
+
+            try
+            {
+                IDalUserManagement dalUserManage = new MSSQLModelDAL();
+
+                ParametersForUsers parameters = new ParametersForUsers()
+                { Email = email };
+
+                if (dalUserManage.GetUsers(parameters).Any())
+                {
+                    return false;
+                }
+
+                User user = new User()
+                {
+                    Email = email,
+                    FirstName = fName,
+                    LastName = lName,
+                    Password = pass
+                };
+
+
+                Permission perm = dalUserManage.GetPermByAccessLevel(AccessLevel.Submitter);
+                dalUserManage.InsertUser(user, perm);
+                return true;
+            }
+            catch (NullReferenceException e)
+            {
+
                 return false;
             }
         }

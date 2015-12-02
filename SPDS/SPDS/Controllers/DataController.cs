@@ -38,11 +38,13 @@ namespace SPDS.Controllers
                     string.IsNullOrEmpty(model._projectile))
                 {
                     //invalid search - create empty list of datasets
+                    //add error to modelstate
                     model._foundDataSets = new List<Dataset>();
+                    ModelState.AddModelError("","Please enter Target material and / or Projectile");
                 }
 
                 //invalid projectile entered - valid target material
-                if ((model._targetMaterial != null || model._targetMaterial != "") &&
+                if (!string.IsNullOrEmpty(model._targetMaterial) &&
                     string.IsNullOrEmpty(model._projectile))
                 {
                     //search for target material
@@ -50,14 +52,14 @@ namespace SPDS.Controllers
                 }
                 //invalid targetmaterial - valid projectile
                 else if (string.IsNullOrEmpty(model._targetMaterial) &&
-                         (model._projectile != null || model._projectile != ""))
+                         !string.IsNullOrEmpty(model._projectile))
                 {
                     //search for projectile
                     model.Search(model._projectile, 0);
                 }
                 //both targetmaterial and projectile are valid
-                else if ((model._targetMaterial != null || model._targetMaterial != "") &&
-                         (model._projectile != null || model._projectile != ""))
+                else if (!string.IsNullOrEmpty(model._targetMaterial) &&
+                         !string.IsNullOrEmpty(model._projectile))
                 {
                     //search for both target material and projectile
                     model.Search(model._projectile, model._targetMaterial);
@@ -79,20 +81,20 @@ namespace SPDS.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Reviewer")]
+        [Authorize(Roles = "Reviewer,Submitter")]
         public ActionResult Submit_Data()
         {
-
+            
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Reviewer,Submitter")]
         public ActionResult Submit_Data(Submitmodel model)
         {
             if (ModelState.IsValid)
             {
                 WebModel _web = new WebModel();
-                string result = null;
 
                 TempData["notice"] = "Data was successfully Submitted";
 
@@ -106,10 +108,7 @@ namespace SPDS.Controllers
                 Datacollection.targetMaterial = model._targetMaterial;
                 Datacollection.email = User.Identity.Name;
 
-                if (model._uploadedfile != null)
-                {
-                    result = new StreamReader(model._uploadedfile.InputStream).ReadToEnd();
-                }
+                string result = new StreamReader(model._uploadedfile.InputStream).ReadToEnd();
 
                 if (result != null)
                 {
@@ -120,10 +119,10 @@ namespace SPDS.Controllers
                     Datacollection.datapoints = model._manualString;
                 }
 
-                result = _web.SetDataset(Datacollection);
+                _web.SetDataset(Datacollection);
 
-                TempData["notice"] = "Submission was " + result;
-                return RedirectToAction("Submit_Data", "Data");
+                return RedirectToAction("View_Data", "Data");
+
             }
 
             return View();

@@ -1,4 +1,5 @@
-﻿@model SPDS.Models.ViewDataViewModel
+﻿@using System.Web.UI.WebControls
+@model SPDS.Models.ViewDataViewModel
 @{
     ViewBag.Title = "View_Data";
 }
@@ -28,6 +29,7 @@
             <h2>SEARCH DATABASE</h2>
             @using (Html.BeginForm())
             {
+                @Html.ValidationSummary(true);
                 //The following are the search options
                 <fieldset>
                     <legend><span class="number">1</span>Enter Projectile</legend>
