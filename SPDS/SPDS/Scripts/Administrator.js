@@ -15,9 +15,7 @@
                 window.location.replace(window.location.host);
             }
         });
-
         request.send('email=' + 'delete;' + email);
-
         $(btndel).closest("tr").remove();
 
     } else {
@@ -27,9 +25,14 @@
 
 function Promote(btndel) {
 
+    if ($(btndel).closest("tr").find('td:eq(3)').text() == "Reviewer")
+    {
+        alert("The user is already a Reviewer in the system");
+    } else {            
+
     var result = window.confirm("Are you sure?");
 
-    if (typeof (btndel) == "object" && result == true) {
+    if (typeof (btndel) == "object" && result == true) {        
 
         var email = $(btndel).closest("tr").find('td:eq(2)').text();
         var request = new XMLHttpRequest();
@@ -50,31 +53,37 @@ function Promote(btndel) {
     } else {
         return false;
     }
+    }
 }
 
 function Demote(btndel) {
 
-    var result = window.confirm("Are you sure?");
-
-    if (typeof (btndel) == "object" && result == true) {
-
-        var email = $(btndel).closest("tr").find('td:eq(2)').text();
-        var request = new XMLHttpRequest();
-        request.open("POST", "Administrator", true);
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-        request.addEventListener("load", function (evt) {
-            if (request.status != 200) {
-                alert("Your change was not made because of an error, you will now be sent to the landing page");
-                window.location.replace(window.location.host);
-            }
-        });
-
-        request.send('email=' + 'demote;' + email);
-
-        $(btndel).closest("tr").find('td:eq(3)').text("Submitter");
-
+    if ($(btndel).closest("tr").find('td:eq(3)').text() == "Submitter") {
+        alert("The user is already a Submitter in the system");
     } else {
-        return false;
+
+        var result = window.confirm("Are you sure?");
+
+        if (typeof (btndel) == "object" && result == true) {
+
+            var email = $(btndel).closest("tr").find('td:eq(2)').text();
+            var request = new XMLHttpRequest();
+            request.open("POST", "Administrator", true);
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            request.addEventListener("load", function(evt) {
+                if (request.status != 200) {
+                    alert("Your change was not made because of an error, you will now be sent to the landing page");
+                    window.location.replace(window.location.host);
+                }
+            });
+
+            request.send('email=' + 'demote;' + email);
+
+            $(btndel).closest("tr").find('td:eq(3)').text("Submitter");
+
+        } else {
+            return false;
+        }
     }
 }
