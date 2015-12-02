@@ -26,7 +26,7 @@ graph.prototype.drawGraph = function (graphdata, containername, title, comment) 
                 minorTickInterval: 0.1,
                 gridLineWidth: 1,
                 title: {
-                    text: 'Length (cm)'
+                    text: 'Energy (MeV)'
                 }
             },
 
@@ -37,7 +37,7 @@ graph.prototype.drawGraph = function (graphdata, containername, title, comment) 
                 minorTickInterval: 0.1,
                 gridLineWidth: 1,
                 title: {
-                    text: 'Power (kVm)'
+                    text: 'Stopping Power (MeV cm^2/g)'
                 }
             },
             tooltip: {
