@@ -60,6 +60,7 @@ namespace SPDS.Models
         }
 
         [Display(Name = "Institution")]
+        [MaxLength(64,ErrorMessage = "Institutionname must be under 65 characters long$")]
         public string _Institution { get; set; }
 
         [Required]
