@@ -42,7 +42,7 @@ graph.prototype.drawGraph = function (graphdata, containername, title, comment) 
             },
             tooltip: {
                 headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:.2f} cm : {point.y:.2f} kVm'
+                pointFormat: '{point.x:.2f} MeV : {point.y:.2f} MeV cm^2/g'
             },
 
 
@@ -97,7 +97,7 @@ graph.prototype.drawGraphDoublePlots = function (graphdata, graphdata2, containe
             },
             tooltip: {
                 headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:.2f} cm : {point.y:.2f} kVm'
+                pointFormat: '{point.x:.2f} MeV : {point.y:.2f} MeV cm^2/g'
             },
 
 
