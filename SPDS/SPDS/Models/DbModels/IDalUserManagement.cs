@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using MSSQLModel.Exceptions;
-using SPDS.Models.DbModels;
 
 namespace MSSQLModel
 {
     public enum AccessLevel { Submitter = 1,Reviewer = 3};
+    /// <summary>
+    /// An interface to retrieve,insert and deleting users from the database.
+    /// </summary>
+    /// <remarks>As default this interface uses lazy loading. If the database doesn't contain any of the search parameters, in the get methods, an empty object or list will be returned</remarks>
     public interface IDalUserManagement
     {
  
@@ -55,8 +58,13 @@ namespace MSSQLModel
         /// <code>
         /// public void GetUserWithSpecificMail()
         /// {
-        /// IDalRetrieve dal = new MSSQLModelDAL();
-        /// var result = dal.GetUsers(new ParametersForUsers() { Email = "bassler@phys.au.dk" });
+        ///     IDalRetrieve dal = new MSSQLModelDAL();
+        ///     var result = dal.GetUsers(new ParametersForUsers() { Email = "bassler@phys.au.dk" });
+        ///     if (result.Any())
+        ///     {
+        ///        //use list of users here
+        ///    }
+        /// }
         /// }
         /// </code>
         List<User> GetUsers(ParametersForUsers parameters);
@@ -98,6 +106,8 @@ namespace MSSQLModel
         /// </summary>
         /// <param name="user">The existing User</param>
         /// <param name="perm">The new Permission</param>
+        /// <exception cref="DALInfoNotSpecifiedException">Is thrown if some of the user information was not specified or the permission id was not specified or the user don't exists.</exception>
+        /// <seealso cref="IDalRetrieve.GetUsers(ParametersForUsers)"/>
         void UpdateUserPermission(User user, Permission perm);
     }
 }

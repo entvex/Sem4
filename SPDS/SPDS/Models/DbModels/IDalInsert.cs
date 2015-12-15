@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using MSSQLModel.Exceptions;
-using SPDS.Models.DbModels;
-
 namespace MSSQLModel
 {
+    /// <summary>
+    /// An interface to insert data into the database.
+    /// </summary>
     public interface IDalInsert
     {
         /// <summary>
@@ -126,7 +127,6 @@ namespace MSSQLModel
         /// <exception cref="DALInfoNotSpecifiedException">Is thrown if the projectile name was not specified</exception>
         /// <exception cref="DALAlreadyExistsException">Is thrown if the projectile already exists in the database</exception>
         /// <example>
-        /// <see cref="InsertTargetMaterial(TargetMaterial)"/>
         /// </example>
         void InsertProjectile(Projectile projectile);
 
@@ -138,7 +138,6 @@ namespace MSSQLModel
         /// <exception cref="DALInfoNotSpecifiedException">Is thrown if the data notation was not specified.</exception>
         /// <exception cref="DALAlreadyExistsException">Is thrown if the data format already exists in the database.</exception>
         /// <example>
-        /// <see cref="InsertTargetMaterial(TargetMaterial)"/>
         /// </example>
         void InsertDataFormat(Dataformat dataformat);
 
@@ -150,7 +149,6 @@ namespace MSSQLModel
         /// <exception cref="DALInfoNotSpecifiedException">Is thrown if the form was not specified.</exception>
         /// <exception cref="DALAlreadyExistsException">Is thrown if the state of aggregation already exists in the database.</exception>
         /// <example>
-        /// <see cref="InsertTargetMaterial(TargetMaterial)"/>
         /// </example>
         void InsertStateOfAggregation(StateOfAggregation AG);
 
@@ -161,7 +159,6 @@ namespace MSSQLModel
         /// <exception cref="DALInfoNotSpecifiedException">Is thrown if the method name was not specified.</exception>
         /// <exception cref="DALAlreadyExistsException">Is thrown if the method already exists in the database.</exception>
         /// <example>
-        /// <see cref="InsertTargetMaterial(TargetMaterial)"/>
         /// </example>
         void InsertMethod(Method method);
 
@@ -171,14 +168,8 @@ namespace MSSQLModel
         /// <param name="articleReference">The article reference to insert into the database. </param>
         /// <exception cref="DALAlreadyExistsException">Is thrown if the DOI number specified already exists in the database.</exception>
         /// <example>
-        /// <see cref="InsertTargetMaterial(TargetMaterial)"/>
         /// </example>
         void InsertArticleReference(ArticleReferences articleReference);
-
-
-        
-        
-        
     }
 }
 
